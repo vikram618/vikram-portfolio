@@ -102,7 +102,7 @@ Data Visualization
 
 💼 LinkedIn: https://www.linkedin.com/in/vikram-kamble-49a088298/
 
-🐙 GitHub: Add your GitHub profile link
+🐙 GitHub: https://github.com/vikram618
 
 🚀 Deployment
 
