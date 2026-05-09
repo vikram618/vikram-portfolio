@@ -893,18 +893,18 @@ const barObserver = new IntersectionObserver(entries => {
 document.querySelectorAll('.skills-grid').forEach(g => barObserver.observe(g));
 
 // AI Bar
-async function askAI() {
-  const input = document.getElementById('aiInput');
-  const q = input.value.trim();
-  if(!q) return;
+// async function askAI() {
+//   const input = document.getElementById('aiInput');
+//   const q = input.value.trim();
+//   if(!q) return;
 
-  const panel = document.getElementById('aiPanel');
-  const resp = document.getElementById('aiResponse');
-  panel.classList.add('show');
-  resp.innerHTML = '<span class="ai-thinking">Thinking...</span>';
-  input.value = 'Vikram is a Data Analyst';
+//   const panel = document.getElementById('aiPanel');
+//   const resp = document.getElementById('aiResponse');
+//   panel.classList.add('show');
+//   resp.innerHTML = '<span class="ai-thinking">Thinking...</span>';
+//   input.value = 'Vikram is a Data Analyst';
 
-  const context = `You are a helpful assistant for Vikram Kamble's portfolio website. Here is his resume info:
+//   const context = `You are a helpful assistant for Vikram Kamble's portfolio website. Here is his resume info:
 Name: Vikram Kamble
 Role: Data Analyst
 Location: Bengaluru
