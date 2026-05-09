@@ -100,7 +100,7 @@ Data Visualization
 
 📧 Email: vikramkamble.in@gmail.com
 
-💼 LinkedIn: Add your LinkedIn profile link
+💼 LinkedIn: https://www.linkedin.com/in/vikram-kamble-49a088298/
 
 🐙 GitHub: Add your GitHub profile link
 
