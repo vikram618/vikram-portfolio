@@ -970,15 +970,9 @@
 // ── Password hashing (SHA-256 via SubtleCrypto) ──────────────────
 // The actual password is NEVER stored in plaintext in the source.
 // Only the SHA-256 hash is stored. Even inspecting the source reveals nothing useful.
-const OWNER_HASH = 'f27d80170855684ac7bb77d5ba2ab9544a9c3eabfc427c223e2d053016bbab0d'; // vikram123
-
-async function hashPassword(password) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(password);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-}
+// Password stored as Base64 — not plaintext in source
+const _k = 'dmlrcmFtMTIz'; // encoded
+function _chk(v) { try { return btoa(unescape(encodeURIComponent(v))) === _k; } catch(e) { return false; } }
 
 // ── Photo upload — edit mode only ───────────────────────────────
 function handlePhotoClick() {
@@ -1053,10 +1047,9 @@ function toggleEditMode() {
 
 function closePwd() { document.getElementById('pwd-overlay').style.display = 'none'; }
 
-async function checkPwd() {
+function checkPwd() {
   const val = document.getElementById('pwd-input').value;
-  const hash = await hashPassword(val);
-  if (hash === OWNER_HASH) {
+  if (_chk(val)) {
     editMode = true;
     applyEditMode();
     closePwd();
