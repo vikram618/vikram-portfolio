@@ -970,10 +970,8 @@
 // ── Password hashing (SHA-256 via SubtleCrypto) ──────────────────
 // The actual password is NEVER stored in plaintext in the source.
 // Only the SHA-256 hash is stored. Even inspecting the source reveals nothing useful.
-const OWNER_HASH = 'e338518c567398b32cc6ac588c523954db44033cd44ea4d175bbec38485fd4eb'; // = "password" → change this
+const OWNER_HASH = 'e338518c567398b32cc6ac588c523954db44033cd44ea4d175bbec38485fd4eb'; // vikram123
 
-// To generate hash for your own password, run in browser console:
-// hashPassword('yourpassword').then(h => console.log(h))
 async function hashPassword(password) {
   const encoder = new TextEncoder();
   const data = encoder.encode(password);
