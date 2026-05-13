@@ -7,588 +7,202 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --bg: #030712;
-    --bg2: #060d1f;
-    --surface: #0a1628;
-    --card: #0d1f38;
-    --card2: #102240;
-    --border: rgba(255,255,255,0.07);
-    --border-accent: rgba(56,189,248,0.35);
-    --text: #e2eeff;
-    --muted: #6b8ab0;
-    --accent: #38bdf8;
-    --accent-glow: rgba(56,189,248,0.18);
-    --accent2: #818cf8;
-    --accent2-glow: rgba(129,140,248,0.15);
-    --accent3: #fb7185;
-    --accent3-glow: rgba(251,113,133,0.15);
+    --bg: #030712; --bg2: #060d1f; --surface: #0a1628;
+    --card: #0d1f38; --card2: #102240;
+    --border: rgba(255,255,255,0.07); --border-accent: rgba(56,189,248,0.35);
+    --text: #e2eeff; --muted: #6b8ab0;
+    --accent: #38bdf8; --accent-glow: rgba(56,189,248,0.18);
+    --accent2: #818cf8; --accent2-glow: rgba(129,140,248,0.15);
+    --accent3: #fb7185; --accent3-glow: rgba(251,113,133,0.15);
     --gold: #fbbf24;
     --grad1: linear-gradient(135deg, #38bdf8, #818cf8);
     --grad2: linear-gradient(135deg, #818cf8, #fb7185);
     --grad3: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #fb7185 100%);
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Space Grotesk', sans-serif; min-height: 100vh; overflow-x: hidden; }
+  body::before { content:''; position:fixed; inset:0; z-index:0; pointer-events:none; background: radial-gradient(ellipse 80% 60% at 20% 10%, rgba(56,189,248,0.07) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 80%, rgba(129,140,248,0.07) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 60% 20%, rgba(251,113,133,0.04) 0%, transparent 50%); }
+  body::after { content:''; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.025; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:128px; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Space Grotesk', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+  nav { position:fixed; top:0; width:100%; z-index:100; padding:1rem 3rem; display:flex; justify-content:space-between; align-items:center; background:rgba(3,7,18,0.8); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+  .nav-logo { font-family:'Playfair Display',serif; font-size:1.5rem; background:var(--grad1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; letter-spacing:-0.5px; }
+  .nav-links { display:flex; gap:2rem; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:0.82rem; letter-spacing:0.06em; text-transform:uppercase; font-weight:500; transition:color 0.2s; position:relative; }
+  .nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; right:0; height:1px; background:var(--accent); transform:scaleX(0); transform-origin:left; transition:transform 0.25s; }
+  .nav-links a:hover { color:var(--accent); }
+  .nav-links a:hover::after { transform:scaleX(1); }
+  #editModeBtn { background:none; border:1px solid var(--border); border-radius:8px; padding:6px 14px; color:var(--muted); cursor:pointer; font-size:0.75rem; font-family:'Space Grotesk',sans-serif; display:flex; align-items:center; gap:6px; transition:all 0.2s; }
+  #editModeBtn:hover { border-color:var(--border-accent); color:var(--accent); }
 
-  /* ── Animated background ── */
-  body::before {
-    content: '';
-    position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background:
-      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(56,189,248,0.07) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(129,140,248,0.07) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 40% at 60% 20%, rgba(251,113,133,0.04) 0%, transparent 50%);
-  }
-
-  /* ── Noise texture overlay ── */
-  body::after {
-    content: '';
-    position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.025;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 128px;
-  }
-
-  /* ── Nav ── */
-  nav {
-    position: fixed; top: 0; width: 100%; z-index: 100;
-    padding: 1rem 3rem;
-    display: flex; justify-content: space-between; align-items: center;
-    background: rgba(3,7,18,0.8);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    background: var(--grad1);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: -0.5px;
-  }
-  .nav-links { display: flex; gap: 2rem; }
-  .nav-links a {
-    color: var(--muted); text-decoration: none; font-size: 0.82rem;
-    letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500;
-    transition: color 0.2s; position: relative;
-  }
-  .nav-links a::after {
-    content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
-    height: 1px; background: var(--accent);
-    transform: scaleX(0); transform-origin: left; transition: transform 0.25s;
-  }
-  .nav-links a:hover { color: var(--accent); }
-  .nav-links a:hover::after { transform: scaleX(1); }
-
-  #editModeBtn {
-    background: none; border: 1px solid var(--border); border-radius: 8px;
-    padding: 6px 14px; color: var(--muted); cursor: pointer;
-    font-size: 0.75rem; font-family: 'Space Grotesk', sans-serif;
-    display: flex; align-items: center; gap: 6px;
-    transition: all 0.2s;
-  }
-  #editModeBtn:hover { border-color: var(--border-accent); color: var(--accent); }
-
-  /* ── Hero ── */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 0 4rem 0 3rem;
-    position: relative; overflow: hidden;
-  }
-
-  /* Geometric accent lines */
-  .hero-lines {
-    position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
-  }
-  .hero-lines svg { position: absolute; width: 100%; height: 100%; }
-
-  .hero-row {
-    position: relative; z-index: 2;
-    display: flex; align-items: center;
-    gap: 0;
-    max-width: 1200px;
-    width: 100%;
-  }
-
-  .hero-content { flex: 1; padding-right: 4rem; }
-
-  /* ── Photo column ── */
-  .hero-photo-col {
-    flex-shrink: 0;
-    width: 340px;
-    display: flex; flex-direction: column; align-items: center;
-    gap: 1rem;
-    position: relative;
-    margin-left: auto;
-    padding-right: 1rem;
-  }
-
-  .photo-ring-wrap {
-    position: relative; width: 300px; height: 300px;
-    display: flex; align-items: center; justify-content: center;
-  }
-
-  /* Spinning dashed ring */
-  .photo-ring-svg {
-    position: absolute; inset: -20px; width: calc(100% + 40px); height: calc(100% + 40px);
-    animation: spin-ring 18s linear infinite;
-  }
-  @keyframes spin-ring { to { transform: rotate(360deg); } }
-
-  /* Glowing halo */
-  .photo-ring-wrap::before {
-    content: ''; position: absolute; inset: -8px; border-radius: 50%;
-    background: var(--grad3);
-    opacity: 0.15; filter: blur(20px);
-    animation: halo-pulse 3s ease-in-out infinite;
-  }
+  .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:0 4rem 0 3rem; position:relative; overflow:hidden; }
+  .hero-lines { position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+  .hero-lines svg { position:absolute; width:100%; height:100%; }
+  .hero-row { position:relative; z-index:2; display:flex; align-items:center; gap:0; max-width:1200px; width:100%; }
+  .hero-content { flex:1; padding-right:4rem; }
+  .hero-photo-col { flex-shrink:0; width:340px; display:flex; flex-direction:column; align-items:center; gap:1rem; position:relative; margin-left:auto; padding-right:1rem; }
+  .photo-ring-wrap { position:relative; width:300px; height:300px; display:flex; align-items:center; justify-content:center; }
+  .photo-ring-svg { position:absolute; inset:-20px; width:calc(100% + 40px); height:calc(100% + 40px); animation:spin-ring 18s linear infinite; }
+  @keyframes spin-ring { to { transform:rotate(360deg); } }
+  .photo-ring-wrap::before { content:''; position:absolute; inset:-8px; border-radius:50%; background:var(--grad3); opacity:0.15; filter:blur(20px); animation:halo-pulse 3s ease-in-out infinite; }
   @keyframes halo-pulse { 0%,100%{opacity:0.12;} 50%{opacity:0.22;} }
-
-  .photo-frame {
-    width: 300px; height: 300px;
-    border-radius: 50%;
-    background: var(--card);
-    position: relative; overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow:
-      0 0 0 2px var(--bg),
-      0 0 0 4px rgba(56,189,248,0.4),
-      0 0 60px rgba(56,189,248,0.12),
-      0 30px 80px rgba(0,0,0,0.6);
-    cursor: default;
-  }
-  .photo-frame.edit-clickable {
-    cursor: pointer;
-  }
-  .photo-frame.edit-clickable:hover {
-    transform: scale(1.03);
-    box-shadow:
-      0 0 0 2px var(--bg),
-      0 0 0 4px rgba(56,189,248,0.7),
-      0 0 80px rgba(56,189,248,0.25),
-      0 34px 90px rgba(0,0,0,0.7);
-  }
-  .photo-frame.edit-clickable:hover .photo-overlay { display: flex !important; }
-
-  .photo-placeholder {
-    width: 100%; height: 100%;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem;
-  }
-  .photo-icon { color: var(--accent); opacity: 0.4; }
-  .photo-hint { font-size: 0.9rem; font-weight: 600; color: var(--text); text-align: center; line-height: 1.4; }
-  .photo-hint span { color: var(--accent); }
-  .photo-sub { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; }
-
-  .photo-overlay {
-    position: absolute; inset: 0;
-    background: rgba(3,7,18,0.65);
-    display: none; align-items: center; justify-content: center;
-    flex-direction: column; gap: 0.5rem;
-    color: var(--accent); font-size: 0.85rem; font-weight: 600;
-    backdrop-filter: blur(3px); border-radius: inherit;
-  }
-
-  .photo-name-badge {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem; color: var(--text); letter-spacing: -0.3px;
-    background: linear-gradient(135deg, #e2eeff, var(--accent));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .photo-role-badge {
-    font-size: 0.72rem; color: var(--muted); letter-spacing: 0.07em; text-transform: uppercase;
-  }
-
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    border: 1px solid rgba(56,189,248,0.3);
-    background: rgba(56,189,248,0.06);
-    padding: 6px 16px; border-radius: 100px;
-    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 2rem;
-  }
-  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+  .photo-frame { width:300px; height:300px; border-radius:50%; background:var(--card); position:relative; overflow:hidden; transition:transform 0.3s, box-shadow 0.3s; box-shadow:0 0 0 2px var(--bg), 0 0 0 4px rgba(56,189,248,0.4), 0 0 60px rgba(56,189,248,0.12), 0 30px 80px rgba(0,0,0,0.6); cursor:default; }
+  .photo-frame.edit-clickable { cursor:pointer; }
+  .photo-frame.edit-clickable:hover { transform:scale(1.03); box-shadow:0 0 0 2px var(--bg), 0 0 0 4px rgba(56,189,248,0.7), 0 0 80px rgba(56,189,248,0.25), 0 34px 90px rgba(0,0,0,0.7); }
+  .photo-frame.edit-clickable:hover .photo-overlay { display:flex !important; }
+  .photo-placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.6rem; }
+  .photo-icon { color:var(--accent); opacity:0.4; }
+  .photo-hint { font-size:0.9rem; font-weight:600; color:var(--text); text-align:center; line-height:1.4; }
+  .photo-hint span { color:var(--accent); }
+  .photo-sub { font-size:0.7rem; color:var(--muted); letter-spacing:0.05em; }
+  .photo-overlay { position:absolute; inset:0; background:rgba(3,7,18,0.65); display:none; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem; color:var(--accent); font-size:0.85rem; font-weight:600; backdrop-filter:blur(3px); border-radius:inherit; }
+  .photo-name-badge { font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--text); letter-spacing:-0.3px; background:linear-gradient(135deg,#e2eeff,var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .photo-role-badge { font-size:0.72rem; color:var(--muted); letter-spacing:0.07em; text-transform:uppercase; }
+  .hero-tag { display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(56,189,248,0.3); background:rgba(56,189,248,0.06); padding:6px 16px; border-radius:100px; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:2rem; }
+  .dot { width:6px; height:6px; border-radius:50%; background:var(--accent); animation:pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(56,189,248,0.4);} 50%{opacity:0.6;box-shadow:0 0 0 6px rgba(56,189,248,0);} }
+  .hero-name { font-family:'Playfair Display',serif; font-size:clamp(3.2rem,7vw,6.5rem); line-height:0.95; letter-spacing:-2px; margin-bottom:1.5rem; color:var(--text); }
+  .hero-name em { font-style:italic; background:var(--grad1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .hero-bio { font-size:1.05rem; color:var(--muted); max-width:520px; line-height:1.75; margin-bottom:2.5rem; font-weight:400; }
+  .hero-cta { display:flex; gap:1rem; flex-wrap:wrap; }
+  .btn-primary { padding:0.85rem 2rem; background:var(--grad1); color:#030712; border:none; border-radius:8px; font-family:'Space Grotesk',sans-serif; font-size:0.9rem; font-weight:700; cursor:pointer; text-decoration:none; letter-spacing:0.02em; position:relative; overflow:hidden; transition:transform 0.2s, box-shadow 0.2s; box-shadow:0 4px 20px rgba(56,189,248,0.3); }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(56,189,248,0.45); }
+  .btn-ghost { padding:0.85rem 2rem; background:transparent; color:var(--text); border:1px solid rgba(255,255,255,0.12); border-radius:8px; font-family:'Space Grotesk',sans-serif; font-size:0.9rem; font-weight:500; cursor:pointer; text-decoration:none; transition:border-color 0.2s, color 0.2s, background 0.2s; }
+  .btn-ghost:hover { border-color:var(--border-accent); color:var(--accent); background:var(--accent-glow); }
 
-  .hero-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3.2rem, 7vw, 6.5rem);
-    line-height: 0.95;
-    letter-spacing: -2px;
-    margin-bottom: 1.5rem;
-    color: var(--text);
-  }
-  .hero-name em {
-    font-style: italic;
-    background: var(--grad1);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+  /* ── Hero stats — now editable ── */
+  .hero-stats { display:flex; gap:2.5rem; margin-top:3.5rem; padding-top:2rem; border-top:1px solid var(--border); flex-wrap:wrap; }
+  .stat-item { position:relative; cursor:default; }
+  .stat-num { font-family:'JetBrains Mono',monospace; font-size:2rem; font-weight:500; background:var(--grad1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .stat-label { font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-top:4px; font-weight:500; }
+  .stat-edit-btn { position:absolute; top:-8px; right:-20px; background:none; border:none; color:var(--accent); cursor:pointer; font-size:0.75rem; opacity:0; transition:opacity 0.2s; padding:2px 4px; }
+  .stat-item:hover .stat-edit-btn { opacity:1; }
 
-  .hero-bio {
-    font-size: 1.05rem; color: var(--muted); max-width: 520px;
-    line-height: 1.75; margin-bottom: 2.5rem; font-weight: 400;
-  }
-
-  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-  .btn-primary {
-    padding: 0.85rem 2rem;
-    background: var(--grad1);
-    color: #030712;
-    border: none; border-radius: 8px;
-    font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 700;
-    cursor: pointer; text-decoration: none; letter-spacing: 0.02em;
-    position: relative; overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(56,189,248,0.3);
-  }
-  .btn-primary::after {
-    content: ''; position: absolute; inset: 0;
-    background: rgba(255,255,255,0.15);
-    opacity: 0; transition: opacity 0.2s;
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(56,189,248,0.45); }
-  .btn-primary:hover::after { opacity: 1; }
-
-  .btn-ghost {
-    padding: 0.85rem 2rem;
-    background: transparent; color: var(--text);
-    border: 1px solid rgba(255,255,255,0.12); border-radius: 8px;
-    font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 500;
-    cursor: pointer; text-decoration: none;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-  }
-  .btn-ghost:hover { border-color: var(--border-accent); color: var(--accent); background: var(--accent-glow); }
-
-  .hero-stats {
-    display: flex; gap: 2.5rem; margin-top: 3.5rem;
-    padding-top: 2rem; border-top: 1px solid var(--border);
-  }
-  .stat-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 2rem; font-weight: 500;
-    background: var(--grad1);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .stat-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; font-weight: 500; }
-
-  /* ── Sections ── */
-  section { padding: 6rem 3rem; position: relative; z-index: 1; }
-
-  .section-label {
-    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 1rem;
-    display: flex; align-items: center; gap: 0.75rem; font-weight: 600;
-  }
-  .section-label::after { content:''; flex:1; height:1px; background: linear-gradient(90deg, rgba(56,189,248,0.3), transparent); }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.1;
-  }
+  section { padding:6rem 3rem; position:relative; z-index:1; }
+  .section-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; display:flex; align-items:center; gap:0.75rem; font-weight:600; }
+  .section-label::after { content:''; flex:1; height:1px; background:linear-gradient(90deg, rgba(56,189,248,0.3), transparent); }
+  .section-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); letter-spacing:-1px; margin-bottom:1rem; line-height:1.1; }
 
   /* ── Skills ── */
-  #skills { background: var(--bg2); }
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-    gap: 1px;
-    margin-top: 3rem;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    background: var(--border);
-  }
-  .skill-card {
-    background: var(--card); padding: 2rem 1.5rem;
-    display: flex; flex-direction: column; gap: 0.85rem;
-    position: relative; overflow: hidden;
-    opacity: 0; transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease, background 0.25s;
-  }
-  .skill-card.visible { opacity: 1; transform: translateY(0); }
-  .skill-card:hover { background: var(--card2); }
-  .skill-card::before {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-    background: var(--grad1); transform: scaleX(0); transform-origin: left;
-    transition: transform 0.3s;
-  }
-  .skill-card:hover::before { transform: scaleX(1); }
-  .skill-card::after {
-    content: ''; position: absolute; top: 0; right: 0;
-    width: 60px; height: 60px;
-    background: radial-gradient(circle at top right, rgba(56,189,248,0.08), transparent 70%);
-    opacity: 0; transition: opacity 0.3s;
-  }
-  .skill-card:hover::after { opacity: 1; }
-  .skill-icon { font-size: 1.75rem; }
-  .skill-name { font-size: 0.95rem; font-weight: 700; letter-spacing: -0.2px; }
-  .skill-level { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
-  .skill-bar-bg { height: 2px; background: rgba(255,255,255,0.07); border-radius: 2px; margin-top: auto; }
-  .skill-bar { height: 100%; border-radius: 2px; background: var(--grad1); width: 0%; transition: width 1.1s cubic-bezier(0.4,0,0.2,1); }
+  #skills { background:var(--bg2); }
+  .skills-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:1px; margin-top:3rem; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--border); }
+  .skill-card { background:var(--card); padding:2rem 1.5rem; display:flex; flex-direction:column; gap:0.85rem; position:relative; overflow:hidden; opacity:0; transform:translateY(20px); transition:opacity 0.5s ease, transform 0.5s ease, background 0.25s; }
+  .skill-card.visible { opacity:1; transform:translateY(0); }
+  .skill-card:hover { background:var(--card2); }
+  .skill-card::before { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:var(--grad1); transform:scaleX(0); transform-origin:left; transition:transform 0.3s; }
+  .skill-card:hover::before { transform:scaleX(1); }
+  .skill-icon { font-size:1.75rem; }
+  .skill-name { font-size:0.95rem; font-weight:700; letter-spacing:-0.2px; }
+  .skill-level { font-size:0.75rem; color:var(--muted); font-weight:400; }
+  .skill-bar-bg { height:2px; background:rgba(255,255,255,0.07); border-radius:2px; margin-top:auto; }
+  .skill-bar { height:100%; border-radius:2px; background:var(--grad1); width:0%; transition:width 1.1s cubic-bezier(0.4,0,0.2,1); }
+  .skill-del-btn { position:absolute; top:8px; right:8px; background:rgba(251,113,133,0.1); border:1px solid rgba(251,113,133,0.2); border-radius:6px; color:var(--accent3); font-size:0.7rem; cursor:pointer; padding:3px 7px; display:none; transition:all 0.2s; z-index:2; }
+  .skill-del-btn:hover { background:rgba(251,113,133,0.2); }
 
   /* ── Experience ── */
-  .exp-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 2.5rem;
-    position: relative; overflow: hidden;
-    transition: border-color 0.25s, box-shadow 0.25s;
-  }
-  .exp-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: var(--grad1); opacity: 0; transition: opacity 0.25s;
-  }
-  .exp-card:hover { border-color: rgba(56,189,248,0.2); box-shadow: 0 8px 40px rgba(56,189,248,0.06); }
-  .exp-card:hover::before { opacity: 1; }
-  .exp-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.75rem; }
-  .exp-role { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.3px; }
-  .exp-company {
-    font-size: 0.88rem; font-weight: 600; margin-top: 4px;
-    background: var(--grad1);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .exp-date {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
-    color: var(--muted); background: rgba(255,255,255,0.04);
-    padding: 6px 14px; border-radius: 100px; border: 1px solid var(--border);
-    white-space: nowrap;
-  }
-  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-  .exp-bullets li {
-    font-size: 0.93rem; color: var(--muted); padding-left: 1.5rem;
-    position: relative; line-height: 1.65;
-  }
-  .exp-bullets li::before {
-    content: ''; position: absolute; left: 0; top: 10px;
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent); box-shadow: 0 0 8px rgba(56,189,248,0.5);
-  }
+  .exp-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:2.5rem; position:relative; overflow:hidden; transition:border-color 0.25s, box-shadow 0.25s; margin-bottom:1.5rem; }
+  .exp-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--grad1); opacity:0; transition:opacity 0.25s; }
+  .exp-card:hover { border-color:rgba(56,189,248,0.2); box-shadow:0 8px 40px rgba(56,189,248,0.06); }
+  .exp-card:hover::before { opacity:1; }
+  .exp-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem; margin-bottom:1.75rem; }
+  .exp-role { font-size:1.3rem; font-weight:700; letter-spacing:-0.3px; }
+  .exp-company { font-size:0.88rem; font-weight:600; margin-top:4px; background:var(--grad1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .exp-date { font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--muted); background:rgba(255,255,255,0.04); padding:6px 14px; border-radius:100px; border:1px solid var(--border); white-space:nowrap; }
+  .exp-bullets { list-style:none; display:flex; flex-direction:column; gap:1rem; }
+  .exp-bullets li { font-size:0.93rem; color:var(--muted); padding-left:1.5rem; position:relative; line-height:1.65; }
+  .exp-bullets li::before { content:''; position:absolute; left:0; top:10px; width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px rgba(56,189,248,0.5); }
+  .exp-edit-bar { display:none; justify-content:flex-end; gap:0.5rem; margin-top:1.5rem; padding-top:1.25rem; border-top:1px solid var(--border); }
+  .exp-edit-bar.show { display:flex; }
+  .exp-del-btn { background:rgba(251,113,133,0.08); border:1px solid rgba(251,113,133,0.2); border-radius:8px; color:var(--accent3); font-size:0.8rem; cursor:pointer; padding:6px 14px; font-family:'Space Grotesk',sans-serif; transition:all 0.2s; }
+  .exp-del-btn:hover { background:rgba(251,113,133,0.18); }
+  .exp-edit-action { background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2); border-radius:8px; color:var(--accent); font-size:0.8rem; cursor:pointer; padding:6px 14px; font-family:'Space Grotesk',sans-serif; transition:all 0.2s; }
+  .exp-edit-action:hover { background:var(--accent-glow); }
 
   /* ── Projects ── */
-  #projects { background: var(--bg2); }
-  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-  .project-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 2rem;
-    display: flex; flex-direction: column; gap: 1.25rem;
-    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-    cursor: default; position: relative; overflow: hidden;
-  }
-  .project-card::after {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at 80% 20%, rgba(56,189,248,0.04), transparent 60%);
-    opacity: 0; transition: opacity 0.3s;
-  }
-  .project-card:hover { transform: translateY(-5px); border-color: rgba(56,189,248,0.2); box-shadow: 0 20px 60px rgba(56,189,248,0.08); }
-  .project-card:hover::after { opacity: 1; }
-  .project-header { display: flex; justify-content: space-between; align-items: flex-start; }
-  .project-icon { font-size: 2rem; }
-  .project-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-  .tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.67rem; padding: 3px 10px; border-radius: 100px;
-    background: rgba(56,189,248,0.08); color: var(--accent);
-    border: 1px solid rgba(56,189,248,0.2); letter-spacing: 0.04em;
-  }
-  .tag.purple { background: rgba(129,140,248,0.08); color: var(--accent2); border-color: rgba(129,140,248,0.2); }
-  .tag.coral { background: rgba(251,113,133,0.08); color: var(--accent3); border-color: rgba(251,113,133,0.2); }
-  .project-name { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.3px; }
-  .project-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
-  .project-kpis {
-    display: flex; gap: 1.25rem; padding: 1rem 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    margin-top: auto;
-  }
-  .kpi { text-align: center; }
-  .kpi-val {
-    font-family: 'Playfair Display', serif; font-size: 1.3rem;
-    background: var(--grad1);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .kpi-lab { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+  #projects { background:var(--bg2); }
+  .projects-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem; margin-top:3rem; }
+  .project-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:2rem; display:flex; flex-direction:column; gap:1.25rem; transition:transform 0.25s, border-color 0.25s, box-shadow 0.25s; cursor:default; position:relative; overflow:hidden; }
+  .project-card:hover { transform:translateY(-5px); border-color:rgba(56,189,248,0.2); box-shadow:0 20px 60px rgba(56,189,248,0.08); }
+  .project-header { display:flex; justify-content:space-between; align-items:flex-start; }
+  .project-icon { font-size:2rem; }
+  .project-tags { display:flex; gap:6px; flex-wrap:wrap; }
+  .tag { font-family:'JetBrains Mono',monospace; font-size:0.67rem; padding:3px 10px; border-radius:100px; background:rgba(56,189,248,0.08); color:var(--accent); border:1px solid rgba(56,189,248,0.2); letter-spacing:0.04em; }
+  .tag.purple { background:rgba(129,140,248,0.08); color:var(--accent2); border-color:rgba(129,140,248,0.2); }
+  .tag.coral { background:rgba(251,113,133,0.08); color:var(--accent3); border-color:rgba(251,113,133,0.2); }
+  .project-name { font-size:1.2rem; font-weight:700; letter-spacing:-0.3px; }
+  .project-desc { font-size:0.88rem; color:var(--muted); line-height:1.65; }
+  .project-kpis { display:flex; gap:1.25rem; padding:1rem 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); margin-top:auto; }
+  .kpi { text-align:center; }
+  .kpi-val { font-family:'Playfair Display',serif; font-size:1.3rem; background:var(--grad1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .kpi-lab { font-size:0.65rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-top:2px; }
+  .project-footer { display:flex; align-items:center; gap:0.6rem; }
+  .gh-btn { flex:1; display:flex; align-items:center; gap:0.5rem; padding:0.6rem 1rem; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; color:var(--muted); font-family:'Space Grotesk',sans-serif; font-size:0.8rem; cursor:pointer; transition:all 0.2s; text-align:left; }
+  .gh-btn:hover { background:var(--accent-glow); border-color:var(--border-accent); color:var(--accent); }
+  .gh-btn.linked { color:var(--accent); border-color:rgba(56,189,248,0.3); background:var(--accent-glow); }
+  .edit-gh-btn { padding:0.6rem 0.75rem; background:transparent; border:1px solid var(--border); border-radius:8px; color:var(--muted); font-size:0.9rem; cursor:pointer; transition:color 0.2s, border-color 0.2s; flex-shrink:0; }
+  .edit-gh-btn:hover { color:var(--accent); border-color:var(--border-accent); }
+  .add-section-btn { display:flex; align-items:center; gap:0.5rem; padding:0.7rem 1.5rem; background:transparent; border:1px dashed rgba(56,189,248,0.3); border-radius:10px; color:var(--accent); font-family:'Space Grotesk',sans-serif; font-size:0.85rem; font-weight:600; cursor:pointer; letter-spacing:0.02em; transition:all 0.2s; }
+  .add-section-btn:hover { background:var(--accent-glow); border-color:var(--accent); transform:translateY(-1px); }
 
   /* ── Education & Certs ── */
-  .edu-cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; margin-top: 3rem; }
-  @media (max-width: 700px) { .edu-cert-grid { grid-template-columns: 1fr; } }
+  .edu-cert-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.75rem; margin-top:3rem; }
+  @media (max-width:700px) { .edu-cert-grid { grid-template-columns:1fr; } }
+  .edu-card, .cert-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:2rem; transition:border-color 0.25s, box-shadow 0.25s; position:relative; overflow:hidden; }
+  .edu-card::before, .cert-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--grad1); border-radius:0 2px 2px 0; }
+  .cert-card:nth-child(2)::before { background:var(--grad2); }
+  .edu-card:hover, .cert-card:hover { border-color:rgba(56,189,248,0.2); box-shadow:0 8px 32px rgba(56,189,248,0.06); }
+  .edu-degree { font-size:1.1rem; font-weight:700; margin-bottom:0.5rem; letter-spacing:-0.2px; }
+  .edu-school { color:var(--accent); font-size:0.88rem; margin-bottom:0.35rem; font-weight:500; }
+  .edu-meta { font-size:0.78rem; color:var(--muted); font-family:'JetBrains Mono',monospace; }
+  .cert-name { font-size:1.05rem; font-weight:700; margin-bottom:0.4rem; letter-spacing:-0.2px; }
+  .cert-org { color:var(--accent2); font-size:0.85rem; margin-bottom:0.4rem; font-weight:500; }
+  .cert-date { font-family:'JetBrains Mono',monospace; font-size:0.73rem; color:var(--muted); }
+  .badge { display:inline-block; font-size:0.63rem; padding:3px 10px; border-radius:100px; background:rgba(56,189,248,0.08); color:var(--accent); border:1px solid rgba(56,189,248,0.25); margin-bottom:0.85rem; letter-spacing:0.08em; text-transform:uppercase; font-weight:600; }
+  .badge.inprog { background:rgba(129,140,248,0.08); color:var(--accent2); border-color:rgba(129,140,248,0.25); }
+  .card-edit-bar { display:none; justify-content:flex-end; gap:0.5rem; margin-top:1.25rem; padding-top:1rem; border-top:1px solid var(--border); }
+  .card-edit-bar.show { display:flex; }
+  .card-del-btn { background:rgba(251,113,133,0.08); border:1px solid rgba(251,113,133,0.2); border-radius:8px; color:var(--accent3); font-size:0.75rem; cursor:pointer; padding:5px 12px; font-family:'Space Grotesk',sans-serif; transition:all 0.2s; }
+  .card-del-btn:hover { background:rgba(251,113,133,0.18); }
+  .card-edit-action { background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2); border-radius:8px; color:var(--accent); font-size:0.75rem; cursor:pointer; padding:5px 12px; font-family:'Space Grotesk',sans-serif; transition:all 0.2s; }
+  .card-edit-action:hover { background:var(--accent-glow); }
 
-  .edu-card, .cert-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 2rem;
-    transition: border-color 0.25s, box-shadow 0.25s;
-    position: relative; overflow: hidden;
-  }
-  .edu-card::before, .cert-card::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%;
-    background: var(--grad1); border-radius: 0 2px 2px 0;
-  }
-  .cert-card:nth-child(2)::before { background: var(--grad2); }
-  .edu-card:hover, .cert-card:hover { border-color: rgba(56,189,248,0.2); box-shadow: 0 8px 32px rgba(56,189,248,0.06); }
-  .edu-degree { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.2px; }
-  .edu-school { color: var(--accent); font-size: 0.88rem; margin-bottom: 0.35rem; font-weight: 500; }
-  .edu-meta { font-size: 0.78rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
-  .cert-name { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.2px; }
-  .cert-org { color: var(--accent2); font-size: 0.85rem; margin-bottom: 0.4rem; font-weight: 500; }
-  .cert-date { font-family: 'JetBrains Mono', monospace; font-size: 0.73rem; color: var(--muted); }
-  .badge {
-    display: inline-block;
-    font-size: 0.63rem; padding: 3px 10px; border-radius: 100px;
-    background: rgba(56,189,248,0.08); color: var(--accent);
-    border: 1px solid rgba(56,189,248,0.25);
-    margin-bottom: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;
-  }
-  .badge.inprog { background: rgba(129,140,248,0.08); color: var(--accent2); border-color: rgba(129,140,248,0.25); }
-
-  /* ── Contact ── */
-  #contact { background: var(--bg); text-align: center; }
-  .contact-inner { max-width: 620px; margin: 0 auto; }
-  .contact-links { display: flex; justify-content: center; gap: 1.25rem; margin-top: 2.5rem; flex-wrap: wrap; }
-  .contact-link {
-    display: flex; align-items: center; gap: 0.6rem;
-    padding: 0.8rem 1.75rem;
-    border: 1px solid var(--border); border-radius: 10px;
-    color: var(--text); text-decoration: none; font-size: 0.88rem;
-    transition: border-color 0.25s, color 0.25s, background 0.25s, box-shadow 0.25s;
-    background: var(--card); font-weight: 500;
-  }
-  .contact-link:hover {
-    border-color: var(--border-accent); color: var(--accent);
-    background: var(--accent-glow);
-    box-shadow: 0 4px 20px rgba(56,189,248,0.12);
-  }
-  .contact-link svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
-
-  /* ── Footer ── */
-  footer {
-    padding: 2rem 3rem; border-top: 1px solid var(--border);
-    text-align: center; color: var(--muted); font-size: 0.78rem;
-    background: var(--bg);
-  }
-
-  /* ── Project footer ── */
-  .project-footer {
-    display: flex; align-items: center; gap: 0.6rem;
-  }
-  .gh-btn {
-    flex: 1; display: flex; align-items: center; gap: 0.5rem;
-    padding: 0.6rem 1rem;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--muted); font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.8rem; cursor: pointer;
-    transition: all 0.2s; text-align: left;
-  }
-  .gh-btn:hover { background: var(--accent-glow); border-color: var(--border-accent); color: var(--accent); }
-  .gh-btn.linked { color: var(--accent); border-color: rgba(56,189,248,0.3); background: var(--accent-glow); }
-  .edit-gh-btn {
-    padding: 0.6rem 0.75rem;
-    background: transparent; border: 1px solid var(--border);
-    border-radius: 8px; color: var(--muted);
-    font-size: 0.9rem; cursor: pointer;
-    transition: color 0.2s, border-color 0.2s; flex-shrink: 0;
-  }
-  .edit-gh-btn:hover { color: var(--accent); border-color: var(--border-accent); }
-
-  /* ── Add project btn ── */
-  .add-project-btn {
-    display: flex; align-items: center; gap: 0.5rem;
-    padding: 0.7rem 1.5rem;
-    background: transparent;
-    border: 1px dashed rgba(56,189,248,0.3);
-    border-radius: 10px;
-    color: var(--accent); font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.85rem; font-weight: 600;
-    cursor: pointer; letter-spacing: 0.02em;
-    transition: all 0.2s;
-  }
-  .add-project-btn:hover { background: var(--accent-glow); border-color: var(--accent); transform: translateY(-1px); }
+  #contact { background:var(--bg); text-align:center; }
+  .contact-inner { max-width:620px; margin:0 auto; }
+  .contact-links { display:flex; justify-content:center; gap:1.25rem; margin-top:2.5rem; flex-wrap:wrap; }
+  .contact-link { display:flex; align-items:center; gap:0.6rem; padding:0.8rem 1.75rem; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; font-size:0.88rem; transition:border-color 0.25s, color 0.25s, background 0.25s, box-shadow 0.25s; background:var(--card); font-weight:500; }
+  .contact-link:hover { border-color:var(--border-accent); color:var(--accent); background:var(--accent-glow); box-shadow:0 4px 20px rgba(56,189,248,0.12); }
+  .contact-link svg { width:16px; height:16px; fill:currentColor; flex-shrink:0; }
+  footer { padding:2rem 3rem; border-top:1px solid var(--border); text-align:center; color:var(--muted); font-size:0.78rem; background:var(--bg); }
 
   /* ── Modals shared ── */
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.8);
-    z-index: 500; align-items: center; justify-content: center;
-    backdrop-filter: blur(4px);
-  }
-  .modal-box {
-    background: var(--card); border: 1px solid var(--border-accent);
-    border-radius: 20px; position: relative;
-  }
-  .modal-label { font-size: 0.78rem; color: var(--muted); font-weight: 500; letter-spacing: 0.03em; display: block; }
-  .modal-input {
-    width: 100%; background: var(--surface); border: 1px solid var(--border);
-    border-radius: 8px; padding: 0.75rem 1rem; color: var(--text);
-    font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; outline: none;
-    transition: border-color 0.2s;
-  }
-  .modal-input:focus { border-color: var(--border-accent); }
+  .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:500; align-items:center; justify-content:center; backdrop-filter:blur(4px); }
+  .modal-box { background:var(--card); border:1px solid var(--border-accent); border-radius:20px; position:relative; }
+  .modal-label { font-size:0.78rem; color:var(--muted); font-weight:500; letter-spacing:0.03em; display:block; margin-bottom:0.5rem; }
+  .modal-input { width:100%; background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; color:var(--text); font-family:'Space Grotesk',sans-serif; font-size:0.9rem; outline:none; transition:border-color 0.2s; }
+  .modal-input:focus { border-color:var(--border-accent); }
+  .modal-row { margin-bottom:1.25rem; }
+  .tool-chip { padding:5px 12px; border-radius:100px; font-size:0.75rem; border:1px solid var(--border); color:var(--muted); background:var(--surface); cursor:pointer; font-family:'Space Grotesk',sans-serif; transition:all 0.15s; }
+  .tool-chip:hover, .tool-chip.selected { background:var(--accent-glow); border-color:var(--border-accent); color:var(--accent); }
+  .tool-chip.selected { font-weight:600; }
+  .selected-tag { display:inline-flex; align-items:center; gap:5px; padding:4px 10px 4px 12px; border-radius:100px; font-size:0.75rem; background:var(--accent-glow); color:var(--accent); border:1px solid rgba(56,189,248,0.25); }
+  .selected-tag button { background:none; border:none; color:var(--accent); cursor:pointer; font-size:0.85rem; line-height:1; padding:0; opacity:0.7; }
+  .selected-tag button:hover { opacity:1; }
+  .emoji-opt { font-size:1.4rem; cursor:pointer; padding:6px 8px; border-radius:8px; border:1.5px solid transparent; transition:border-color 0.15s, background 0.15s; }
+  .emoji-opt:hover { background:rgba(255,255,255,0.06); }
+  .emoji-opt.selected { border-color:var(--accent); background:var(--accent-glow); }
+  .modal-actions { display:flex; gap:0.75rem; justify-content:flex-end; margin-top:0.5rem; }
+  .modal-cancel { padding:0.7rem 1.5rem; background:transparent; border:1px solid var(--border); border-radius:8px; color:var(--muted); font-family:'Space Grotesk',sans-serif; font-size:0.9rem; cursor:pointer; }
+  .modal-save { padding:0.7rem 1.75rem; background:var(--grad1); border:none; border-radius:8px; color:#030712; font-family:'Space Grotesk',sans-serif; font-size:0.9rem; font-weight:700; cursor:pointer; }
 
-  /* ── Tool chips ── */
-  .tool-chip {
-    padding: 5px 12px; border-radius: 100px; font-size: 0.75rem;
-    border: 1px solid var(--border); color: var(--muted);
-    background: var(--surface); cursor: pointer; font-family: 'Space Grotesk', sans-serif;
-    transition: all 0.15s;
-  }
-  .tool-chip:hover, .tool-chip.selected {
-    background: var(--accent-glow); border-color: var(--border-accent); color: var(--accent);
-  }
-  .tool-chip.selected { font-weight: 600; }
+  /* ── Range slider ── */
+  input[type=range] { -webkit-appearance:none; width:100%; height:4px; border-radius:2px; background:rgba(255,255,255,0.1); outline:none; margin:0.5rem 0; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:16px; height:16px; border-radius:50%; background:var(--accent); cursor:pointer; }
 
-  .selected-tag {
-    display: inline-flex; align-items: center; gap: 5px;
-    padding: 4px 10px 4px 12px; border-radius: 100px; font-size: 0.75rem;
-    background: var(--accent-glow); color: var(--accent);
-    border: 1px solid rgba(56,189,248,0.25);
-  }
-  .selected-tag button {
-    background: none; border: none; color: var(--accent); cursor: pointer;
-    font-size: 0.85rem; line-height: 1; padding: 0; opacity: 0.7;
-  }
-  .selected-tag button:hover { opacity: 1; }
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
 
-  .emoji-opt {
-    font-size: 1.4rem; cursor: pointer; padding: 6px 8px; border-radius: 8px;
-    border: 1.5px solid transparent; transition: border-color 0.15s, background 0.15s;
-  }
-  .emoji-opt:hover { background: rgba(255,255,255,0.06); }
-  .emoji-opt.selected { border-color: var(--accent); background: var(--accent-glow); }
-
-  /* ── Reveal animation ── */
-  .reveal {
-    opacity: 0; transform: translateY(24px);
-    transition: opacity 0.65s ease, transform 0.65s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── Responsive ── */
-  @media (max-width: 900px) {
-    .hero-row { flex-direction: column-reverse; gap: 3rem; padding-top: 6rem; }
-    .hero-photo-col { width: 100%; padding-right: 0; }
-    .hero-content { padding-right: 0; }
-  }
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    section { padding: 4rem 1.5rem; }
-    .hero { padding: 0 1.5rem; }
-    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
-  }
+  @media (max-width:900px) { .hero-row { flex-direction:column-reverse; gap:3rem; padding-top:6rem; } .hero-photo-col { width:100%; padding-right:0; } .hero-content { padding-right:0; } }
+  @media (max-width:768px) { nav { padding:1rem 1.5rem; } .nav-links { display:none; } section { padding:4rem 1.5rem; } .hero { padding:0 1.5rem; } .hero-stats { gap:1.5rem; } }
 </style>
 </head>
 <body>
@@ -597,16 +211,13 @@
 <nav>
   <div class="nav-logo">VK.</div>
   <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
+    <a href="#about">About</a><a href="#skills">Skills</a>
+    <a href="#experience">Experience</a><a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
   </div>
   <button id="editModeBtn" onclick="toggleEditMode()" title="Owner login">
     <svg id="editLockIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
-      <rect x="3" y="11" width="18" height="11" rx="2"/>
-      <path stroke-linecap="round" d="M7 11V7a5 5 0 0110 0v4"/>
+      <rect x="3" y="11" width="18" height="11" rx="2"/><path stroke-linecap="round" d="M7 11V7a5 5 0 0110 0v4"/>
     </svg>
     <span id="editModeLabel">Owner</span>
   </button>
@@ -614,22 +225,183 @@
 
 <!-- ── Password Modal ── -->
 <div id="pwd-overlay" class="modal-overlay" style="display:none;">
-  <div class="modal-box" style="padding:2.5rem;width:min(380px,calc(100vw - 2rem));position:relative;">
-    <button onclick="closePwd()" style="position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">✕</button>
+  <div class="modal-box" style="padding:2.5rem;width:min(380px,calc(100vw - 2rem));">
+    <button onclick="closePwd()" style="position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">✕</button>
     <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;">Owner Access</div>
     <div style="font-size:1.25rem;font-weight:700;margin-bottom:0.5rem;letter-spacing:-0.3px;">Enter your password</div>
     <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1.75rem;line-height:1.5;">Owner mode lets you edit your portfolio content.</p>
     <input id="pwd-input" type="password" placeholder="Password" class="modal-input" style="margin-bottom:0.75rem;"/>
     <div id="pwd-error" style="font-size:0.78rem;color:var(--accent3);min-height:1.2rem;margin-bottom:0.75rem;"></div>
-    <button onclick="checkPwd()" style="width:100%;padding:0.8rem;background:var(--grad1);border:none;border-radius:10px;color:#030712;font-family:'Space Grotesk',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;transition:opacity 0.2s,transform 0.2s;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">
-      Unlock Edit Mode
-    </button>
+    <button onclick="checkPwd()" style="width:100%;padding:0.8rem;background:var(--grad1);border:none;border-radius:10px;color:#030712;font-family:'Space Grotesk',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">Unlock Edit Mode</button>
+  </div>
+</div>
+
+<!-- ── Stat Edit Modal ── -->
+<div id="stat-modal" class="modal-overlay" style="display:none;">
+  <div class="modal-box" style="padding:2rem;width:min(400px,calc(100vw - 2rem));">
+    <button onclick="closeStatModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;">✕</button>
+    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;font-weight:600;">Edit Stat</div>
+    <div class="modal-row">
+      <label class="modal-label">Value (e.g. 6+, 7.77, 5)</label>
+      <input id="stat-val-input" type="text" class="modal-input"/>
+    </div>
+    <div class="modal-row">
+      <label class="modal-label">Label</label>
+      <input id="stat-label-input" type="text" class="modal-input"/>
+    </div>
+    <div id="stat-modal-err" style="font-size:0.78rem;color:var(--accent3);min-height:1rem;margin-bottom:0.75rem;"></div>
+    <div class="modal-actions"><button class="modal-cancel" onclick="closeStatModal()">Cancel</button><button class="modal-save" onclick="saveStatModal()">Save</button></div>
+  </div>
+</div>
+
+<!-- ── Add Skill Modal ── -->
+<div id="skill-modal" class="modal-overlay" style="display:none;">
+  <div class="modal-box" style="padding:2rem;width:min(460px,calc(100vw - 2rem));">
+    <button onclick="closeSkillModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;">✕</button>
+    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;" id="skill-modal-title">Add Skill</div>
+    <div class="modal-row">
+      <label class="modal-label">Icon (emoji)</label>
+      <input id="skill-emoji" type="text" maxlength="4" class="modal-input" style="width:80px;text-align:center;" value="💡"/>
+    </div>
+    <div class="modal-row">
+      <label class="modal-label">Skill Name *</label>
+      <input id="skill-name" type="text" placeholder="e.g. Tableau" class="modal-input"/>
+    </div>
+    <div class="modal-row">
+      <label class="modal-label">Level / Description</label>
+      <input id="skill-level" type="text" placeholder="e.g. Advanced · Visual Analytics" class="modal-input"/>
+    </div>
+    <div class="modal-row">
+      <label class="modal-label">Proficiency: <span id="skill-pct-display">80%</span></label>
+      <input id="skill-pct" type="range" min="10" max="100" value="80" oninput="document.getElementById('skill-pct-display').textContent=this.value+'%'"/>
+    </div>
+    <div id="skill-modal-err" style="font-size:0.78rem;color:var(--accent3);min-height:1rem;margin-bottom:0.75rem;"></div>
+    <div class="modal-actions"><button class="modal-cancel" onclick="closeSkillModal()">Cancel</button><button class="modal-save" onclick="saveSkillModal()">Add Skill</button></div>
+  </div>
+</div>
+
+<!-- ── Add Experience Modal ── -->
+<div id="exp-modal" class="modal-overlay" style="display:none;padding:1rem;">
+  <div class="modal-box" style="padding:2rem;width:min(580px,100%);max-height:90vh;overflow-y:auto;">
+    <button onclick="closeExpModal()" style="position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;line-height:1;">✕</button>
+    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;" id="exp-modal-title">Add Experience</div>
+    <div style="font-size:1.3rem;font-weight:700;margin-bottom:1.5rem;letter-spacing:-0.3px;" id="exp-modal-heading">New Role</div>
+    <div class="modal-row">
+      <label class="modal-label">Job Title *</label>
+      <input id="exp-role" type="text" placeholder="e.g. Data Analyst Intern" class="modal-input"/>
+    </div>
+    <div class="modal-row">
+      <label class="modal-label">Company & Location *</label>
+      <input id="exp-company" type="text" placeholder="e.g. Aivariant · Bengaluru" class="modal-input"/>
+    </div>
+    <div class="modal-row">
+      <label class="modal-label">Date Range *</label>
+      <input id="exp-date" type="text" placeholder="e.g. Jan 2025 – Present" class="modal-input"/>
+    </div>
+    <div class="modal-row">
+      <label class="modal-label">Bullet Points (one per line) *</label>
+      <textarea id="exp-bullets" rows="5" placeholder="Designed KPI dashboards in Power BI...&#10;Worked with SQL and Python...&#10;Presented findings to stakeholders..." class="modal-input" style="resize:vertical;line-height:1.6;margin-top:0.25rem;"></textarea>
+    </div>
+    <div id="exp-modal-err" style="font-size:0.78rem;color:var(--accent3);min-height:1rem;margin-bottom:0.75rem;"></div>
+    <div class="modal-actions"><button class="modal-cancel" onclick="closeExpModal()">Cancel</button><button class="modal-save" id="exp-modal-save-btn" onclick="saveExpModal()">Add Experience</button></div>
+  </div>
+</div>
+
+<!-- ── Add Education Modal ── -->
+<div id="edu-modal" class="modal-overlay" style="display:none;padding:1rem;">
+  <div class="modal-box" style="padding:2rem;width:min(520px,100%);max-height:90vh;overflow-y:auto;">
+    <button onclick="closeEduModal()" style="position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;line-height:1;">✕</button>
+    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;" id="edu-modal-type-label">Add Education</div>
+    <div class="modal-row">
+      <label class="modal-label">Type</label>
+      <select id="edu-type" class="modal-input" onchange="updateEduModalFields()">
+        <option value="education">Education (Degree)</option>
+        <option value="certification">Certification</option>
+      </select>
+    </div>
+    <div id="edu-fields">
+      <div class="modal-row">
+        <label class="modal-label">Degree / Certification Name *</label>
+        <input id="edu-degree" type="text" placeholder="e.g. Bachelor of Computer Applications" class="modal-input"/>
+      </div>
+      <div class="modal-row">
+        <label class="modal-label">Institution *</label>
+        <input id="edu-school" type="text" placeholder="e.g. Govindram Seksaria Science College" class="modal-input"/>
+      </div>
+      <div class="modal-row">
+        <label class="modal-label">Date / Year *</label>
+        <input id="edu-date" type="text" placeholder="e.g. 2025 or Jul 2025 – Nov 2025" class="modal-input"/>
+      </div>
+      <div class="modal-row" id="edu-meta-row">
+        <label class="modal-label">Location / Extra Info</label>
+        <input id="edu-meta" type="text" placeholder="e.g. Belagavi, Karnataka · CGPA: 7.77" class="modal-input"/>
+      </div>
+      <div class="modal-row" id="edu-skills-row" style="display:none;">
+        <label class="modal-label">Skills Covered</label>
+        <input id="edu-skills" type="text" placeholder="e.g. Python · Statistics · Machine Learning" class="modal-input"/>
+      </div>
+      <div class="modal-row" id="edu-status-row" style="display:none;">
+        <label class="modal-label">Status</label>
+        <select id="edu-status" class="modal-input">
+          <option value="completed">Completed</option>
+          <option value="inprog">In Progress</option>
+        </select>
+      </div>
+    </div>
+    <div id="edu-modal-err" style="font-size:0.78rem;color:var(--accent3);min-height:1rem;margin-bottom:0.75rem;"></div>
+    <div class="modal-actions"><button class="modal-cancel" onclick="closeEduModal()">Cancel</button><button class="modal-save" onclick="saveEduModal()">Add</button></div>
+  </div>
+</div>
+
+<!-- ── Add Project Modal ── -->
+<div id="add-project-overlay" class="modal-overlay" style="display:none;padding:1rem;">
+  <div class="modal-box" style="padding:2rem;width:min(560px,100%);max-height:90vh;overflow-y:auto;">
+    <button onclick="closeAddProject()" style="position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;line-height:1;">✕</button>
+    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;">New Project</div>
+    <div style="font-size:1.4rem;font-weight:700;margin-bottom:1.75rem;letter-spacing:-0.3px;">Add to Portfolio</div>
+    <div class="modal-row">
+      <label class="modal-label">Project Icon</label>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;" id="emojiPicker"></div>
+      <input id="ap-emoji" type="text" value="💡" maxlength="4" placeholder="or type emoji" class="modal-input" style="margin-top:0.6rem;width:80px;text-align:center;"/>
+    </div>
+    <div class="modal-row">
+      <label class="modal-label">Project Name *</label>
+      <input id="ap-name" type="text" placeholder="e.g. Sales Analytics Dashboard" class="modal-input"/>
+    </div>
+    <div class="modal-row">
+      <label class="modal-label">Description *</label>
+      <textarea id="ap-desc" rows="3" placeholder="Briefly describe what this project does..." class="modal-input" style="resize:vertical;line-height:1.6;"></textarea>
+    </div>
+    <div class="modal-row">
+      <label class="modal-label">Tools &amp; Technologies</label>
+      <div style="display:flex;gap:0.5rem;margin-top:0.5rem;flex-wrap:wrap;" id="toolPicker"></div>
+      <input id="ap-tools-custom" type="text" placeholder="Add custom tag and press Enter" class="modal-input" style="margin-top:0.6rem;"/>
+      <div id="selected-tools" style="display:flex;gap:0.5rem;margin-top:0.6rem;flex-wrap:wrap;min-height:1rem;"></div>
+    </div>
+    <div class="modal-row">
+      <label class="modal-label">GitHub Repository URL <span style="color:var(--muted);font-weight:400;">(optional)</span></label>
+      <input id="ap-github" type="url" placeholder="https://github.com/yourusername/repo" class="modal-input"/>
+    </div>
+    <div id="ap-error" style="font-size:0.8rem;color:var(--accent3);margin-bottom:1rem;min-height:1rem;"></div>
+    <div class="modal-actions"><button class="modal-cancel" onclick="closeAddProject()">Cancel</button><button class="modal-save" onclick="saveProject()">Add Project</button></div>
+  </div>
+</div>
+
+<!-- ── GitHub URL Modal ── -->
+<div id="gh-modal-overlay" class="modal-overlay" style="display:none;">
+  <div class="modal-box" style="padding:2rem;width:min(480px,calc(100vw - 2rem));">
+    <button onclick="closeGhModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;line-height:1;">✕</button>
+    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;font-weight:600;">GitHub Repository</div>
+    <div id="gh-modal-project-name" style="font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;letter-spacing:-0.2px;"></div>
+    <label class="modal-label">Paste your GitHub repo URL</label>
+    <input id="gh-modal-url" type="url" placeholder="https://github.com/yourusername/repo-name" class="modal-input" style="margin-bottom:1.25rem;"/>
+    <div class="modal-actions"><button class="modal-cancel" onclick="closeGhModal()">Cancel</button><button class="modal-save" onclick="saveGhModal()">Save Link</button></div>
+    <div id="gh-modal-status" style="font-size:0.78rem;color:var(--accent);margin-top:0.75rem;min-height:1.1rem;"></div>
   </div>
 </div>
 
 <!-- ── Hero ── -->
 <section class="hero" id="about">
-  <!-- Geometric lines -->
   <div class="hero-lines">
     <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="opacity:0.4;">
       <line x1="0" y1="600" x2="400" y2="200" stroke="rgba(56,189,248,0.06)" stroke-width="1"/>
@@ -638,69 +410,51 @@
       <circle cx="950" cy="150" r="120" fill="none" stroke="rgba(56,189,248,0.03)" stroke-width="1"/>
     </svg>
   </div>
-
   <div class="hero-row">
     <div class="hero-content">
-      <div class="hero-tag">
-        <span class="dot"></span>
-        Available for opportunities
-      </div>
-      <h1 class="hero-name">
-        Vikram<br><em>Kamble</em>
-      </h1>
-      <p class="hero-bio">
-        Data Analyst who turns raw numbers into compelling stories. Skilled in SQL, Python, Power BI &amp; Tableau — building dashboards that drive real decisions.
-      </p>
+      <div class="hero-tag"><span class="dot"></span>Available for opportunities</div>
+      <h1 class="hero-name">Vikram<br><em>Kamble</em></h1>
+      <p class="hero-bio">Data Analyst who turns raw numbers into compelling stories. Skilled in SQL, Python, Power BI &amp; Tableau — building dashboards that drive real decisions.</p>
       <div class="hero-cta">
         <a href="mailto:vikramkamble.in@gmail.com" class="btn-primary">Get in touch</a>
         <a href="#projects" class="btn-ghost">View projects</a>
       </div>
-      <div class="hero-stats">
-        <div>
-          <div class="stat-num">6+</div>
-          <div class="stat-label">Months experience</div>
+      <div class="hero-stats" id="heroStats">
+        <div class="stat-item" data-stat-id="0">
+          <div class="stat-num" id="stat-num-0">6+</div>
+          <div class="stat-label" id="stat-label-0">Months experience</div>
+          <button class="stat-edit-btn edit-only" style="display:none;" onclick="openStatModal(0)" title="Edit stat">✎</button>
         </div>
-        <div>
-          <div class="stat-num">2</div>
-          <div class="stat-label">BI certifications</div>
+        <div class="stat-item" data-stat-id="1">
+          <div class="stat-num" id="stat-num-1">2</div>
+          <div class="stat-label" id="stat-label-1">BI certifications</div>
+          <button class="stat-edit-btn edit-only" style="display:none;" onclick="openStatModal(1)" title="Edit stat">✎</button>
         </div>
-        <div>
-          <div class="stat-num">5</div>
-          <div class="stat-label">Core skills</div>
+        <div class="stat-item" data-stat-id="2">
+          <div class="stat-num" id="stat-num-2">5</div>
+          <div class="stat-label" id="stat-label-2">Core skills</div>
+          <button class="stat-edit-btn edit-only" style="display:none;" onclick="openStatModal(2)" title="Edit stat">✎</button>
         </div>
-        <div>
-          <div class="stat-num">7.77</div>
-          <div class="stat-label">CGPA</div>
+        <div class="stat-item" data-stat-id="3">
+          <div class="stat-num" id="stat-num-3">7.77</div>
+          <div class="stat-label" id="stat-label-3">CGPA</div>
+          <button class="stat-edit-btn edit-only" style="display:none;" onclick="openStatModal(3)" title="Edit stat">✎</button>
         </div>
       </div>
     </div>
-
-    <!-- Photo — RIGHT side, edit-mode only upload -->
     <div class="hero-photo-col">
       <div class="photo-ring-wrap">
         <svg class="photo-ring-svg" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="170" cy="170" r="164" fill="none" stroke="rgba(56,189,248,0.35)" stroke-width="1"
-            stroke-dasharray="5 16" stroke-linecap="round"/>
+          <circle cx="170" cy="170" r="164" fill="none" stroke="rgba(56,189,248,0.35)" stroke-width="1" stroke-dasharray="5 16" stroke-linecap="round"/>
         </svg>
         <div class="photo-frame" id="photoFrame" onclick="handlePhotoClick()">
           <div class="photo-placeholder" id="photoPlaceholder" style="display:none;">
-            <div class="photo-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
-              </svg>
-            </div>
+            <div class="photo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg></div>
             <div class="photo-hint">Click to upload<br/><span>your photo</span></div>
             <div class="photo-sub">JPG, PNG or WebP</div>
           </div>
-          <img id="photoPreview" src="me.jpeg" alt="Vikram Kamble"
-            style="display:block; width:100%; height:100%; object-fit:cover; border-radius:inherit;"
-            onerror="this.style.display='none'; document.getElementById('photoPlaceholder').style.display='flex';"/>
-          <div class="photo-overlay" id="photoOverlay">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487z"/>
-            </svg>
-            Change photo
-          </div>
+          <img id="photoPreview" src="me.jpeg" alt="Vikram Kamble" style="display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit;" onerror="this.style.display='none';document.getElementById('photoPlaceholder').style.display='flex';"/>
+          <div class="photo-overlay" id="photoOverlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487z"/></svg>Change photo</div>
         </div>
       </div>
       <input type="file" id="photoInput" accept="image/*" style="display:none;" onchange="handlePhoto(event)"/>
@@ -712,42 +466,50 @@
 
 <!-- ── Skills ── -->
 <section id="skills">
-  <div class="section-label">What I work with</div>
-  <h2 class="section-title">Skills &amp; Tools</h2>
-  <div class="skills-grid">
-    <div class="skill-card" style="transition-delay:0s">
-      <div class="skill-icon">📊</div>
-      <div class="skill-name">Power BI</div>
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:3rem;">
+    <div>
+      <div class="section-label" style="margin-bottom:1rem;">What I work with</div>
+      <h2 class="section-title" style="margin-bottom:0;">Skills &amp; Tools</h2>
+    </div>
+    <button class="add-section-btn edit-only" style="display:none;" onclick="openSkillModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+      Add Skill
+    </button>
+  </div>
+  <div class="skills-grid" id="skillsGrid">
+    <div class="skill-card" style="transition-delay:0s" data-skill-id="s0">
+      <button class="skill-del-btn edit-only" onclick="deleteSkill('s0')">✕ Remove</button>
+      <div class="skill-icon">📊</div><div class="skill-name">Power BI</div>
       <div class="skill-level">Advanced · KPI Dashboards</div>
       <div class="skill-bar-bg"><div class="skill-bar" data-w="88%"></div></div>
     </div>
-    <div class="skill-card" style="transition-delay:0.07s">
-      <div class="skill-icon">📈</div>
-      <div class="skill-name">Tableau</div>
+    <div class="skill-card" style="transition-delay:0.07s" data-skill-id="s1">
+      <button class="skill-del-btn edit-only" onclick="deleteSkill('s1')">✕ Remove</button>
+      <div class="skill-icon">📈</div><div class="skill-name">Tableau</div>
       <div class="skill-level">Proficient · Visual Analytics</div>
       <div class="skill-bar-bg"><div class="skill-bar" data-w="82%"></div></div>
     </div>
-    <div class="skill-card" style="transition-delay:0.14s">
-      <div class="skill-icon">🗄️</div>
-      <div class="skill-name">SQL</div>
+    <div class="skill-card" style="transition-delay:0.14s" data-skill-id="s2">
+      <button class="skill-del-btn edit-only" onclick="deleteSkill('s2')">✕ Remove</button>
+      <div class="skill-icon">🗄️</div><div class="skill-name">SQL</div>
       <div class="skill-level">Advanced · Data Extraction</div>
       <div class="skill-bar-bg"><div class="skill-bar" data-w="85%"></div></div>
     </div>
-    <div class="skill-card" style="transition-delay:0.21s">
-      <div class="skill-icon">🐍</div>
-      <div class="skill-name">Python</div>
+    <div class="skill-card" style="transition-delay:0.21s" data-skill-id="s3">
+      <button class="skill-del-btn edit-only" onclick="deleteSkill('s3')">✕ Remove</button>
+      <div class="skill-icon">🐍</div><div class="skill-name">Python</div>
       <div class="skill-level">Intermediate · Pandas, NumPy</div>
       <div class="skill-bar-bg"><div class="skill-bar" data-w="75%"></div></div>
     </div>
-    <div class="skill-card" style="transition-delay:0.28s">
-      <div class="skill-icon">📋</div>
-      <div class="skill-name">Advanced Excel</div>
+    <div class="skill-card" style="transition-delay:0.28s" data-skill-id="s4">
+      <button class="skill-del-btn edit-only" onclick="deleteSkill('s4')">✕ Remove</button>
+      <div class="skill-icon">📋</div><div class="skill-name">Advanced Excel</div>
       <div class="skill-level">Proficient · Pivot Tables</div>
       <div class="skill-bar-bg"><div class="skill-bar" data-w="80%"></div></div>
     </div>
-    <div class="skill-card" style="transition-delay:0.35s">
-      <div class="skill-icon">📐</div>
-      <div class="skill-name">Statistics</div>
+    <div class="skill-card" style="transition-delay:0.35s" data-skill-id="s5">
+      <button class="skill-del-btn edit-only" onclick="deleteSkill('s5')">✕ Remove</button>
+      <div class="skill-icon">📐</div><div class="skill-name">Statistics</div>
       <div class="skill-level">Intermediate · Analysis</div>
       <div class="skill-bar-bg"><div class="skill-bar" data-w="70%"></div></div>
     </div>
@@ -755,11 +517,19 @@
 </section>
 
 <!-- ── Experience ── -->
-<section id="experience" style="background: var(--bg);">
-  <div class="section-label">Where I've worked</div>
-  <h2 class="section-title">Experience</h2>
-  <div style="margin-top: 3rem;" class="reveal">
-    <div class="exp-card">
+<section id="experience" style="background:var(--bg);">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:3rem;">
+    <div>
+      <div class="section-label" style="margin-bottom:1rem;">Where I've worked</div>
+      <h2 class="section-title" style="margin-bottom:0;">Experience</h2>
+    </div>
+    <button class="add-section-btn edit-only" style="display:none;" onclick="openExpModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+      Add Experience
+    </button>
+  </div>
+  <div id="expList">
+    <div class="exp-card reveal" data-exp-id="e0">
       <div class="exp-top">
         <div>
           <div class="exp-role">Data Analytics Intern</div>
@@ -773,165 +543,106 @@
         <li>Drove data-driven decision-making by crafting reports and presenting actionable conclusions to improve operational efficiency.</li>
         <li>Applied data visualization, cleaning, and analytical techniques to solve practical business problems end-to-end.</li>
       </ul>
+      <div class="exp-edit-bar edit-only" data-exp-edit="e0">
+        <button class="exp-edit-action" onclick="openExpModal('e0')">✎ Edit</button>
+        <button class="exp-del-btn" onclick="deleteExp('e0')">✕ Delete</button>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ── Projects ── -->
 <section id="projects">
-  <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin-bottom:3rem;">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:3rem;">
     <div>
       <div class="section-label" style="margin-bottom:1rem;">What I've built</div>
       <h2 class="section-title" style="margin-bottom:0;">Projects</h2>
     </div>
-    <button class="add-project-btn edit-only" style="display:none;" onclick="openAddProject()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
-      </svg>
+    <button class="add-section-btn edit-only" style="display:none;" onclick="openAddProject()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
       Add Project
     </button>
   </div>
   <div class="projects-grid" id="projectsGrid">
-    <!-- Crowdfunding -->
     <div class="project-card reveal" id="card-crowdfunding">
-      <div class="project-header">
-        <div class="project-icon">🚀</div>
-        <div class="project-tags">
-          <span class="tag">Power BI</span>
-          <span class="tag purple">SQL</span>
-        </div>
-      </div>
+      <div class="project-header"><div class="project-icon">🚀</div><div class="project-tags"><span class="tag">Power BI</span><span class="tag purple">SQL</span></div></div>
       <div class="project-name">Crowdfunding Analytics</div>
-      <div class="project-desc">
-        Built interactive BI dashboards to visualize KPIs, sales trends, and customer behavior metrics. Delivered business-focused insights through structured reports and visual storytelling.
-      </div>
+      <div class="project-desc">Built interactive BI dashboards to visualize KPIs, sales trends, and customer behavior metrics. Delivered business-focused insights through structured reports and visual storytelling.</div>
       <div class="project-kpis">
         <div class="kpi"><div class="kpi-val">KPI</div><div class="kpi-lab">Tracking</div></div>
         <div class="kpi"><div class="kpi-val">Visual</div><div class="kpi-lab">Storytelling</div></div>
         <div class="kpi"><div class="kpi-val">BI</div><div class="kpi-lab">Dashboards</div></div>
       </div>
       <div class="project-footer">
-        <button class="gh-btn" id="ghbtn-crowdfunding" onclick="handleGitHub('crowdfunding', event)">
+        <button class="gh-btn" id="ghbtn-crowdfunding" onclick="handleGitHub('crowdfunding',event)">
           <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
           <span id="ghbtn-crowdfunding-label">Add GitHub Link</span>
         </button>
-        <button class="edit-gh-btn edit-only" style="display:none;" onclick="openModal('crowdfunding')" title="Edit GitHub URL">✎</button>
+        <button class="edit-gh-btn edit-only" style="display:none;" onclick="openGhModal('crowdfunding')" title="Edit GitHub URL">✎</button>
       </div>
     </div>
-
-    <!-- Hospitality -->
     <div class="project-card reveal" id="card-hospitality" style="transition-delay:0.15s">
-      <div class="project-header">
-        <div class="project-icon">🏨</div>
-        <div class="project-tags">
-          <span class="tag coral">Tableau</span>
-          <span class="tag purple">SQL</span>
-        </div>
-      </div>
+      <div class="project-header"><div class="project-icon">🏨</div><div class="project-tags"><span class="tag coral">Tableau</span><span class="tag purple">SQL</span></div></div>
       <div class="project-name">Hospitality Analytics</div>
-      <div class="project-desc">
-        End-to-end Tableau dashboard tracking Occupancy Rate, ADR, RevPAR, Revenue, and Cancellation Rate. Used SQL to identify seasonal trends and revenue optimization opportunities.
-      </div>
+      <div class="project-desc">End-to-end Tableau dashboard tracking Occupancy Rate, ADR, RevPAR, Revenue, and Cancellation Rate. Used SQL to identify seasonal trends and revenue optimization opportunities.</div>
       <div class="project-kpis">
         <div class="kpi"><div class="kpi-val">ADR</div><div class="kpi-lab">Avg Daily Rate</div></div>
         <div class="kpi"><div class="kpi-val">RevPAR</div><div class="kpi-lab">Revenue Metric</div></div>
         <div class="kpi"><div class="kpi-val">5+</div><div class="kpi-lab">KPIs Tracked</div></div>
       </div>
       <div class="project-footer">
-        <button class="gh-btn" id="ghbtn-hospitality" onclick="handleGitHub('hospitality', event)">
+        <button class="gh-btn" id="ghbtn-hospitality" onclick="handleGitHub('hospitality',event)">
           <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
           <span id="ghbtn-hospitality-label">Add GitHub Link</span>
         </button>
-        <button class="edit-gh-btn edit-only" style="display:none;" onclick="openModal('hospitality')" title="Edit GitHub URL">✎</button>
+        <button class="edit-gh-btn edit-only" style="display:none;" onclick="openGhModal('hospitality')" title="Edit GitHub URL">✎</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Add Project Modal ── -->
-<div id="add-project-overlay" class="modal-overlay" style="display:none; padding:1rem;">
-  <div class="modal-box" style="padding:2rem;width:min(560px,100%);max-height:90vh;overflow-y:auto;">
-    <button onclick="closeAddProject()" style="position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;line-height:1;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">✕</button>
-    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;">New Project</div>
-    <div style="font-size:1.4rem;font-weight:700;margin-bottom:1.75rem;letter-spacing:-0.3px;">Add to Portfolio</div>
-
-    <div style="margin-bottom:1.25rem;">
-      <label class="modal-label">Project Icon</label>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;" id="emojiPicker"></div>
-      <input id="ap-emoji" type="text" value="💡" maxlength="4" placeholder="or type emoji" class="modal-input"
-        style="margin-top:0.6rem;width:80px;text-align:center;"/>
-    </div>
-    <div style="margin-bottom:1.25rem;">
-      <label class="modal-label">Project Name <span style="color:var(--accent3);">*</span></label>
-      <input id="ap-name" type="text" placeholder="e.g. Sales Analytics Dashboard" class="modal-input" style="margin-top:0.5rem;"/>
-    </div>
-    <div style="margin-bottom:1.25rem;">
-      <label class="modal-label">Description <span style="color:var(--accent3);">*</span></label>
-      <textarea id="ap-desc" rows="3" placeholder="Briefly describe what this project does..." class="modal-input"
-        style="margin-top:0.5rem;resize:vertical;line-height:1.6;"></textarea>
-    </div>
-    <div style="margin-bottom:1.25rem;">
-      <label class="modal-label">Tools &amp; Technologies</label>
-      <div style="display:flex;gap:0.5rem;margin-top:0.5rem;flex-wrap:wrap;" id="toolPicker"></div>
-      <input id="ap-tools-custom" type="text" placeholder="Add custom tag and press Enter" class="modal-input" style="margin-top:0.6rem;"/>
-      <div id="selected-tools" style="display:flex;gap:0.5rem;margin-top:0.6rem;flex-wrap:wrap;min-height:1rem;"></div>
-    </div>
-    <div style="margin-bottom:1.75rem;">
-      <label class="modal-label">GitHub Repository URL <span style="color:var(--muted);font-weight:400;">(optional)</span></label>
-      <input id="ap-github" type="url" placeholder="https://github.com/yourusername/repo" class="modal-input" style="margin-top:0.5rem;"/>
-    </div>
-    <div id="ap-error" style="font-size:0.8rem;color:var(--accent3);margin-bottom:1rem;min-height:1rem;"></div>
-    <div style="display:flex;gap:0.75rem;justify-content:flex-end;">
-      <button onclick="closeAddProject()" style="padding:0.7rem 1.5rem;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:'Space Grotesk',sans-serif;font-size:0.9rem;cursor:pointer;">Cancel</button>
-      <button onclick="saveProject()" style="padding:0.7rem 1.75rem;background:var(--grad1);border:none;border-radius:8px;color:#030712;font-family:'Space Grotesk',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:0.5rem;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-        Add Project
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- ── GitHub URL Modal ── -->
-<div id="gh-modal-overlay" class="modal-overlay" style="display:none;">
-  <div class="modal-box" style="padding:2rem;width:min(480px,calc(100vw - 2rem));">
-    <button onclick="closeModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;line-height:1;">✕</button>
-    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;font-weight:600;">GitHub Repository</div>
-    <div id="modal-project-name" style="font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;letter-spacing:-0.2px;"></div>
-    <label style="font-size:0.78rem;color:var(--muted);display:block;margin-bottom:0.5rem;">Paste your GitHub repo URL</label>
-    <input id="modal-url-input" type="url" placeholder="https://github.com/yourusername/repo-name" class="modal-input" style="margin-bottom:1.25rem;"/>
-    <div style="display:flex;gap:0.75rem;justify-content:flex-end;">
-      <button onclick="closeModal()" style="padding:0.65rem 1.25rem;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:'Space Grotesk',sans-serif;font-size:0.85rem;cursor:pointer;">Cancel</button>
-      <button onclick="saveGitHub()" style="padding:0.65rem 1.5rem;background:var(--grad1);border:none;border-radius:8px;color:#030712;font-family:'Space Grotesk',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;">Save Link</button>
-    </div>
-    <div id="modal-status" style="font-size:0.78rem;color:var(--accent);margin-top:0.75rem;min-height:1.1rem;"></div>
-  </div>
-</div>
-
 <!-- ── Education & Certs ── -->
-<section id="education" style="background: var(--bg2);">
-  <div class="section-label">Academic background</div>
-  <h2 class="section-title">Education &amp; Certifications</h2>
-  <div class="edu-cert-grid">
-    <div class="edu-card reveal">
+<section id="education" style="background:var(--bg2);">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:3rem;">
+    <div>
+      <div class="section-label" style="margin-bottom:1rem;">Academic background</div>
+      <h2 class="section-title" style="margin-bottom:0;">Education &amp; Certifications</h2>
+    </div>
+    <button class="add-section-btn edit-only" style="display:none;" onclick="openEduModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+      Add Education / Cert
+    </button>
+  </div>
+  <div class="edu-cert-grid" id="eduGrid">
+    <div class="edu-card reveal" data-edu-id="edu0">
       <div class="badge">Degree</div>
       <div class="edu-degree">Bachelor of Computer Applications</div>
       <div class="edu-school">Govindram Seksaria Science College</div>
       <div class="edu-meta">Belagavi, Karnataka · 2025 · CGPA: 7.77</div>
+      <div class="card-edit-bar edit-only" data-edu-edit="edu0">
+        <button class="card-del-btn" onclick="deleteEdu('edu0')">✕ Delete</button>
+      </div>
     </div>
-    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-      <div class="cert-card reveal">
+    <div style="display:flex;flex-direction:column;gap:1.5rem;" id="certColumn">
+      <div class="cert-card reveal" data-edu-id="cert0">
         <div class="badge">Completed</div>
         <div class="cert-name">Data Analytics Certification</div>
         <div class="cert-org">ExcelR · Bangalore</div>
         <div class="cert-date">Jul 2025 – Nov 2025</div>
-        <div style="font-size: 0.78rem; color: var(--muted); margin-top: 0.5rem; line-height:1.5;">Excel · SQL · Power BI · Python for data analysis</div>
+        <div style="font-size:0.78rem;color:var(--muted);margin-top:0.5rem;line-height:1.5;">Excel · SQL · Power BI · Python for data analysis</div>
+        <div class="card-edit-bar edit-only" data-edu-edit="cert0">
+          <button class="card-del-btn" onclick="deleteEdu('cert0')">✕ Delete</button>
+        </div>
       </div>
-      <div class="cert-card reveal" style="transition-delay:0.15s">
+      <div class="cert-card reveal" style="transition-delay:0.15s" data-edu-id="cert1">
         <div class="badge inprog">In Progress</div>
         <div class="cert-name">Data Science Program</div>
         <div class="cert-org">ExcelR · Virtual</div>
         <div class="cert-date">Nov 2025 – Present</div>
-        <div style="font-size: 0.78rem; color: var(--muted); margin-top: 0.5rem; line-height:1.5;">Python · Statistics · Machine Learning · Data Visualization</div>
+        <div style="font-size:0.78rem;color:var(--muted);margin-top:0.5rem;line-height:1.5;">Python · Statistics · Machine Learning · Data Visualization</div>
+        <div class="card-edit-bar edit-only" data-edu-edit="cert1">
+          <button class="card-del-btn" onclick="deleteEdu('cert1')">✕ Delete</button>
+        </div>
       </div>
     </div>
   </div>
@@ -942,151 +653,297 @@
   <div class="contact-inner">
     <div class="section-label" style="justify-content:center;">Let's connect</div>
     <h2 class="section-title">Get In Touch</h2>
-    <p style="color:var(--muted);margin-top:1rem;font-size:1rem;line-height:1.7;">
-      Open to data analyst roles, freelance projects, and collaborations. Let's build something meaningful with data.
-    </p>
+    <p style="color:var(--muted);margin-top:1rem;font-size:1rem;line-height:1.7;">Open to data analyst roles, freelance projects, and collaborations. Let's build something meaningful with data.</p>
     <div class="contact-links">
-      <a href="mailto:vikramkamble.in@gmail.com" class="contact-link">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        vikramkamble.in@gmail.com
-      </a>
-      <a href="tel:+918867308937" class="contact-link">
-        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-        +91 88673 08937
-      </a>
-      <a href="https://www.linkedin.com/in/vikram-kamble-49a088298/" class="contact-link" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zm2-3a2 2 0 100-4 2 2 0 000 4z"/></svg>
-        LinkedIn
-      </a>
+      <a href="mailto:vikramkamble.in@gmail.com" class="contact-link"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>vikramkamble.in@gmail.com</a>
+      <a href="tel:+918867308937" class="contact-link"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>+91 88673 08937</a>
+      <a href="https://www.linkedin.com/in/vikram-kamble-49a088298/" class="contact-link" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zm2-3a2 2 0 100-4 2 2 0 000 4z"/></svg>LinkedIn</a>
     </div>
   </div>
 </section>
 
-<footer>
-  Built with ❤️ · Vikram Kamble © 2026 · Data Analyst, Bengaluru
-</footer>
+<footer>Built with ❤️ · Vikram Kamble © 2026 · Data Analyst, Bengaluru</footer>
 
 <script>
-// ── Password hashing (SHA-256 via SubtleCrypto) ──────────────────
-// The actual password is NEVER stored in plaintext in the source.
-// Only the SHA-256 hash is stored. Even inspecting the source reveals nothing useful.
-// Password stored as Base64 — not plaintext in source
-const _k = 'dmlrcmFtMTIz'; // encoded
+// ─────────────────────────────────────────────────
+// AUTH
+// ─────────────────────────────────────────────────
+const _k = 'dmlrcmFtMTIz';
 function _chk(v) { try { return btoa(unescape(encodeURIComponent(v))) === _k; } catch(e) { return false; } }
 
-// ── Photo upload — edit mode only ───────────────────────────────
-function handlePhotoClick() {
-  if (!editMode) return; // no-op for regular visitors
-  document.getElementById('photoInput').click();
-}
-
-function handlePhoto(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const preview = document.getElementById('photoPreview');
-    const placeholder = document.getElementById('photoPlaceholder');
-    preview.src = e.target.result;
-    preview.style.display = 'block';
-    placeholder.style.display = 'none';
-  };
-  reader.readAsDataURL(file);
-}
-
-function updatePhotoEditState() {
-  const frame = document.getElementById('photoFrame');
-  if (editMode) {
-    frame.classList.add('edit-clickable');
-    frame.title = 'Click to change photo';
-  } else {
-    frame.classList.remove('edit-clickable');
-    frame.title = '';
-    // Always hide overlay for non-editors
-    document.getElementById('photoOverlay').style.display = 'none';
-  }
-}
-
-// ── Scroll reveal ────────────────────────────────────────────────
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      revealObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-const skillObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      const bar = e.target.querySelector('.skill-bar');
-      if (bar) setTimeout(() => { bar.style.width = bar.dataset.w; }, 100);
-      skillObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.15 });
-document.querySelectorAll('.skill-card').forEach(card => skillObserver.observe(card));
-
-// ── Edit mode ────────────────────────────────────────────────────
 let editMode = false;
 
 function toggleEditMode() {
-  if (editMode) {
-    editMode = false;
-    applyEditMode();
-  } else {
-    document.getElementById('pwd-overlay').style.display = 'flex';
+  if (editMode) { editMode = false; applyEditMode(); }
+  else {
+    show('pwd-overlay');
     setTimeout(() => document.getElementById('pwd-input').focus(), 50);
     document.getElementById('pwd-input').value = '';
     document.getElementById('pwd-error').textContent = '';
   }
 }
-
-function closePwd() { document.getElementById('pwd-overlay').style.display = 'none'; }
-
+function closePwd() { hide('pwd-overlay'); }
 function checkPwd() {
   const val = document.getElementById('pwd-input').value;
-  if (_chk(val)) {
-    editMode = true;
-    applyEditMode();
-    closePwd();
-  } else {
-    document.getElementById('pwd-error').textContent = '⚠ Incorrect password.';
-    document.getElementById('pwd-input').value = '';
-    document.getElementById('pwd-input').focus();
-  }
+  if (_chk(val)) { editMode = true; applyEditMode(); closePwd(); }
+  else { document.getElementById('pwd-error').textContent = '⚠ Incorrect password.'; document.getElementById('pwd-input').value = ''; document.getElementById('pwd-input').focus(); }
 }
-
-document.getElementById('pwd-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') checkPwd();
-  if (e.key === 'Escape') closePwd();
-});
-document.getElementById('pwd-overlay').addEventListener('click', function(e) {
-  if (e.target === this) closePwd();
-});
+document.getElementById('pwd-input').addEventListener('keydown', e => { if(e.key==='Enter') checkPwd(); if(e.key==='Escape') closePwd(); });
+document.getElementById('pwd-overlay').addEventListener('click', function(e){ if(e.target===this) closePwd(); });
 
 function applyEditMode() {
   const btn = document.getElementById('editModeBtn');
-  const label = document.getElementById('editModeLabel');
-  document.querySelectorAll('.edit-only').forEach(el => {
-    el.style.display = editMode ? '' : 'none';
-  });
-  if (editMode) {
-    btn.style.borderColor = 'rgba(56,189,248,0.4)';
-    btn.style.color = 'var(--accent)';
-    label.textContent = 'Editing';
-  } else {
-    btn.style.borderColor = '';
-    btn.style.color = '';
-    label.textContent = 'Owner';
-  }
+  document.querySelectorAll('.edit-only').forEach(el => { el.style.display = editMode ? '' : 'none'; });
+  // Edit bars for exp/edu
+  document.querySelectorAll('.exp-edit-bar').forEach(el => el.classList.toggle('show', editMode));
+  document.querySelectorAll('.card-edit-bar').forEach(el => el.classList.toggle('show', editMode));
+  if (editMode) { btn.style.borderColor='rgba(56,189,248,0.4)'; btn.style.color='var(--accent)'; document.getElementById('editModeLabel').textContent='Editing'; }
+  else { btn.style.borderColor=''; btn.style.color=''; document.getElementById('editModeLabel').textContent='Owner'; }
   updatePhotoEditState();
 }
 
-// ── Add Project modal ────────────────────────────────────────────
+// ─────────────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────────────
+function show(id) { document.getElementById(id).style.display='flex'; }
+function hide(id) { document.getElementById(id).style.display='none'; }
+function fadeIn(el) { el.style.opacity='0'; el.style.transform='translateY(20px)'; requestAnimationFrame(()=>requestAnimationFrame(()=>{ el.style.transition='opacity 0.5s ease,transform 0.5s ease'; el.style.opacity='1'; el.style.transform='translateY(0)'; })); }
+
+// ─────────────────────────────────────────────────
+// PHOTO
+// ─────────────────────────────────────────────────
+function handlePhotoClick() { if (!editMode) return; document.getElementById('photoInput').click(); }
+function handlePhoto(e) {
+  const file = e.target.files[0]; if (!file) return;
+  const r = new FileReader();
+  r.onload = function(ev) { document.getElementById('photoPreview').src = ev.target.result; document.getElementById('photoPreview').style.display='block'; document.getElementById('photoPlaceholder').style.display='none'; };
+  r.readAsDataURL(file);
+}
+function updatePhotoEditState() {
+  const frame = document.getElementById('photoFrame');
+  if (editMode) { frame.classList.add('edit-clickable'); frame.title='Click to change photo'; }
+  else { frame.classList.remove('edit-clickable'); frame.title=''; document.getElementById('photoOverlay').style.display='none'; }
+}
+
+// ─────────────────────────────────────────────────
+// REVEAL / SKILLS ANIMATION
+// ─────────────────────────────────────────────────
+const revealObs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revealObs.unobserve(e.target); } }); }, {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+const skillObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); const bar=e.target.querySelector('.skill-bar'); if(bar) setTimeout(()=>{ bar.style.width=bar.dataset.w; },100); skillObs.unobserve(e.target); } });
+}, {threshold:0.15});
+document.querySelectorAll('.skill-card').forEach(c => skillObs.observe(c));
+
+// ─────────────────────────────────────────────────
+// STAT CARDS — EDIT
+// ─────────────────────────────────────────────────
+let activeStatId = null;
+function openStatModal(id) {
+  activeStatId = id;
+  document.getElementById('stat-val-input').value = document.getElementById('stat-num-'+id).textContent;
+  document.getElementById('stat-label-input').value = document.getElementById('stat-label-'+id).textContent;
+  document.getElementById('stat-modal-err').textContent = '';
+  show('stat-modal');
+  setTimeout(()=>document.getElementById('stat-val-input').focus(),50);
+}
+function closeStatModal() { hide('stat-modal'); activeStatId=null; }
+function saveStatModal() {
+  const val = document.getElementById('stat-val-input').value.trim();
+  const lbl = document.getElementById('stat-label-input').value.trim();
+  if (!val) { document.getElementById('stat-modal-err').textContent='⚠ Value is required.'; return; }
+  document.getElementById('stat-num-'+activeStatId).textContent = val;
+  document.getElementById('stat-label-'+activeStatId).textContent = lbl;
+  closeStatModal();
+}
+document.getElementById('stat-modal').addEventListener('click',function(e){if(e.target===this)closeStatModal();});
+
+// ─────────────────────────────────────────────────
+// SKILLS — ADD / DELETE
+// ─────────────────────────────────────────────────
+let skillCount = 10;
+function openSkillModal() {
+  document.getElementById('skill-name').value = '';
+  document.getElementById('skill-level').value = '';
+  document.getElementById('skill-emoji').value = '💡';
+  document.getElementById('skill-pct').value = 80;
+  document.getElementById('skill-pct-display').textContent = '80%';
+  document.getElementById('skill-modal-err').textContent = '';
+  show('skill-modal');
+  setTimeout(()=>document.getElementById('skill-name').focus(),50);
+}
+function closeSkillModal() { hide('skill-modal'); }
+function saveSkillModal() {
+  const name = document.getElementById('skill-name').value.trim();
+  if (!name) { document.getElementById('skill-modal-err').textContent='⚠ Skill name is required.'; return; }
+  const emoji = document.getElementById('skill-emoji').value.trim() || '💡';
+  const level = document.getElementById('skill-level').value.trim();
+  const pct = document.getElementById('skill-pct').value + '%';
+  const id = 'sc' + skillCount++;
+  const card = document.createElement('div');
+  card.className = 'skill-card';
+  card.dataset.skillId = id;
+  card.style.cssText = 'opacity:0;transform:translateY(20px);';
+  card.innerHTML = `
+    <button class="skill-del-btn edit-only" onclick="deleteSkill('${id}')" style="display:block;">✕ Remove</button>
+    <div class="skill-icon">${emoji}</div>
+    <div class="skill-name">${name}</div>
+    <div class="skill-level">${level}</div>
+    <div class="skill-bar-bg"><div class="skill-bar" data-w="${pct}" style="width:0%;"></div></div>`;
+  document.getElementById('skillsGrid').appendChild(card);
+  fadeIn(card);
+  setTimeout(()=>{ const bar=card.querySelector('.skill-bar'); if(bar) bar.style.width=pct; },300);
+  closeSkillModal();
+}
+function deleteSkill(id) {
+  const card = document.querySelector(`[data-skill-id="${id}"]`);
+  if (card) { card.style.transition='opacity 0.3s,transform 0.3s'; card.style.opacity='0'; card.style.transform='scale(0.9)'; setTimeout(()=>card.remove(),300); }
+}
+document.getElementById('skill-modal').addEventListener('click',function(e){if(e.target===this)closeSkillModal();});
+
+// ─────────────────────────────────────────────────
+// EXPERIENCE — ADD / EDIT / DELETE
+// ─────────────────────────────────────────────────
+let expCount = 1;
+let editingExpId = null;
+
+function openExpModal(editId) {
+  editingExpId = editId || null;
+  const heading = document.getElementById('exp-modal-heading');
+  const saveBtn = document.getElementById('exp-modal-save-btn');
+  if (editId) {
+    const card = document.querySelector(`[data-exp-id="${editId}"]`);
+    document.getElementById('exp-role').value = card.querySelector('.exp-role').textContent;
+    document.getElementById('exp-company').value = card.querySelector('.exp-company').textContent;
+    document.getElementById('exp-date').value = card.querySelector('.exp-date').textContent;
+    const bullets = Array.from(card.querySelectorAll('.exp-bullets li')).map(li=>li.textContent.trim());
+    document.getElementById('exp-bullets').value = bullets.join('\n');
+    heading.textContent = 'Edit Role';
+    saveBtn.textContent = 'Save Changes';
+  } else {
+    ['exp-role','exp-company','exp-date','exp-bullets'].forEach(id=>document.getElementById(id).value='');
+    heading.textContent = 'New Role';
+    saveBtn.textContent = 'Add Experience';
+  }
+  document.getElementById('exp-modal-err').textContent = '';
+  show('exp-modal');
+  setTimeout(()=>document.getElementById('exp-role').focus(),50);
+}
+function closeExpModal() { hide('exp-modal'); editingExpId=null; }
+function saveExpModal() {
+  const role = document.getElementById('exp-role').value.trim();
+  const company = document.getElementById('exp-company').value.trim();
+  const date = document.getElementById('exp-date').value.trim();
+  const bulletsRaw = document.getElementById('exp-bullets').value.trim();
+  if (!role||!company||!date||!bulletsRaw) { document.getElementById('exp-modal-err').textContent='⚠ All fields are required.'; return; }
+  const bullets = bulletsRaw.split('\n').filter(b=>b.trim()).map(b=>`<li>${b.trim()}</li>`).join('');
+  if (editingExpId) {
+    const card = document.querySelector(`[data-exp-id="${editingExpId}"]`);
+    card.querySelector('.exp-role').textContent = role;
+    card.querySelector('.exp-company').textContent = company;
+    card.querySelector('.exp-date').textContent = date;
+    card.querySelector('.exp-bullets').innerHTML = bullets;
+    closeExpModal(); return;
+  }
+  const id = 'e' + expCount++;
+  const card = document.createElement('div');
+  card.className = 'exp-card';
+  card.dataset.expId = id;
+  card.style.cssText = 'opacity:0;transform:translateY(20px);';
+  card.innerHTML = `
+    <div class="exp-top">
+      <div><div class="exp-role">${role}</div><div class="exp-company">${company}</div></div>
+      <div class="exp-date">${date}</div>
+    </div>
+    <ul class="exp-bullets">${bullets}</ul>
+    <div class="exp-edit-bar${editMode?' show':''} edit-only" data-exp-edit="${id}">
+      <button class="exp-edit-action" onclick="openExpModal('${id}')">✎ Edit</button>
+      <button class="exp-del-btn" onclick="deleteExp('${id}')">✕ Delete</button>
+    </div>`;
+  document.getElementById('expList').appendChild(card);
+  fadeIn(card);
+  closeExpModal();
+}
+function deleteExp(id) {
+  const card = document.querySelector(`[data-exp-id="${id}"]`);
+  if (card) { card.style.transition='opacity 0.3s,transform 0.3s'; card.style.opacity='0'; card.style.transform='scale(0.95)'; setTimeout(()=>card.remove(),300); }
+}
+document.getElementById('exp-modal').addEventListener('click',function(e){if(e.target===this)closeExpModal();});
+
+// ─────────────────────────────────────────────────
+// EDUCATION / CERTS — ADD / DELETE
+// ─────────────────────────────────────────────────
+let eduCount = 10;
+function openEduModal() {
+  ['edu-degree','edu-school','edu-date','edu-meta','edu-skills'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('edu-type').value = 'education';
+  document.getElementById('edu-status').value = 'completed';
+  document.getElementById('edu-modal-err').textContent = '';
+  updateEduModalFields();
+  show('edu-modal');
+  setTimeout(()=>document.getElementById('edu-degree').focus(),50);
+}
+function closeEduModal() { hide('edu-modal'); }
+function updateEduModalFields() {
+  const type = document.getElementById('edu-type').value;
+  document.getElementById('edu-meta-row').style.display = type==='education' ? '' : 'none';
+  document.getElementById('edu-skills-row').style.display = type==='certification' ? '' : 'none';
+  document.getElementById('edu-status-row').style.display = type==='certification' ? '' : 'none';
+}
+function saveEduModal() {
+  const type = document.getElementById('edu-type').value;
+  const degree = document.getElementById('edu-degree').value.trim();
+  const school = document.getElementById('edu-school').value.trim();
+  const date = document.getElementById('edu-date').value.trim();
+  if (!degree||!school||!date) { document.getElementById('edu-modal-err').textContent='⚠ Name, Institution and Date are required.'; return; }
+
+  const id = 'edu'+ eduCount++;
+  const card = document.createElement('div');
+
+  if (type === 'education') {
+    const meta = document.getElementById('edu-meta').value.trim();
+    card.className = 'edu-card';
+    card.dataset.eduId = id;
+    card.innerHTML = `
+      <div class="badge">Degree</div>
+      <div class="edu-degree">${degree}</div>
+      <div class="edu-school">${school}</div>
+      ${meta?`<div class="edu-meta">${meta}</div>`:''}
+      <div class="card-edit-bar${editMode?' show':''} edit-only" data-edu-edit="${id}">
+        <button class="card-del-btn" onclick="deleteEdu('${id}')">✕ Delete</button>
+      </div>`;
+    card.style.cssText = 'opacity:0;transform:translateY(20px);';
+    document.getElementById('eduGrid').insertBefore(card, document.getElementById('certColumn'));
+  } else {
+    const skills = document.getElementById('edu-skills').value.trim();
+    const status = document.getElementById('edu-status').value;
+    card.className = 'cert-card';
+    card.dataset.eduId = id;
+    card.innerHTML = `
+      <div class="badge${status==='inprog'?' inprog':''}">${status==='inprog'?'In Progress':'Completed'}</div>
+      <div class="cert-name">${degree}</div>
+      <div class="cert-org">${school}</div>
+      <div class="cert-date">${date}</div>
+      ${skills?`<div style="font-size:0.78rem;color:var(--muted);margin-top:0.5rem;line-height:1.5;">${skills}</div>`:''}
+      <div class="card-edit-bar${editMode?' show':''} edit-only" data-edu-edit="${id}">
+        <button class="card-del-btn" onclick="deleteEdu('${id}')">✕ Delete</button>
+      </div>`;
+    card.style.cssText = 'opacity:0;transform:translateY(20px);';
+    document.getElementById('certColumn').appendChild(card);
+  }
+  fadeIn(card);
+  closeEduModal();
+}
+function deleteEdu(id) {
+  const card = document.querySelector(`[data-edu-id="${id}"]`);
+  if (card) { card.style.transition='opacity 0.3s,transform 0.3s'; card.style.opacity='0'; card.style.transform='scale(0.95)'; setTimeout(()=>card.remove(),300); }
+}
+document.getElementById('edu-modal').addEventListener('click',function(e){if(e.target===this)closeEduModal();});
+
+// ─────────────────────────────────────────────────
+// PROJECTS — ADD
+// ─────────────────────────────────────────────────
 const EMOJIS = ['💡','📊','📈','🗄️','🤖','🌐','📱','🎯','🔍','⚡','🛠️','📋','🏗️','🔬','💰','🚗'];
 const TOOLS = ['Python','SQL','Power BI','Tableau','Excel','Machine Learning','Pandas','NumPy','Matplotlib','Seaborn','Scikit-learn','Statistics','R','Jupyter','DAX','Power Query'];
 let selectedTools = [];
@@ -1094,78 +951,52 @@ let projectCount = 0;
 
 function openAddProject() {
   selectedTools = [];
-  ['ap-name','ap-desc','ap-github','ap-tools-custom'].forEach(id => document.getElementById(id).value = '');
+  ['ap-name','ap-desc','ap-github','ap-tools-custom'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('ap-emoji').value = '💡';
   document.getElementById('ap-error').textContent = '';
   renderEmojiPicker(); renderToolPicker(); renderSelectedTools();
-  document.getElementById('add-project-overlay').style.display = 'flex';
-  setTimeout(() => document.getElementById('ap-name').focus(), 50);
+  show('add-project-overlay');
+  setTimeout(()=>document.getElementById('ap-name').focus(),50);
 }
-function closeAddProject() { document.getElementById('add-project-overlay').style.display = 'none'; }
-
+function closeAddProject() { hide('add-project-overlay'); }
 function renderEmojiPicker() {
-  const current = document.getElementById('ap-emoji').value || '💡';
-  document.getElementById('emojiPicker').innerHTML = EMOJIS.map(e =>
-    `<span class="emoji-opt${e===current?' selected':''}" onclick="selectEmoji('${e}')">${e}</span>`
-  ).join('');
+  const cur = document.getElementById('ap-emoji').value||'💡';
+  document.getElementById('emojiPicker').innerHTML = EMOJIS.map(e=>`<span class="emoji-opt${e===cur?' selected':''}" onclick="selectEmoji('${e}')">${e}</span>`).join('');
 }
-function selectEmoji(e) { document.getElementById('ap-emoji').value = e; renderEmojiPicker(); }
-
+function selectEmoji(e) { document.getElementById('ap-emoji').value=e; renderEmojiPicker(); }
 function renderToolPicker() {
-  document.getElementById('toolPicker').innerHTML = TOOLS.map(t =>
-    `<button type="button" class="tool-chip${selectedTools.includes(t)?' selected':''}" onclick="toggleTool('${t}')">${t}</button>`
-  ).join('');
+  document.getElementById('toolPicker').innerHTML = TOOLS.map(t=>`<button type="button" class="tool-chip${selectedTools.includes(t)?' selected':''}" onclick="toggleTool('${t}')">${t}</button>`).join('');
 }
-function toggleTool(t) {
-  selectedTools = selectedTools.includes(t) ? selectedTools.filter(x=>x!==t) : [...selectedTools, t];
-  renderToolPicker(); renderSelectedTools();
-}
+function toggleTool(t) { selectedTools=selectedTools.includes(t)?selectedTools.filter(x=>x!==t):[...selectedTools,t]; renderToolPicker(); renderSelectedTools(); }
 function renderSelectedTools() {
-  document.getElementById('selected-tools').innerHTML = selectedTools.map(t =>
-    `<span class="selected-tag">${t}<button onclick="toggleTool('${t}')">✕</button></span>`
-  ).join('');
+  document.getElementById('selected-tools').innerHTML = selectedTools.map(t=>`<span class="selected-tag">${t}<button onclick="toggleTool('${t}')">✕</button></span>`).join('');
 }
-
-document.getElementById('ap-tools-custom').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && this.value.trim()) {
-    const val = this.value.trim();
-    if (!selectedTools.includes(val)) { selectedTools.push(val); renderSelectedTools(); }
-    this.value = '';
-  }
-});
-document.getElementById('ap-emoji').addEventListener('input', renderEmojiPicker);
-document.getElementById('add-project-overlay').addEventListener('click', function(e) {
-  if (e.target === this) closeAddProject();
-});
+document.getElementById('ap-tools-custom').addEventListener('keydown',function(e){ if(e.key==='Enter'&&this.value.trim()){ const v=this.value.trim(); if(!selectedTools.includes(v)){selectedTools.push(v);renderSelectedTools();} this.value=''; } });
+document.getElementById('ap-emoji').addEventListener('input',renderEmojiPicker);
+document.getElementById('add-project-overlay').addEventListener('click',function(e){if(e.target===this)closeAddProject();});
 
 function saveProject() {
   const name = document.getElementById('ap-name').value.trim();
   const desc = document.getElementById('ap-desc').value.trim();
   const github = document.getElementById('ap-github').value.trim();
-  const emoji = document.getElementById('ap-emoji').value.trim() || '💡';
+  const emoji = document.getElementById('ap-emoji').value.trim()||'💡';
   const err = document.getElementById('ap-error');
-  if (!name) { err.textContent = '⚠ Project name is required.'; return; }
-  if (!desc) { err.textContent = '⚠ Please add a short description.'; return; }
-  err.textContent = '';
-
+  if (!name){err.textContent='⚠ Project name is required.';return;}
+  if (!desc){err.textContent='⚠ Please add a short description.';return;}
+  err.textContent='';
   projectCount++;
-  const id = 'custom-' + projectCount;
-  const tools = selectedTools.slice();
-  const tagColors = ['','purple','coral','','purple'];
-  const tagsHTML = tools.slice(0,3).map((t,i) => `<span class="tag ${tagColors[i]||''}">${t}</span>`).join('');
-
-  const card = document.createElement('div');
-  card.className = 'project-card';
-  card.id = 'card-' + id;
-  card.style.cssText = 'opacity:0;transform:translateY(24px);transition:opacity 0.5s ease,transform 0.5s ease;';
-
-  const ghBtnId = 'ghbtn-' + id;
-  const ghLabelId = 'ghbtn-' + id + '-label';
-  card.innerHTML = `
-    <div class="project-header">
-      <div class="project-icon">${emoji}</div>
-      <div class="project-tags">${tagsHTML}</div>
-    </div>
+  const id='custom-'+projectCount;
+  const tools=selectedTools.slice();
+  const tagColors=['','purple','coral','','purple'];
+  const tagsHTML=tools.slice(0,3).map((t,i)=>`<span class="tag ${tagColors[i]||''}">${t}</span>`).join('');
+  const card=document.createElement('div');
+  card.className='project-card';
+  card.id='card-'+id;
+  card.style.cssText='opacity:0;transform:translateY(24px);';
+  const ghId='ghbtn-'+id;
+  const ghLblId=ghId+'-label';
+  card.innerHTML=`
+    <div class="project-header"><div class="project-icon">${emoji}</div><div class="project-tags">${tagsHTML}</div></div>
     <div class="project-name">${name}</div>
     <div class="project-desc">${desc}</div>
     <div class="project-kpis">
@@ -1173,70 +1004,68 @@ function saveProject() {
       ${!tools.length?'<div class="kpi"><div class="kpi-val">New</div><div class="kpi-lab">Project</div></div>':''}
     </div>
     <div class="project-footer">
-      <button class="gh-btn ${github?'linked':''}" id="${ghBtnId}" onclick="handleGitHub('${id}',event)">
+      <button class="gh-btn${github?' linked':''}" id="${ghId}" onclick="handleGitHub('${id}',event)">
         <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-        <span id="${ghLabelId}">${github ? 'View on GitHub' : 'Add GitHub Link'}</span>
+        <span id="${ghLblId}">${github?'View on GitHub':'Add GitHub Link'}</span>
       </button>
-      <button class="edit-gh-btn edit-only" onclick="openModal('${id}')" title="Edit GitHub URL">✎</button>
+      <button class="edit-gh-btn edit-only" onclick="openGhModal('${id}')" title="Edit GitHub URL">✎</button>
       <button class="edit-gh-btn edit-only" onclick="deleteProject('${id}')" title="Delete" style="color:var(--accent3);border-color:rgba(251,113,133,0.3);">✕</button>
     </div>`;
-
-  if (github) ghLinks[id] = github;
-  projectNames[id] = name;
+  if (github) ghLinks[id]=github;
+  projectNames[id]=name;
   document.getElementById('projectsGrid').appendChild(card);
-  if (!editMode) card.querySelectorAll('.edit-only').forEach(el => el.style.display = 'none');
-  requestAnimationFrame(() => requestAnimationFrame(() => { card.style.opacity='1'; card.style.transform='translateY(0)'; }));
+  if (!editMode) card.querySelectorAll('.edit-only').forEach(el=>el.style.display='none');
+  fadeIn(card);
   closeAddProject();
-  card.scrollIntoView({ behavior:'smooth', block:'center' });
+  card.scrollIntoView({behavior:'smooth',block:'center'});
 }
-
 function deleteProject(id) {
-  const card = document.getElementById('card-' + id);
-  if (card) { card.style.opacity='0'; card.style.transform='scale(0.95)'; card.style.transition='opacity 0.3s,transform 0.3s'; setTimeout(()=>card.remove(),300); }
+  const card=document.getElementById('card-'+id);
+  if(card){card.style.opacity='0';card.style.transform='scale(0.95)';card.style.transition='opacity 0.3s,transform 0.3s';setTimeout(()=>card.remove(),300);}
   delete ghLinks[id]; delete projectNames[id];
 }
 
-// ── GitHub links ─────────────────────────────────────────────────
+// ─────────────────────────────────────────────────
+// GITHUB LINKS (now works for all projects incl. existing ones)
+// ─────────────────────────────────────────────────
 const ghLinks = {};
-let activeProject = null;
-const projectNames = { crowdfunding: 'Crowdfunding Analytics', hospitality: 'Hospitality Analytics' };
+let activeGhProject = null;
+const projectNames = { crowdfunding:'Crowdfunding Analytics', hospitality:'Hospitality Analytics' };
 
-function updateButton(project) {
-  const btn = document.getElementById('ghbtn-' + project);
-  const label = document.getElementById('ghbtn-' + project + '-label');
-  if (!btn || !label) return;
-  if (ghLinks[project]) { btn.classList.add('linked'); label.textContent = 'View on GitHub'; }
-  else { btn.classList.remove('linked'); label.textContent = 'Add GitHub Link'; }
+function updateGhButton(project) {
+  const btn=document.getElementById('ghbtn-'+project);
+  const lbl=document.getElementById('ghbtn-'+project+'-label');
+  if (!btn||!lbl) return;
+  if (ghLinks[project]) { btn.classList.add('linked'); lbl.textContent='View on GitHub'; }
+  else { btn.classList.remove('linked'); lbl.textContent='Add GitHub Link'; }
 }
 function handleGitHub(project, e) {
   e.stopPropagation();
-  if (ghLinks[project]) window.open(ghLinks[project], '_blank');
-  else openModal(project);
+  if (ghLinks[project]) window.open(ghLinks[project],'_blank');
+  else if (editMode) openGhModal(project);
+  // if not in edit mode and no link, do nothing (don't open empty modal for visitors)
 }
-function openModal(project) {
-  activeProject = project;
+function openGhModal(project) {
+  activeGhProject = project;
   const name = projectNames[project] || document.querySelector('#card-'+project+' .project-name')?.textContent || project;
-  document.getElementById('modal-project-name').textContent = name;
-  document.getElementById('modal-url-input').value = ghLinks[project] || '';
-  document.getElementById('modal-status').textContent = '';
-  document.getElementById('gh-modal-overlay').style.display = 'flex';
-  setTimeout(() => document.getElementById('modal-url-input').focus(), 50);
+  document.getElementById('gh-modal-project-name').textContent = name;
+  document.getElementById('gh-modal-url').value = ghLinks[project]||'';
+  document.getElementById('gh-modal-status').textContent = '';
+  show('gh-modal-overlay');
+  setTimeout(()=>document.getElementById('gh-modal-url').focus(),50);
 }
-function closeModal() { document.getElementById('gh-modal-overlay').style.display = 'none'; activeProject = null; }
-function saveGitHub() {
-  const url = document.getElementById('modal-url-input').value.trim();
-  const status = document.getElementById('modal-status');
-  if (!url) { delete ghLinks[activeProject]; updateButton(activeProject); closeModal(); return; }
-  if (!url.startsWith('http://') && !url.startsWith('https://')) {
-    status.textContent = '⚠ Please enter a valid URL starting with https://';
-    status.style.color = 'var(--accent3)'; return;
-  }
-  ghLinks[activeProject] = url; updateButton(activeProject);
-  status.textContent = '✓ Saved!'; status.style.color = 'var(--accent)';
-  setTimeout(closeModal, 700);
+function closeGhModal() { hide('gh-modal-overlay'); activeGhProject=null; }
+function saveGhModal() {
+  const url=document.getElementById('gh-modal-url').value.trim();
+  const status=document.getElementById('gh-modal-status');
+  if (!url) { delete ghLinks[activeGhProject]; updateGhButton(activeGhProject); closeGhModal(); return; }
+  if (!url.startsWith('http://') && !url.startsWith('https://')) { status.textContent='⚠ Please enter a valid URL starting with https://'; status.style.color='var(--accent3)'; return; }
+  ghLinks[activeGhProject]=url; updateGhButton(activeGhProject);
+  status.textContent='✓ Saved!'; status.style.color='var(--accent)';
+  setTimeout(closeGhModal,700);
 }
-document.getElementById('gh-modal-overlay').addEventListener('click', function(e) { if (e.target===this) closeModal(); });
-document.getElementById('modal-url-input').addEventListener('keydown', e => { if(e.key==='Enter')saveGitHub(); if(e.key==='Escape')closeModal(); });
+document.getElementById('gh-modal-overlay').addEventListener('click',function(e){if(e.target===this)closeGhModal();});
+document.getElementById('gh-modal-url').addEventListener('keydown',e=>{if(e.key==='Enter')saveGhModal();if(e.key==='Escape')closeGhModal();});
 </script>
 </body>
 </html>
