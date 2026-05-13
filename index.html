@@ -70,7 +70,6 @@
   .btn-ghost { padding:0.85rem 2rem; background:transparent; color:var(--text); border:1px solid rgba(255,255,255,0.12); border-radius:8px; font-family:'Space Grotesk',sans-serif; font-size:0.9rem; font-weight:500; cursor:pointer; text-decoration:none; transition:border-color 0.2s, color 0.2s, background 0.2s; }
   .btn-ghost:hover { border-color:var(--border-accent); color:var(--accent); background:var(--accent-glow); }
 
-  /* ── Hero stats — now editable ── */
   .hero-stats { display:flex; gap:2.5rem; margin-top:3.5rem; padding-top:2rem; border-top:1px solid var(--border); flex-wrap:wrap; }
   .stat-item { position:relative; cursor:default; }
   .stat-num { font-family:'JetBrains Mono',monospace; font-size:2rem; font-weight:500; background:var(--grad1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
@@ -83,7 +82,6 @@
   .section-label::after { content:''; flex:1; height:1px; background:linear-gradient(90deg, rgba(56,189,248,0.3), transparent); }
   .section-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); letter-spacing:-1px; margin-bottom:1rem; line-height:1.1; }
 
-  /* ── Skills ── */
   #skills { background:var(--bg2); }
   .skills-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:1px; margin-top:3rem; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--border); }
   .skill-card { background:var(--card); padding:2rem 1.5rem; display:flex; flex-direction:column; gap:0.85rem; position:relative; overflow:hidden; opacity:0; transform:translateY(20px); transition:opacity 0.5s ease, transform 0.5s ease, background 0.25s; }
@@ -99,7 +97,6 @@
   .skill-del-btn { position:absolute; top:8px; right:8px; background:rgba(251,113,133,0.1); border:1px solid rgba(251,113,133,0.2); border-radius:6px; color:var(--accent3); font-size:0.7rem; cursor:pointer; padding:3px 7px; display:none; transition:all 0.2s; z-index:2; }
   .skill-del-btn:hover { background:rgba(251,113,133,0.2); }
 
-  /* ── Experience ── */
   .exp-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:2.5rem; position:relative; overflow:hidden; transition:border-color 0.25s, box-shadow 0.25s; margin-bottom:1.5rem; }
   .exp-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--grad1); opacity:0; transition:opacity 0.25s; }
   .exp-card:hover { border-color:rgba(56,189,248,0.2); box-shadow:0 8px 40px rgba(56,189,248,0.06); }
@@ -118,7 +115,6 @@
   .exp-edit-action { background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2); border-radius:8px; color:var(--accent); font-size:0.8rem; cursor:pointer; padding:6px 14px; font-family:'Space Grotesk',sans-serif; transition:all 0.2s; }
   .exp-edit-action:hover { background:var(--accent-glow); }
 
-  /* ── Projects ── */
   #projects { background:var(--bg2); }
   .projects-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem; margin-top:3rem; }
   .project-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:2rem; display:flex; flex-direction:column; gap:1.25rem; transition:transform 0.25s, border-color 0.25s, box-shadow 0.25s; cursor:default; position:relative; overflow:hidden; }
@@ -144,7 +140,6 @@
   .add-section-btn { display:flex; align-items:center; gap:0.5rem; padding:0.7rem 1.5rem; background:transparent; border:1px dashed rgba(56,189,248,0.3); border-radius:10px; color:var(--accent); font-family:'Space Grotesk',sans-serif; font-size:0.85rem; font-weight:600; cursor:pointer; letter-spacing:0.02em; transition:all 0.2s; }
   .add-section-btn:hover { background:var(--accent-glow); border-color:var(--accent); transform:translateY(-1px); }
 
-  /* ── Education & Certs ── */
   .edu-cert-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.75rem; margin-top:3rem; }
   @media (max-width:700px) { .edu-cert-grid { grid-template-columns:1fr; } }
   .edu-card, .cert-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:2rem; transition:border-color 0.25s, box-shadow 0.25s; position:relative; overflow:hidden; }
@@ -174,7 +169,6 @@
   .contact-link svg { width:16px; height:16px; fill:currentColor; flex-shrink:0; }
   footer { padding:2rem 3rem; border-top:1px solid var(--border); text-align:center; color:var(--muted); font-size:0.78rem; background:var(--bg); }
 
-  /* ── Modals shared ── */
   .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:500; align-items:center; justify-content:center; backdrop-filter:blur(4px); }
   .modal-box { background:var(--card); border:1px solid var(--border-accent); border-radius:20px; position:relative; }
   .modal-label { font-size:0.78rem; color:var(--muted); font-weight:500; letter-spacing:0.03em; display:block; margin-bottom:0.5rem; }
@@ -194,7 +188,6 @@
   .modal-cancel { padding:0.7rem 1.5rem; background:transparent; border:1px solid var(--border); border-radius:8px; color:var(--muted); font-family:'Space Grotesk',sans-serif; font-size:0.9rem; cursor:pointer; }
   .modal-save { padding:0.7rem 1.75rem; background:var(--grad1); border:none; border-radius:8px; color:#030712; font-family:'Space Grotesk',sans-serif; font-size:0.9rem; font-weight:700; cursor:pointer; }
 
-  /* ── Range slider ── */
   input[type=range] { -webkit-appearance:none; width:100%; height:4px; border-radius:2px; background:rgba(255,255,255,0.1); outline:none; margin:0.5rem 0; }
   input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:16px; height:16px; border-radius:50%; background:var(--accent); cursor:pointer; }
 
@@ -207,7 +200,7 @@
 </head>
 <body>
 
-<!-- ── Nav ── -->
+<!-- Nav -->
 <nav>
   <div class="nav-logo">VK.</div>
   <div class="nav-links">
@@ -223,7 +216,7 @@
   </button>
 </nav>
 
-<!-- ── Password Modal ── -->
+<!-- Password Modal -->
 <div id="pwd-overlay" class="modal-overlay" style="display:none;">
   <div class="modal-box" style="padding:2.5rem;width:min(380px,calc(100vw - 2rem));">
     <button onclick="closePwd()" style="position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">✕</button>
@@ -232,162 +225,87 @@
     <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1.75rem;line-height:1.5;">Owner mode lets you edit your portfolio content.</p>
     <input id="pwd-input" type="password" placeholder="Password" class="modal-input" style="margin-bottom:0.75rem;"/>
     <div id="pwd-error" style="font-size:0.78rem;color:var(--accent3);min-height:1.2rem;margin-bottom:0.75rem;"></div>
-    <button onclick="checkPwd()" style="width:100%;padding:0.8rem;background:var(--grad1);border:none;border-radius:10px;color:#030712;font-family:'Space Grotesk',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">Unlock Edit Mode</button>
+    <button onclick="checkPwd()" style="width:100%;padding:0.8rem;background:var(--grad1);border:none;border-radius:10px;color:#030712;font-family:'Space Grotesk',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;">Unlock Edit Mode</button>
   </div>
 </div>
 
-<!-- ── Stat Edit Modal ── -->
+<!-- Stat Edit Modal -->
 <div id="stat-modal" class="modal-overlay" style="display:none;">
   <div class="modal-box" style="padding:2rem;width:min(400px,calc(100vw - 2rem));">
     <button onclick="closeStatModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;">✕</button>
     <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;font-weight:600;">Edit Stat</div>
-    <div class="modal-row">
-      <label class="modal-label">Value (e.g. 6+, 7.77, 5)</label>
-      <input id="stat-val-input" type="text" class="modal-input"/>
-    </div>
-    <div class="modal-row">
-      <label class="modal-label">Label</label>
-      <input id="stat-label-input" type="text" class="modal-input"/>
-    </div>
+    <div class="modal-row"><label class="modal-label">Value (e.g. 6+, 7.77, 5)</label><input id="stat-val-input" type="text" class="modal-input"/></div>
+    <div class="modal-row"><label class="modal-label">Label</label><input id="stat-label-input" type="text" class="modal-input"/></div>
     <div id="stat-modal-err" style="font-size:0.78rem;color:var(--accent3);min-height:1rem;margin-bottom:0.75rem;"></div>
     <div class="modal-actions"><button class="modal-cancel" onclick="closeStatModal()">Cancel</button><button class="modal-save" onclick="saveStatModal()">Save</button></div>
   </div>
 </div>
 
-<!-- ── Add Skill Modal ── -->
+<!-- Add Skill Modal -->
 <div id="skill-modal" class="modal-overlay" style="display:none;">
   <div class="modal-box" style="padding:2rem;width:min(460px,calc(100vw - 2rem));">
     <button onclick="closeSkillModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;">✕</button>
-    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;" id="skill-modal-title">Add Skill</div>
-    <div class="modal-row">
-      <label class="modal-label">Icon (emoji)</label>
-      <input id="skill-emoji" type="text" maxlength="4" class="modal-input" style="width:80px;text-align:center;" value="💡"/>
-    </div>
-    <div class="modal-row">
-      <label class="modal-label">Skill Name *</label>
-      <input id="skill-name" type="text" placeholder="e.g. Tableau" class="modal-input"/>
-    </div>
-    <div class="modal-row">
-      <label class="modal-label">Level / Description</label>
-      <input id="skill-level" type="text" placeholder="e.g. Advanced · Visual Analytics" class="modal-input"/>
-    </div>
-    <div class="modal-row">
-      <label class="modal-label">Proficiency: <span id="skill-pct-display">80%</span></label>
-      <input id="skill-pct" type="range" min="10" max="100" value="80" oninput="document.getElementById('skill-pct-display').textContent=this.value+'%'"/>
-    </div>
+    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;">Add Skill</div>
+    <div class="modal-row"><label class="modal-label">Icon (emoji)</label><input id="skill-emoji" type="text" maxlength="4" class="modal-input" style="width:80px;text-align:center;" value="💡"/></div>
+    <div class="modal-row"><label class="modal-label">Skill Name *</label><input id="skill-name" type="text" placeholder="e.g. Tableau" class="modal-input"/></div>
+    <div class="modal-row"><label class="modal-label">Level / Description</label><input id="skill-level" type="text" placeholder="e.g. Advanced · Visual Analytics" class="modal-input"/></div>
+    <div class="modal-row"><label class="modal-label">Proficiency: <span id="skill-pct-display">80%</span></label><input id="skill-pct" type="range" min="10" max="100" value="80" oninput="document.getElementById('skill-pct-display').textContent=this.value+'%'"/></div>
     <div id="skill-modal-err" style="font-size:0.78rem;color:var(--accent3);min-height:1rem;margin-bottom:0.75rem;"></div>
     <div class="modal-actions"><button class="modal-cancel" onclick="closeSkillModal()">Cancel</button><button class="modal-save" onclick="saveSkillModal()">Add Skill</button></div>
   </div>
 </div>
 
-<!-- ── Add Experience Modal ── -->
+<!-- Add Experience Modal -->
 <div id="exp-modal" class="modal-overlay" style="display:none;padding:1rem;">
   <div class="modal-box" style="padding:2rem;width:min(580px,100%);max-height:90vh;overflow-y:auto;">
     <button onclick="closeExpModal()" style="position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;line-height:1;">✕</button>
     <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;" id="exp-modal-title">Add Experience</div>
     <div style="font-size:1.3rem;font-weight:700;margin-bottom:1.5rem;letter-spacing:-0.3px;" id="exp-modal-heading">New Role</div>
-    <div class="modal-row">
-      <label class="modal-label">Job Title *</label>
-      <input id="exp-role" type="text" placeholder="e.g. Data Analyst Intern" class="modal-input"/>
-    </div>
-    <div class="modal-row">
-      <label class="modal-label">Company & Location *</label>
-      <input id="exp-company" type="text" placeholder="e.g. Aivariant · Bengaluru" class="modal-input"/>
-    </div>
-    <div class="modal-row">
-      <label class="modal-label">Date Range *</label>
-      <input id="exp-date" type="text" placeholder="e.g. Jan 2025 – Present" class="modal-input"/>
-    </div>
-    <div class="modal-row">
-      <label class="modal-label">Bullet Points (one per line) *</label>
-      <textarea id="exp-bullets" rows="5" placeholder="Designed KPI dashboards in Power BI...&#10;Worked with SQL and Python...&#10;Presented findings to stakeholders..." class="modal-input" style="resize:vertical;line-height:1.6;margin-top:0.25rem;"></textarea>
-    </div>
+    <div class="modal-row"><label class="modal-label">Job Title *</label><input id="exp-role" type="text" placeholder="e.g. Data Analyst Intern" class="modal-input"/></div>
+    <div class="modal-row"><label class="modal-label">Company &amp; Location *</label><input id="exp-company" type="text" placeholder="e.g. Aivariant · Bengaluru" class="modal-input"/></div>
+    <div class="modal-row"><label class="modal-label">Date Range *</label><input id="exp-date" type="text" placeholder="e.g. Jan 2025 – Present" class="modal-input"/></div>
+    <div class="modal-row"><label class="modal-label">Bullet Points (one per line) *</label><textarea id="exp-bullets-input" rows="5" placeholder="Designed KPI dashboards in Power BI...&#10;Worked with SQL and Python...&#10;Presented findings to stakeholders..." class="modal-input" style="resize:vertical;line-height:1.6;margin-top:0.25rem;"></textarea></div>
     <div id="exp-modal-err" style="font-size:0.78rem;color:var(--accent3);min-height:1rem;margin-bottom:0.75rem;"></div>
     <div class="modal-actions"><button class="modal-cancel" onclick="closeExpModal()">Cancel</button><button class="modal-save" id="exp-modal-save-btn" onclick="saveExpModal()">Add Experience</button></div>
   </div>
 </div>
 
-<!-- ── Add Education Modal ── -->
+<!-- Add Education Modal -->
 <div id="edu-modal" class="modal-overlay" style="display:none;padding:1rem;">
   <div class="modal-box" style="padding:2rem;width:min(520px,100%);max-height:90vh;overflow-y:auto;">
     <button onclick="closeEduModal()" style="position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;line-height:1;">✕</button>
-    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;" id="edu-modal-type-label">Add Education</div>
-    <div class="modal-row">
-      <label class="modal-label">Type</label>
-      <select id="edu-type" class="modal-input" onchange="updateEduModalFields()">
-        <option value="education">Education (Degree)</option>
-        <option value="certification">Certification</option>
-      </select>
-    </div>
+    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;">Add Education</div>
+    <div class="modal-row"><label class="modal-label">Type</label><select id="edu-type" class="modal-input" onchange="updateEduModalFields()"><option value="education">Education (Degree)</option><option value="certification">Certification</option></select></div>
     <div id="edu-fields">
-      <div class="modal-row">
-        <label class="modal-label">Degree / Certification Name *</label>
-        <input id="edu-degree" type="text" placeholder="e.g. Bachelor of Computer Applications" class="modal-input"/>
-      </div>
-      <div class="modal-row">
-        <label class="modal-label">Institution *</label>
-        <input id="edu-school" type="text" placeholder="e.g. Govindram Seksaria Science College" class="modal-input"/>
-      </div>
-      <div class="modal-row">
-        <label class="modal-label">Date / Year *</label>
-        <input id="edu-date" type="text" placeholder="e.g. 2025 or Jul 2025 – Nov 2025" class="modal-input"/>
-      </div>
-      <div class="modal-row" id="edu-meta-row">
-        <label class="modal-label">Location / Extra Info</label>
-        <input id="edu-meta" type="text" placeholder="e.g. Belagavi, Karnataka · CGPA: 7.77" class="modal-input"/>
-      </div>
-      <div class="modal-row" id="edu-skills-row" style="display:none;">
-        <label class="modal-label">Skills Covered</label>
-        <input id="edu-skills" type="text" placeholder="e.g. Python · Statistics · Machine Learning" class="modal-input"/>
-      </div>
-      <div class="modal-row" id="edu-status-row" style="display:none;">
-        <label class="modal-label">Status</label>
-        <select id="edu-status" class="modal-input">
-          <option value="completed">Completed</option>
-          <option value="inprog">In Progress</option>
-        </select>
-      </div>
+      <div class="modal-row"><label class="modal-label">Degree / Certification Name *</label><input id="edu-degree" type="text" placeholder="e.g. Bachelor of Computer Applications" class="modal-input"/></div>
+      <div class="modal-row"><label class="modal-label">Institution *</label><input id="edu-school" type="text" placeholder="e.g. Govindram Seksaria Science College" class="modal-input"/></div>
+      <div class="modal-row"><label class="modal-label">Date / Year *</label><input id="edu-date" type="text" placeholder="e.g. 2025 or Jul 2025 – Nov 2025" class="modal-input"/></div>
+      <div class="modal-row" id="edu-meta-row"><label class="modal-label">Location / Extra Info</label><input id="edu-meta" type="text" placeholder="e.g. Belagavi, Karnataka · CGPA: 7.77" class="modal-input"/></div>
+      <div class="modal-row" id="edu-skills-row" style="display:none;"><label class="modal-label">Skills Covered</label><input id="edu-skills" type="text" placeholder="e.g. Python · Statistics · Machine Learning" class="modal-input"/></div>
+      <div class="modal-row" id="edu-status-row" style="display:none;"><label class="modal-label">Status</label><select id="edu-status" class="modal-input"><option value="completed">Completed</option><option value="inprog">In Progress</option></select></div>
     </div>
     <div id="edu-modal-err" style="font-size:0.78rem;color:var(--accent3);min-height:1rem;margin-bottom:0.75rem;"></div>
     <div class="modal-actions"><button class="modal-cancel" onclick="closeEduModal()">Cancel</button><button class="modal-save" onclick="saveEduModal()">Add</button></div>
   </div>
 </div>
 
-<!-- ── Add Project Modal ── -->
+<!-- Add Project Modal -->
 <div id="add-project-overlay" class="modal-overlay" style="display:none;padding:1rem;">
   <div class="modal-box" style="padding:2rem;width:min(560px,100%);max-height:90vh;overflow-y:auto;">
     <button onclick="closeAddProject()" style="position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;line-height:1;">✕</button>
     <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;">New Project</div>
     <div style="font-size:1.4rem;font-weight:700;margin-bottom:1.75rem;letter-spacing:-0.3px;">Add to Portfolio</div>
-    <div class="modal-row">
-      <label class="modal-label">Project Icon</label>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;" id="emojiPicker"></div>
-      <input id="ap-emoji" type="text" value="💡" maxlength="4" placeholder="or type emoji" class="modal-input" style="margin-top:0.6rem;width:80px;text-align:center;"/>
-    </div>
-    <div class="modal-row">
-      <label class="modal-label">Project Name *</label>
-      <input id="ap-name" type="text" placeholder="e.g. Sales Analytics Dashboard" class="modal-input"/>
-    </div>
-    <div class="modal-row">
-      <label class="modal-label">Description *</label>
-      <textarea id="ap-desc" rows="3" placeholder="Briefly describe what this project does..." class="modal-input" style="resize:vertical;line-height:1.6;"></textarea>
-    </div>
-    <div class="modal-row">
-      <label class="modal-label">Tools &amp; Technologies</label>
-      <div style="display:flex;gap:0.5rem;margin-top:0.5rem;flex-wrap:wrap;" id="toolPicker"></div>
-      <input id="ap-tools-custom" type="text" placeholder="Add custom tag and press Enter" class="modal-input" style="margin-top:0.6rem;"/>
-      <div id="selected-tools" style="display:flex;gap:0.5rem;margin-top:0.6rem;flex-wrap:wrap;min-height:1rem;"></div>
-    </div>
-    <div class="modal-row">
-      <label class="modal-label">GitHub Repository URL <span style="color:var(--muted);font-weight:400;">(optional)</span></label>
-      <input id="ap-github" type="url" placeholder="https://github.com/yourusername/repo" class="modal-input"/>
-    </div>
+    <div class="modal-row"><label class="modal-label">Project Icon</label><div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;" id="emojiPicker"></div><input id="ap-emoji" type="text" value="💡" maxlength="4" placeholder="or type emoji" class="modal-input" style="margin-top:0.6rem;width:80px;text-align:center;"/></div>
+    <div class="modal-row"><label class="modal-label">Project Name *</label><input id="ap-name" type="text" placeholder="e.g. Sales Analytics Dashboard" class="modal-input"/></div>
+    <div class="modal-row"><label class="modal-label">Description *</label><textarea id="ap-desc" rows="3" placeholder="Briefly describe what this project does..." class="modal-input" style="resize:vertical;line-height:1.6;"></textarea></div>
+    <div class="modal-row"><label class="modal-label">Tools &amp; Technologies</label><div style="display:flex;gap:0.5rem;margin-top:0.5rem;flex-wrap:wrap;" id="toolPicker"></div><input id="ap-tools-custom" type="text" placeholder="Add custom tag and press Enter" class="modal-input" style="margin-top:0.6rem;"/><div id="selected-tools" style="display:flex;gap:0.5rem;margin-top:0.6rem;flex-wrap:wrap;min-height:1rem;"></div></div>
+    <div class="modal-row"><label class="modal-label">GitHub Repository URL <span style="color:var(--muted);font-weight:400;">(optional)</span></label><input id="ap-github" type="url" placeholder="https://github.com/yourusername/repo" class="modal-input"/></div>
     <div id="ap-error" style="font-size:0.8rem;color:var(--accent3);margin-bottom:1rem;min-height:1rem;"></div>
     <div class="modal-actions"><button class="modal-cancel" onclick="closeAddProject()">Cancel</button><button class="modal-save" onclick="saveProject()">Add Project</button></div>
   </div>
 </div>
 
-<!-- ── GitHub URL Modal ── -->
+<!-- GitHub URL Modal -->
 <div id="gh-modal-overlay" class="modal-overlay" style="display:none;">
   <div class="modal-box" style="padding:2rem;width:min(480px,calc(100vw - 2rem));">
     <button onclick="closeGhModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;line-height:1;">✕</button>
@@ -400,7 +318,7 @@
   </div>
 </div>
 
-<!-- ── Hero ── -->
+<!-- Hero -->
 <section class="hero" id="about">
   <div class="hero-lines">
     <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="opacity:0.4;">
@@ -464,7 +382,7 @@
   </div>
 </section>
 
-<!-- ── Skills ── -->
+<!-- Skills -->
 <section id="skills">
   <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:3rem;">
     <div>
@@ -476,47 +394,10 @@
       Add Skill
     </button>
   </div>
-  <div class="skills-grid" id="skillsGrid">
-    <div class="skill-card" style="transition-delay:0s" data-skill-id="s0">
-      <button class="skill-del-btn edit-only" onclick="deleteSkill('s0')">✕ Remove</button>
-      <div class="skill-icon">📊</div><div class="skill-name">Power BI</div>
-      <div class="skill-level">Advanced · KPI Dashboards</div>
-      <div class="skill-bar-bg"><div class="skill-bar" data-w="88%"></div></div>
-    </div>
-    <div class="skill-card" style="transition-delay:0.07s" data-skill-id="s1">
-      <button class="skill-del-btn edit-only" onclick="deleteSkill('s1')">✕ Remove</button>
-      <div class="skill-icon">📈</div><div class="skill-name">Tableau</div>
-      <div class="skill-level">Proficient · Visual Analytics</div>
-      <div class="skill-bar-bg"><div class="skill-bar" data-w="82%"></div></div>
-    </div>
-    <div class="skill-card" style="transition-delay:0.14s" data-skill-id="s2">
-      <button class="skill-del-btn edit-only" onclick="deleteSkill('s2')">✕ Remove</button>
-      <div class="skill-icon">🗄️</div><div class="skill-name">SQL</div>
-      <div class="skill-level">Advanced · Data Extraction</div>
-      <div class="skill-bar-bg"><div class="skill-bar" data-w="85%"></div></div>
-    </div>
-    <div class="skill-card" style="transition-delay:0.21s" data-skill-id="s3">
-      <button class="skill-del-btn edit-only" onclick="deleteSkill('s3')">✕ Remove</button>
-      <div class="skill-icon">🐍</div><div class="skill-name">Python</div>
-      <div class="skill-level">Intermediate · Pandas, NumPy</div>
-      <div class="skill-bar-bg"><div class="skill-bar" data-w="75%"></div></div>
-    </div>
-    <div class="skill-card" style="transition-delay:0.28s" data-skill-id="s4">
-      <button class="skill-del-btn edit-only" onclick="deleteSkill('s4')">✕ Remove</button>
-      <div class="skill-icon">📋</div><div class="skill-name">Advanced Excel</div>
-      <div class="skill-level">Proficient · Pivot Tables</div>
-      <div class="skill-bar-bg"><div class="skill-bar" data-w="80%"></div></div>
-    </div>
-    <div class="skill-card" style="transition-delay:0.35s" data-skill-id="s5">
-      <button class="skill-del-btn edit-only" onclick="deleteSkill('s5')">✕ Remove</button>
-      <div class="skill-icon">📐</div><div class="skill-name">Statistics</div>
-      <div class="skill-level">Intermediate · Analysis</div>
-      <div class="skill-bar-bg"><div class="skill-bar" data-w="70%"></div></div>
-    </div>
-  </div>
+  <div class="skills-grid" id="skillsGrid"></div>
 </section>
 
-<!-- ── Experience ── -->
+<!-- Experience -->
 <section id="experience" style="background:var(--bg);">
   <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:3rem;">
     <div>
@@ -528,30 +409,10 @@
       Add Experience
     </button>
   </div>
-  <div id="expList">
-    <div class="exp-card reveal" data-exp-id="e0">
-      <div class="exp-top">
-        <div>
-          <div class="exp-role">Data Analytics Intern</div>
-          <div class="exp-company">Aivariant · Bengaluru</div>
-        </div>
-        <div class="exp-date">Sep 2025 – Mar 2026</div>
-      </div>
-      <ul class="exp-bullets">
-        <li>Designed KPI reporting dashboards in Power BI to investigate sales and performance data, uncovering key business trends and insights.</li>
-        <li>Worked with real-world datasets using SQL and Python to clean, transform, and extract meaningful information from complex sources.</li>
-        <li>Drove data-driven decision-making by crafting reports and presenting actionable conclusions to improve operational efficiency.</li>
-        <li>Applied data visualization, cleaning, and analytical techniques to solve practical business problems end-to-end.</li>
-      </ul>
-      <div class="exp-edit-bar edit-only" data-exp-edit="e0">
-        <button class="exp-edit-action" onclick="openExpModal('e0')">✎ Edit</button>
-        <button class="exp-del-btn" onclick="deleteExp('e0')">✕ Delete</button>
-      </div>
-    </div>
-  </div>
+  <div id="expList"></div>
 </section>
 
-<!-- ── Projects ── -->
+<!-- Projects -->
 <section id="projects">
   <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:3rem;">
     <div>
@@ -563,45 +424,10 @@
       Add Project
     </button>
   </div>
-  <div class="projects-grid" id="projectsGrid">
-    <div class="project-card reveal" id="card-crowdfunding">
-      <div class="project-header"><div class="project-icon">🚀</div><div class="project-tags"><span class="tag">Power BI</span><span class="tag purple">SQL</span></div></div>
-      <div class="project-name">Crowdfunding Analytics</div>
-      <div class="project-desc">Built interactive BI dashboards to visualize KPIs, sales trends, and customer behavior metrics. Delivered business-focused insights through structured reports and visual storytelling.</div>
-      <div class="project-kpis">
-        <div class="kpi"><div class="kpi-val">KPI</div><div class="kpi-lab">Tracking</div></div>
-        <div class="kpi"><div class="kpi-val">Visual</div><div class="kpi-lab">Storytelling</div></div>
-        <div class="kpi"><div class="kpi-val">BI</div><div class="kpi-lab">Dashboards</div></div>
-      </div>
-      <div class="project-footer">
-        <button class="gh-btn" id="ghbtn-crowdfunding" onclick="handleGitHub('crowdfunding',event)">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          <span id="ghbtn-crowdfunding-label">Add GitHub Link</span>
-        </button>
-        <button class="edit-gh-btn edit-only" style="display:none;" onclick="openGhModal('crowdfunding')" title="Edit GitHub URL">✎</button>
-      </div>
-    </div>
-    <div class="project-card reveal" id="card-hospitality" style="transition-delay:0.15s">
-      <div class="project-header"><div class="project-icon">🏨</div><div class="project-tags"><span class="tag coral">Tableau</span><span class="tag purple">SQL</span></div></div>
-      <div class="project-name">Hospitality Analytics</div>
-      <div class="project-desc">End-to-end Tableau dashboard tracking Occupancy Rate, ADR, RevPAR, Revenue, and Cancellation Rate. Used SQL to identify seasonal trends and revenue optimization opportunities.</div>
-      <div class="project-kpis">
-        <div class="kpi"><div class="kpi-val">ADR</div><div class="kpi-lab">Avg Daily Rate</div></div>
-        <div class="kpi"><div class="kpi-val">RevPAR</div><div class="kpi-lab">Revenue Metric</div></div>
-        <div class="kpi"><div class="kpi-val">5+</div><div class="kpi-lab">KPIs Tracked</div></div>
-      </div>
-      <div class="project-footer">
-        <button class="gh-btn" id="ghbtn-hospitality" onclick="handleGitHub('hospitality',event)">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          <span id="ghbtn-hospitality-label">Add GitHub Link</span>
-        </button>
-        <button class="edit-gh-btn edit-only" style="display:none;" onclick="openGhModal('hospitality')" title="Edit GitHub URL">✎</button>
-      </div>
-    </div>
-  </div>
+  <div class="projects-grid" id="projectsGrid"></div>
 </section>
 
-<!-- ── Education & Certs ── -->
+<!-- Education & Certs -->
 <section id="education" style="background:var(--bg2);">
   <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:3rem;">
     <div>
@@ -614,50 +440,34 @@
     </button>
   </div>
   <div class="edu-cert-grid" id="eduGrid">
-    <div class="edu-card reveal" data-edu-id="edu0">
-      <div class="badge">Degree</div>
-      <div class="edu-degree">Bachelor of Computer Applications</div>
-      <div class="edu-school">Govindram Seksaria Science College</div>
-      <div class="edu-meta">Belagavi, Karnataka · 2025 · CGPA: 7.77</div>
-      <div class="card-edit-bar edit-only" data-edu-edit="edu0">
-        <button class="card-del-btn" onclick="deleteEdu('edu0')">✕ Delete</button>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:1.5rem;" id="certColumn">
-      <div class="cert-card reveal" data-edu-id="cert0">
-        <div class="badge">Completed</div>
-        <div class="cert-name">Data Analytics Certification</div>
-        <div class="cert-org">ExcelR · Bangalore</div>
-        <div class="cert-date">Jul 2025 – Nov 2025</div>
-        <div style="font-size:0.78rem;color:var(--muted);margin-top:0.5rem;line-height:1.5;">Excel · SQL · Power BI · Python for data analysis</div>
-        <div class="card-edit-bar edit-only" data-edu-edit="cert0">
-          <button class="card-del-btn" onclick="deleteEdu('cert0')">✕ Delete</button>
-        </div>
-      </div>
-      <div class="cert-card reveal" style="transition-delay:0.15s" data-edu-id="cert1">
-        <div class="badge inprog">In Progress</div>
-        <div class="cert-name">Data Science Program</div>
-        <div class="cert-org">ExcelR · Virtual</div>
-        <div class="cert-date">Nov 2025 – Present</div>
-        <div style="font-size:0.78rem;color:var(--muted);margin-top:0.5rem;line-height:1.5;">Python · Statistics · Machine Learning · Data Visualization</div>
-        <div class="card-edit-bar edit-only" data-edu-edit="cert1">
-          <button class="card-del-btn" onclick="deleteEdu('cert1')">✕ Delete</button>
-        </div>
-      </div>
-    </div>
+    <div id="eduDegreesCol"></div>
+    <div id="certColumn"></div>
   </div>
 </section>
 
-<!-- ── Contact ── -->
+<!-- Contact -->
 <section id="contact">
   <div class="contact-inner">
     <div class="section-label" style="justify-content:center;">Let's connect</div>
     <h2 class="section-title">Get In Touch</h2>
     <p style="color:var(--muted);margin-top:1rem;font-size:1rem;line-height:1.7;">Open to data analyst roles, freelance projects, and collaborations. Let's build something meaningful with data.</p>
     <div class="contact-links">
-      <a href="mailto:vikramkamble.in@gmail.com" class="contact-link"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>vikramkamble.in@gmail.com</a>
-      <a href="tel:+918867308937" class="contact-link"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>+91 88673 08937</a>
-      <a href="https://www.linkedin.com/in/vikram-kamble-49a088298/" class="contact-link" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zm2-3a2 2 0 100-4 2 2 0 000 4z"/></svg>LinkedIn</a>
+      <a href="mailto:vikramkamble.in@gmail.com" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        vikramkamble.in@gmail.com
+      </a>
+      <a href="tel:+918867308937" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        +91 88673 08937
+      </a>
+      <a href="https://www.linkedin.com/in/vikram-kamble-49a088298/" class="contact-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zm2-3a2 2 0 100-4 2 2 0 000 4z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/vikram618" class="contact-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
     </div>
   </div>
 </section>
@@ -665,9 +475,119 @@
 <footer>Built with ❤️ · Vikram Kamble © 2026 · Data Analyst, Bengaluru</footer>
 
 <script>
-// ─────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
+// DEFAULT DATA — used only if localStorage is empty
+// ═══════════════════════════════════════════════════
+const DEFAULT_DATA = {
+  stats: [
+    { val: '6+', label: 'Months experience' },
+    { val: '2',  label: 'BI certifications' },
+    { val: '5',  label: 'Core skills' },
+    { val: '7.77', label: 'CGPA' }
+  ],
+  skills: [
+    { id:'s0', emoji:'📊', name:'Power BI',       level:'Advanced · KPI Dashboards',    pct:'88%' },
+    { id:'s1', emoji:'📈', name:'Tableau',         level:'Proficient · Visual Analytics', pct:'82%' },
+    { id:'s2', emoji:'🗄️', name:'SQL',             level:'Advanced · Data Extraction',    pct:'85%' },
+    { id:'s3', emoji:'🐍', name:'Python',          level:'Intermediate · Pandas, NumPy',  pct:'75%' },
+    { id:'s4', emoji:'📋', name:'Advanced Excel',  level:'Proficient · Pivot Tables',     pct:'80%' },
+    { id:'s5', emoji:'📐', name:'Statistics',      level:'Intermediate · Analysis',       pct:'70%' }
+  ],
+  experiences: [
+    {
+      id: 'e0',
+      role: 'Data Analytics Intern',
+      company: 'Aivariant · Bengaluru',
+      date: 'Sep 2025 – Mar 2026',
+      bullets: [
+        'Designed KPI reporting dashboards in Power BI to investigate sales and performance data, uncovering key business trends and insights.',
+        'Worked with real-world datasets using SQL and Python to clean, transform, and extract meaningful information from complex sources.',
+        'Drove data-driven decision-making by crafting reports and presenting actionable conclusions to improve operational efficiency.',
+        'Applied data visualization, cleaning, and analytical techniques to solve practical business problems end-to-end.'
+      ]
+    }
+  ],
+  projects: [
+    {
+      id: 'crowdfunding',
+      emoji: '🚀',
+      name: 'Crowdfunding Analytics',
+      desc: 'Built interactive BI dashboards to visualize KPIs, sales trends, and customer behavior metrics. Delivered business-focused insights through structured reports and visual storytelling.',
+      tools: ['Power BI', 'SQL'],
+      kpis: [{ val:'KPI', lab:'Tracking' }, { val:'Visual', lab:'Storytelling' }, { val:'BI', lab:'Dashboards' }],
+      github: ''
+    },
+    {
+      id: 'hospitality',
+      emoji: '🏨',
+      name: 'Hospitality Analytics',
+      desc: 'End-to-end Tableau dashboard tracking Occupancy Rate, ADR, RevPAR, Revenue, and Cancellation Rate. Used SQL to identify seasonal trends and revenue optimization opportunities.',
+      tools: ['Tableau', 'SQL'],
+      kpis: [{ val:'ADR', lab:'Avg Daily Rate' }, { val:'RevPAR', lab:'Revenue Metric' }, { val:'5+', lab:'KPIs Tracked' }],
+      github: ''
+    }
+  ],
+  education: [
+    {
+      id: 'edu0',
+      type: 'education',
+      degree: 'Bachelor of Computer Applications',
+      school: 'Govindram Seksaria Science College',
+      date: '2025',
+      meta: 'Belagavi, Karnataka · CGPA: 7.77',
+      skills: '',
+      status: 'completed'
+    }
+  ],
+  certifications: [
+    {
+      id: 'cert0',
+      type: 'certification',
+      degree: 'Data Analytics Certification',
+      school: 'ExcelR · Bangalore',
+      date: 'Jul 2025 – Nov 2025',
+      meta: '',
+      skills: 'Excel · SQL · Power BI · Python for data analysis',
+      status: 'completed'
+    },
+    {
+      id: 'cert1',
+      type: 'certification',
+      degree: 'Data Science Program',
+      school: 'ExcelR · Virtual',
+      date: 'Nov 2025 – Present',
+      meta: '',
+      skills: 'Python · Statistics · Machine Learning · Data Visualization',
+      status: 'inprog'
+    }
+  ],
+  photo: null
+};
+
+// ═══════════════════════════════════════════════════
+// STORAGE — load / save entire portfolio state
+// ═══════════════════════════════════════════════════
+const LS_KEY = 'vk_portfolio_v1';
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  return JSON.parse(JSON.stringify(DEFAULT_DATA)); // deep clone defaults
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify(STATE));
+  } catch(e) { console.warn('localStorage save failed', e); }
+}
+
+let STATE = loadState();
+
+// ═══════════════════════════════════════════════════
 // AUTH
-// ─────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
 const _k = 'dmlrcmFtMTIz';
 function _chk(v) { try { return btoa(unescape(encodeURIComponent(v))) === _k; } catch(e) { return false; } }
 
@@ -694,75 +614,247 @@ document.getElementById('pwd-overlay').addEventListener('click', function(e){ if
 function applyEditMode() {
   const btn = document.getElementById('editModeBtn');
   document.querySelectorAll('.edit-only').forEach(el => { el.style.display = editMode ? '' : 'none'; });
-  // Edit bars for exp/edu
   document.querySelectorAll('.exp-edit-bar').forEach(el => el.classList.toggle('show', editMode));
   document.querySelectorAll('.card-edit-bar').forEach(el => el.classList.toggle('show', editMode));
+  document.querySelectorAll('.skill-del-btn').forEach(el => { el.style.display = editMode ? 'block' : 'none'; });
   if (editMode) { btn.style.borderColor='rgba(56,189,248,0.4)'; btn.style.color='var(--accent)'; document.getElementById('editModeLabel').textContent='Editing'; }
   else { btn.style.borderColor=''; btn.style.color=''; document.getElementById('editModeLabel').textContent='Owner'; }
   updatePhotoEditState();
 }
 
-// ─────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
 // HELPERS
-// ─────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
 function show(id) { document.getElementById(id).style.display='flex'; }
 function hide(id) { document.getElementById(id).style.display='none'; }
-function fadeIn(el) { el.style.opacity='0'; el.style.transform='translateY(20px)'; requestAnimationFrame(()=>requestAnimationFrame(()=>{ el.style.transition='opacity 0.5s ease,transform 0.5s ease'; el.style.opacity='1'; el.style.transform='translateY(0)'; })); }
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function fadeIn(el) {
+  el.style.opacity='0'; el.style.transform='translateY(20px)';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    el.style.transition='opacity 0.5s ease,transform 0.5s ease';
+    el.style.opacity='1'; el.style.transform='translateY(0)';
+  }));
+}
 
-// ─────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
+// RENDER — build the entire UI from STATE
+// ═══════════════════════════════════════════════════
+function renderAll() {
+  renderStats();
+  renderSkills();
+  renderExperiences();
+  renderProjects();
+  renderEducation();
+  renderPhoto();
+}
+
+// — Stats —
+function renderStats() {
+  STATE.stats.forEach((s, i) => {
+    const numEl = document.getElementById('stat-num-' + i);
+    const lblEl = document.getElementById('stat-label-' + i);
+    if (numEl) numEl.textContent = s.val;
+    if (lblEl) lblEl.textContent = s.label;
+  });
+}
+
+// — Skills —
+function renderSkills() {
+  const grid = document.getElementById('skillsGrid');
+  grid.innerHTML = '';
+  STATE.skills.forEach((sk, idx) => {
+    const card = document.createElement('div');
+    card.className = 'skill-card';
+    card.dataset.skillId = sk.id;
+    card.style.transitionDelay = (idx * 0.07) + 's';
+    card.innerHTML = `
+      <button class="skill-del-btn edit-only" onclick="deleteSkill('${esc(sk.id)}')" style="${editMode?'display:block;':'display:none;'}">✕ Remove</button>
+      <div class="skill-icon">${sk.emoji}</div>
+      <div class="skill-name">${esc(sk.name)}</div>
+      <div class="skill-level">${esc(sk.level)}</div>
+      <div class="skill-bar-bg"><div class="skill-bar" data-w="${esc(sk.pct)}" style="width:0%;"></div></div>`;
+    grid.appendChild(card);
+    // trigger animation via observer
+    skillObs.observe(card);
+  });
+}
+
+// — Experiences —
+function renderExperiences() {
+  const list = document.getElementById('expList');
+  list.innerHTML = '';
+  STATE.experiences.forEach(exp => {
+    const card = document.createElement('div');
+    card.className = 'exp-card reveal';
+    card.dataset.expId = exp.id;
+    const bulletsHTML = exp.bullets.map(b => `<li>${esc(b)}</li>`).join('');
+    card.innerHTML = `
+      <div class="exp-top">
+        <div><div class="exp-role">${esc(exp.role)}</div><div class="exp-company">${esc(exp.company)}</div></div>
+        <div class="exp-date">${esc(exp.date)}</div>
+      </div>
+      <ul class="exp-bullets">${bulletsHTML}</ul>
+      <div class="exp-edit-bar${editMode?' show':''} edit-only" data-exp-edit="${esc(exp.id)}">
+        <button class="exp-edit-action" onclick="openExpModal('${esc(exp.id)}')">✎ Edit</button>
+        <button class="exp-del-btn" onclick="deleteExp('${esc(exp.id)}')">✕ Delete</button>
+      </div>`;
+    list.appendChild(card);
+    revealObs.observe(card);
+  });
+}
+
+// — Projects —
+const TAG_COLORS = ['', 'purple', 'coral', '', 'purple', 'coral'];
+function renderProjects() {
+  const grid = document.getElementById('projectsGrid');
+  grid.innerHTML = '';
+  STATE.projects.forEach((proj, pi) => {
+    const card = document.createElement('div');
+    card.className = 'project-card reveal';
+    card.id = 'card-' + proj.id;
+    if (pi > 0) card.style.transitionDelay = (pi * 0.15) + 's';
+    const tagsHTML = (proj.tools || []).slice(0,3).map((t,i)=>`<span class="tag ${TAG_COLORS[i]||''}">${esc(t)}</span>`).join('');
+    const kpisHTML = (proj.kpis || []).map(k=>`<div class="kpi"><div class="kpi-val">${esc(k.val)}</div><div class="kpi-lab">${esc(k.lab)}</div></div>`).join('');
+    const ghId = 'ghbtn-' + proj.id;
+    const ghLblId = ghId + '-label';
+    const hasLink = !!proj.github;
+    card.innerHTML = `
+      <div class="project-header"><div class="project-icon">${proj.emoji}</div><div class="project-tags">${tagsHTML}</div></div>
+      <div class="project-name">${esc(proj.name)}</div>
+      <div class="project-desc">${esc(proj.desc)}</div>
+      <div class="project-kpis">${kpisHTML}</div>
+      <div class="project-footer">
+        <button class="gh-btn${hasLink?' linked':''}" id="${ghId}" onclick="handleGitHub('${esc(proj.id)}',event)">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          <span id="${ghLblId}">${hasLink ? 'View on GitHub' : 'Add GitHub Link'}</span>
+        </button>
+        <button class="edit-gh-btn edit-only" onclick="openGhModal('${esc(proj.id)}')" title="Edit GitHub URL" style="${editMode?'':'display:none;'}">✎</button>
+        <button class="edit-gh-btn edit-only" onclick="deleteProject('${esc(proj.id)}')" title="Delete project" style="color:var(--accent3);border-color:rgba(251,113,133,0.3);${editMode?'':'display:none;'}">✕</button>
+      </div>`;
+    grid.appendChild(card);
+    revealObs.observe(card);
+  });
+}
+
+// — Education & Certs —
+function renderEducation() {
+  document.getElementById('eduDegreesCol').innerHTML = '';
+  document.getElementById('certColumn').innerHTML = '';
+
+  STATE.education.forEach(edu => {
+    const card = document.createElement('div');
+    card.className = 'edu-card reveal';
+    card.dataset.eduId = edu.id;
+    card.innerHTML = `
+      <div class="badge">Degree</div>
+      <div class="edu-degree">${esc(edu.degree)}</div>
+      <div class="edu-school">${esc(edu.school)}</div>
+      ${edu.meta ? `<div class="edu-meta">${esc(edu.meta)}</div>` : ''}
+      <div class="card-edit-bar${editMode?' show':''} edit-only" data-edu-edit="${esc(edu.id)}">
+        <button class="card-del-btn" onclick="deleteEdu('${esc(edu.id)}')">✕ Delete</button>
+      </div>`;
+    document.getElementById('eduDegreesCol').appendChild(card);
+    revealObs.observe(card);
+  });
+
+  STATE.certifications.forEach((cert, ci) => {
+    const card = document.createElement('div');
+    card.className = 'cert-card reveal';
+    card.dataset.eduId = cert.id;
+    if (ci > 0) card.style.transitionDelay = (ci * 0.15) + 's';
+    const isInProg = cert.status === 'inprog';
+    card.innerHTML = `
+      <div class="badge${isInProg?' inprog':''}">${isInProg ? 'In Progress' : 'Completed'}</div>
+      <div class="cert-name">${esc(cert.degree)}</div>
+      <div class="cert-org">${esc(cert.school)}</div>
+      <div class="cert-date">${esc(cert.date)}</div>
+      ${cert.skills ? `<div style="font-size:0.78rem;color:var(--muted);margin-top:0.5rem;line-height:1.5;">${esc(cert.skills)}</div>` : ''}
+      <div class="card-edit-bar${editMode?' show':''} edit-only" data-edu-edit="${esc(cert.id)}">
+        <button class="card-del-btn" onclick="deleteEdu('${esc(cert.id)}')">✕ Delete</button>
+      </div>`;
+    document.getElementById('certColumn').appendChild(card);
+    revealObs.observe(card);
+  });
+}
+
+// — Photo —
+function renderPhoto() {
+  if (STATE.photo) {
+    const img = document.getElementById('photoPreview');
+    img.src = STATE.photo;
+    img.style.display = 'block';
+    document.getElementById('photoPlaceholder').style.display = 'none';
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// INTERSECTION OBSERVERS
+// ═══════════════════════════════════════════════════
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, {threshold:0.1});
+
+const skillObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      const bar = e.target.querySelector('.skill-bar');
+      if(bar) setTimeout(()=>{ bar.style.width = bar.dataset.w; }, 100);
+      skillObs.unobserve(e.target);
+    }
+  });
+}, {threshold:0.15});
+
+// ═══════════════════════════════════════════════════
 // PHOTO
-// ─────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
 function handlePhotoClick() { if (!editMode) return; document.getElementById('photoInput').click(); }
 function handlePhoto(e) {
   const file = e.target.files[0]; if (!file) return;
   const r = new FileReader();
-  r.onload = function(ev) { document.getElementById('photoPreview').src = ev.target.result; document.getElementById('photoPreview').style.display='block'; document.getElementById('photoPlaceholder').style.display='none'; };
+  r.onload = function(ev) {
+    STATE.photo = ev.target.result;
+    saveState();
+    document.getElementById('photoPreview').src = ev.target.result;
+    document.getElementById('photoPreview').style.display = 'block';
+    document.getElementById('photoPlaceholder').style.display = 'none';
+  };
   r.readAsDataURL(file);
 }
 function updatePhotoEditState() {
   const frame = document.getElementById('photoFrame');
-  if (editMode) { frame.classList.add('edit-clickable'); frame.title='Click to change photo'; }
-  else { frame.classList.remove('edit-clickable'); frame.title=''; document.getElementById('photoOverlay').style.display='none'; }
+  if (editMode) { frame.classList.add('edit-clickable'); frame.title = 'Click to change photo'; }
+  else { frame.classList.remove('edit-clickable'); frame.title = ''; }
 }
 
-// ─────────────────────────────────────────────────
-// REVEAL / SKILLS ANIMATION
-// ─────────────────────────────────────────────────
-const revealObs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revealObs.unobserve(e.target); } }); }, {threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-
-const skillObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); const bar=e.target.querySelector('.skill-bar'); if(bar) setTimeout(()=>{ bar.style.width=bar.dataset.w; },100); skillObs.unobserve(e.target); } });
-}, {threshold:0.15});
-document.querySelectorAll('.skill-card').forEach(c => skillObs.observe(c));
-
-// ─────────────────────────────────────────────────
-// STAT CARDS — EDIT
-// ─────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
+// STATS — edit
+// ═══════════════════════════════════════════════════
 let activeStatId = null;
 function openStatModal(id) {
   activeStatId = id;
-  document.getElementById('stat-val-input').value = document.getElementById('stat-num-'+id).textContent;
-  document.getElementById('stat-label-input').value = document.getElementById('stat-label-'+id).textContent;
+  document.getElementById('stat-val-input').value = STATE.stats[id].val;
+  document.getElementById('stat-label-input').value = STATE.stats[id].label;
   document.getElementById('stat-modal-err').textContent = '';
   show('stat-modal');
-  setTimeout(()=>document.getElementById('stat-val-input').focus(),50);
+  setTimeout(()=>document.getElementById('stat-val-input').focus(), 50);
 }
-function closeStatModal() { hide('stat-modal'); activeStatId=null; }
+function closeStatModal() { hide('stat-modal'); activeStatId = null; }
 function saveStatModal() {
   const val = document.getElementById('stat-val-input').value.trim();
   const lbl = document.getElementById('stat-label-input').value.trim();
-  if (!val) { document.getElementById('stat-modal-err').textContent='⚠ Value is required.'; return; }
-  document.getElementById('stat-num-'+activeStatId).textContent = val;
-  document.getElementById('stat-label-'+activeStatId).textContent = lbl;
+  if (!val) { document.getElementById('stat-modal-err').textContent = '⚠ Value is required.'; return; }
+  STATE.stats[activeStatId] = { val, label: lbl };
+  saveState();
+  renderStats();
   closeStatModal();
 }
-document.getElementById('stat-modal').addEventListener('click',function(e){if(e.target===this)closeStatModal();});
+document.getElementById('stat-modal').addEventListener('click', function(e){ if(e.target===this) closeStatModal(); });
 
-// ─────────────────────────────────────────────────
-// SKILLS — ADD / DELETE
-// ─────────────────────────────────────────────────
-let skillCount = 10;
+// ═══════════════════════════════════════════════════
+// SKILLS — add / delete
+// ═══════════════════════════════════════════════════
+let skillCounter = 100;
 function openSkillModal() {
   document.getElementById('skill-name').value = '';
   document.getElementById('skill-level').value = '';
@@ -771,41 +863,33 @@ function openSkillModal() {
   document.getElementById('skill-pct-display').textContent = '80%';
   document.getElementById('skill-modal-err').textContent = '';
   show('skill-modal');
-  setTimeout(()=>document.getElementById('skill-name').focus(),50);
+  setTimeout(()=>document.getElementById('skill-name').focus(), 50);
 }
 function closeSkillModal() { hide('skill-modal'); }
 function saveSkillModal() {
   const name = document.getElementById('skill-name').value.trim();
-  if (!name) { document.getElementById('skill-modal-err').textContent='⚠ Skill name is required.'; return; }
+  if (!name) { document.getElementById('skill-modal-err').textContent = '⚠ Skill name is required.'; return; }
   const emoji = document.getElementById('skill-emoji').value.trim() || '💡';
   const level = document.getElementById('skill-level').value.trim();
   const pct = document.getElementById('skill-pct').value + '%';
-  const id = 'sc' + skillCount++;
-  const card = document.createElement('div');
-  card.className = 'skill-card';
-  card.dataset.skillId = id;
-  card.style.cssText = 'opacity:0;transform:translateY(20px);';
-  card.innerHTML = `
-    <button class="skill-del-btn edit-only" onclick="deleteSkill('${id}')" style="display:block;">✕ Remove</button>
-    <div class="skill-icon">${emoji}</div>
-    <div class="skill-name">${name}</div>
-    <div class="skill-level">${level}</div>
-    <div class="skill-bar-bg"><div class="skill-bar" data-w="${pct}" style="width:0%;"></div></div>`;
-  document.getElementById('skillsGrid').appendChild(card);
-  fadeIn(card);
-  setTimeout(()=>{ const bar=card.querySelector('.skill-bar'); if(bar) bar.style.width=pct; },300);
+  const id = 'sc' + (skillCounter++);
+  STATE.skills.push({ id, emoji, name, level, pct });
+  saveState();
+  renderSkills();
   closeSkillModal();
 }
 function deleteSkill(id) {
+  STATE.skills = STATE.skills.filter(s => s.id !== id);
+  saveState();
   const card = document.querySelector(`[data-skill-id="${id}"]`);
-  if (card) { card.style.transition='opacity 0.3s,transform 0.3s'; card.style.opacity='0'; card.style.transform='scale(0.9)'; setTimeout(()=>card.remove(),300); }
+  if (card) { card.style.transition='opacity 0.3s,transform 0.3s'; card.style.opacity='0'; card.style.transform='scale(0.9)'; setTimeout(()=>{ renderSkills(); }, 320); }
 }
-document.getElementById('skill-modal').addEventListener('click',function(e){if(e.target===this)closeSkillModal();});
+document.getElementById('skill-modal').addEventListener('click', function(e){ if(e.target===this) closeSkillModal(); });
 
-// ─────────────────────────────────────────────────
-// EXPERIENCE — ADD / EDIT / DELETE
-// ─────────────────────────────────────────────────
-let expCount = 1;
+// ═══════════════════════════════════════════════════
+// EXPERIENCE — add / edit / delete
+// ═══════════════════════════════════════════════════
+let expCounter = 100;
 let editingExpId = null;
 
 function openExpModal(editId) {
@@ -813,68 +897,54 @@ function openExpModal(editId) {
   const heading = document.getElementById('exp-modal-heading');
   const saveBtn = document.getElementById('exp-modal-save-btn');
   if (editId) {
-    const card = document.querySelector(`[data-exp-id="${editId}"]`);
-    document.getElementById('exp-role').value = card.querySelector('.exp-role').textContent;
-    document.getElementById('exp-company').value = card.querySelector('.exp-company').textContent;
-    document.getElementById('exp-date').value = card.querySelector('.exp-date').textContent;
-    const bullets = Array.from(card.querySelectorAll('.exp-bullets li')).map(li=>li.textContent.trim());
-    document.getElementById('exp-bullets').value = bullets.join('\n');
+    const exp = STATE.experiences.find(e => e.id === editId);
+    if (exp) {
+      document.getElementById('exp-role').value = exp.role;
+      document.getElementById('exp-company').value = exp.company;
+      document.getElementById('exp-date').value = exp.date;
+      document.getElementById('exp-bullets-input').value = exp.bullets.join('\n');
+    }
     heading.textContent = 'Edit Role';
     saveBtn.textContent = 'Save Changes';
   } else {
-    ['exp-role','exp-company','exp-date','exp-bullets'].forEach(id=>document.getElementById(id).value='');
+    ['exp-role','exp-company','exp-date','exp-bullets-input'].forEach(id=>document.getElementById(id).value='');
     heading.textContent = 'New Role';
     saveBtn.textContent = 'Add Experience';
   }
   document.getElementById('exp-modal-err').textContent = '';
   show('exp-modal');
-  setTimeout(()=>document.getElementById('exp-role').focus(),50);
+  setTimeout(()=>document.getElementById('exp-role').focus(), 50);
 }
-function closeExpModal() { hide('exp-modal'); editingExpId=null; }
+function closeExpModal() { hide('exp-modal'); editingExpId = null; }
 function saveExpModal() {
   const role = document.getElementById('exp-role').value.trim();
   const company = document.getElementById('exp-company').value.trim();
   const date = document.getElementById('exp-date').value.trim();
-  const bulletsRaw = document.getElementById('exp-bullets').value.trim();
-  if (!role||!company||!date||!bulletsRaw) { document.getElementById('exp-modal-err').textContent='⚠ All fields are required.'; return; }
-  const bullets = bulletsRaw.split('\n').filter(b=>b.trim()).map(b=>`<li>${b.trim()}</li>`).join('');
+  const bulletsRaw = document.getElementById('exp-bullets-input').value.trim();
+  if (!role||!company||!date||!bulletsRaw) { document.getElementById('exp-modal-err').textContent = '⚠ All fields are required.'; return; }
+  const bullets = bulletsRaw.split('\n').filter(b=>b.trim());
   if (editingExpId) {
-    const card = document.querySelector(`[data-exp-id="${editingExpId}"]`);
-    card.querySelector('.exp-role').textContent = role;
-    card.querySelector('.exp-company').textContent = company;
-    card.querySelector('.exp-date').textContent = date;
-    card.querySelector('.exp-bullets').innerHTML = bullets;
-    closeExpModal(); return;
+    const idx = STATE.experiences.findIndex(e => e.id === editingExpId);
+    if (idx !== -1) STATE.experiences[idx] = { ...STATE.experiences[idx], role, company, date, bullets };
+  } else {
+    const id = 'exp' + (expCounter++);
+    STATE.experiences.push({ id, role, company, date, bullets });
   }
-  const id = 'e' + expCount++;
-  const card = document.createElement('div');
-  card.className = 'exp-card';
-  card.dataset.expId = id;
-  card.style.cssText = 'opacity:0;transform:translateY(20px);';
-  card.innerHTML = `
-    <div class="exp-top">
-      <div><div class="exp-role">${role}</div><div class="exp-company">${company}</div></div>
-      <div class="exp-date">${date}</div>
-    </div>
-    <ul class="exp-bullets">${bullets}</ul>
-    <div class="exp-edit-bar${editMode?' show':''} edit-only" data-exp-edit="${id}">
-      <button class="exp-edit-action" onclick="openExpModal('${id}')">✎ Edit</button>
-      <button class="exp-del-btn" onclick="deleteExp('${id}')">✕ Delete</button>
-    </div>`;
-  document.getElementById('expList').appendChild(card);
-  fadeIn(card);
+  saveState();
+  renderExperiences();
   closeExpModal();
 }
 function deleteExp(id) {
-  const card = document.querySelector(`[data-exp-id="${id}"]`);
-  if (card) { card.style.transition='opacity 0.3s,transform 0.3s'; card.style.opacity='0'; card.style.transform='scale(0.95)'; setTimeout(()=>card.remove(),300); }
+  STATE.experiences = STATE.experiences.filter(e => e.id !== id);
+  saveState();
+  renderExperiences();
 }
-document.getElementById('exp-modal').addEventListener('click',function(e){if(e.target===this)closeExpModal();});
+document.getElementById('exp-modal').addEventListener('click', function(e){ if(e.target===this) closeExpModal(); });
 
-// ─────────────────────────────────────────────────
-// EDUCATION / CERTS — ADD / DELETE
-// ─────────────────────────────────────────────────
-let eduCount = 10;
+// ═══════════════════════════════════════════════════
+// EDUCATION / CERTS — add / delete
+// ═══════════════════════════════════════════════════
+let eduCounter = 100;
 function openEduModal() {
   ['edu-degree','edu-school','edu-date','edu-meta','edu-skills'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('edu-type').value = 'education';
@@ -882,7 +952,7 @@ function openEduModal() {
   document.getElementById('edu-modal-err').textContent = '';
   updateEduModalFields();
   show('edu-modal');
-  setTimeout(()=>document.getElementById('edu-degree').focus(),50);
+  setTimeout(()=>document.getElementById('edu-degree').focus(), 50);
 }
 function closeEduModal() { hide('edu-modal'); }
 function updateEduModalFields() {
@@ -896,58 +966,35 @@ function saveEduModal() {
   const degree = document.getElementById('edu-degree').value.trim();
   const school = document.getElementById('edu-school').value.trim();
   const date = document.getElementById('edu-date').value.trim();
-  if (!degree||!school||!date) { document.getElementById('edu-modal-err').textContent='⚠ Name, Institution and Date are required.'; return; }
-
-  const id = 'edu'+ eduCount++;
-  const card = document.createElement('div');
-
+  if (!degree||!school||!date) { document.getElementById('edu-modal-err').textContent = '⚠ Name, Institution and Date are required.'; return; }
+  const id = (type==='education'?'edu':'cert') + (eduCounter++);
   if (type === 'education') {
     const meta = document.getElementById('edu-meta').value.trim();
-    card.className = 'edu-card';
-    card.dataset.eduId = id;
-    card.innerHTML = `
-      <div class="badge">Degree</div>
-      <div class="edu-degree">${degree}</div>
-      <div class="edu-school">${school}</div>
-      ${meta?`<div class="edu-meta">${meta}</div>`:''}
-      <div class="card-edit-bar${editMode?' show':''} edit-only" data-edu-edit="${id}">
-        <button class="card-del-btn" onclick="deleteEdu('${id}')">✕ Delete</button>
-      </div>`;
-    card.style.cssText = 'opacity:0;transform:translateY(20px);';
-    document.getElementById('eduGrid').insertBefore(card, document.getElementById('certColumn'));
+    STATE.education.push({ id, type:'education', degree, school, date, meta, skills:'', status:'completed' });
   } else {
     const skills = document.getElementById('edu-skills').value.trim();
     const status = document.getElementById('edu-status').value;
-    card.className = 'cert-card';
-    card.dataset.eduId = id;
-    card.innerHTML = `
-      <div class="badge${status==='inprog'?' inprog':''}">${status==='inprog'?'In Progress':'Completed'}</div>
-      <div class="cert-name">${degree}</div>
-      <div class="cert-org">${school}</div>
-      <div class="cert-date">${date}</div>
-      ${skills?`<div style="font-size:0.78rem;color:var(--muted);margin-top:0.5rem;line-height:1.5;">${skills}</div>`:''}
-      <div class="card-edit-bar${editMode?' show':''} edit-only" data-edu-edit="${id}">
-        <button class="card-del-btn" onclick="deleteEdu('${id}')">✕ Delete</button>
-      </div>`;
-    card.style.cssText = 'opacity:0;transform:translateY(20px);';
-    document.getElementById('certColumn').appendChild(card);
+    STATE.certifications.push({ id, type:'certification', degree, school, date, meta:'', skills, status });
   }
-  fadeIn(card);
+  saveState();
+  renderEducation();
   closeEduModal();
 }
 function deleteEdu(id) {
-  const card = document.querySelector(`[data-edu-id="${id}"]`);
-  if (card) { card.style.transition='opacity 0.3s,transform 0.3s'; card.style.opacity='0'; card.style.transform='scale(0.95)'; setTimeout(()=>card.remove(),300); }
+  STATE.education = STATE.education.filter(e => e.id !== id);
+  STATE.certifications = STATE.certifications.filter(c => c.id !== id);
+  saveState();
+  renderEducation();
 }
-document.getElementById('edu-modal').addEventListener('click',function(e){if(e.target===this)closeEduModal();});
+document.getElementById('edu-modal').addEventListener('click', function(e){ if(e.target===this) closeEduModal(); });
 
-// ─────────────────────────────────────────────────
-// PROJECTS — ADD
-// ─────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════
+// PROJECTS — add / delete / github
+// ═══════════════════════════════════════════════════
 const EMOJIS = ['💡','📊','📈','🗄️','🤖','🌐','📱','🎯','🔍','⚡','🛠️','📋','🏗️','🔬','💰','🚗'];
 const TOOLS = ['Python','SQL','Power BI','Tableau','Excel','Machine Learning','Pandas','NumPy','Matplotlib','Seaborn','Scikit-learn','Statistics','R','Jupyter','DAX','Power Query'];
 let selectedTools = [];
-let projectCount = 0;
+let projCounter = 100;
 
 function openAddProject() {
   selectedTools = [];
@@ -956,116 +1003,92 @@ function openAddProject() {
   document.getElementById('ap-error').textContent = '';
   renderEmojiPicker(); renderToolPicker(); renderSelectedTools();
   show('add-project-overlay');
-  setTimeout(()=>document.getElementById('ap-name').focus(),50);
+  setTimeout(()=>document.getElementById('ap-name').focus(), 50);
 }
 function closeAddProject() { hide('add-project-overlay'); }
 function renderEmojiPicker() {
-  const cur = document.getElementById('ap-emoji').value||'💡';
+  const cur = document.getElementById('ap-emoji').value || '💡';
   document.getElementById('emojiPicker').innerHTML = EMOJIS.map(e=>`<span class="emoji-opt${e===cur?' selected':''}" onclick="selectEmoji('${e}')">${e}</span>`).join('');
 }
-function selectEmoji(e) { document.getElementById('ap-emoji').value=e; renderEmojiPicker(); }
+function selectEmoji(e) { document.getElementById('ap-emoji').value = e; renderEmojiPicker(); }
 function renderToolPicker() {
   document.getElementById('toolPicker').innerHTML = TOOLS.map(t=>`<button type="button" class="tool-chip${selectedTools.includes(t)?' selected':''}" onclick="toggleTool('${t}')">${t}</button>`).join('');
 }
-function toggleTool(t) { selectedTools=selectedTools.includes(t)?selectedTools.filter(x=>x!==t):[...selectedTools,t]; renderToolPicker(); renderSelectedTools(); }
+function toggleTool(t) { selectedTools = selectedTools.includes(t) ? selectedTools.filter(x=>x!==t) : [...selectedTools, t]; renderToolPicker(); renderSelectedTools(); }
 function renderSelectedTools() {
   document.getElementById('selected-tools').innerHTML = selectedTools.map(t=>`<span class="selected-tag">${t}<button onclick="toggleTool('${t}')">✕</button></span>`).join('');
 }
-document.getElementById('ap-tools-custom').addEventListener('keydown',function(e){ if(e.key==='Enter'&&this.value.trim()){ const v=this.value.trim(); if(!selectedTools.includes(v)){selectedTools.push(v);renderSelectedTools();} this.value=''; } });
-document.getElementById('ap-emoji').addEventListener('input',renderEmojiPicker);
-document.getElementById('add-project-overlay').addEventListener('click',function(e){if(e.target===this)closeAddProject();});
+document.getElementById('ap-tools-custom').addEventListener('keydown', function(e){ if(e.key==='Enter'&&this.value.trim()){ const v=this.value.trim(); if(!selectedTools.includes(v)){selectedTools.push(v);renderSelectedTools();renderToolPicker();} this.value=''; } });
+document.getElementById('ap-emoji').addEventListener('input', renderEmojiPicker);
+document.getElementById('add-project-overlay').addEventListener('click', function(e){ if(e.target===this) closeAddProject(); });
 
 function saveProject() {
   const name = document.getElementById('ap-name').value.trim();
   const desc = document.getElementById('ap-desc').value.trim();
   const github = document.getElementById('ap-github').value.trim();
-  const emoji = document.getElementById('ap-emoji').value.trim()||'💡';
+  const emoji = document.getElementById('ap-emoji').value.trim() || '💡';
   const err = document.getElementById('ap-error');
-  if (!name){err.textContent='⚠ Project name is required.';return;}
-  if (!desc){err.textContent='⚠ Please add a short description.';return;}
-  err.textContent='';
-  projectCount++;
-  const id='custom-'+projectCount;
-  const tools=selectedTools.slice();
-  const tagColors=['','purple','coral','','purple'];
-  const tagsHTML=tools.slice(0,3).map((t,i)=>`<span class="tag ${tagColors[i]||''}">${t}</span>`).join('');
-  const card=document.createElement('div');
-  card.className='project-card';
-  card.id='card-'+id;
-  card.style.cssText='opacity:0;transform:translateY(24px);';
-  const ghId='ghbtn-'+id;
-  const ghLblId=ghId+'-label';
-  card.innerHTML=`
-    <div class="project-header"><div class="project-icon">${emoji}</div><div class="project-tags">${tagsHTML}</div></div>
-    <div class="project-name">${name}</div>
-    <div class="project-desc">${desc}</div>
-    <div class="project-kpis">
-      ${tools.slice(0,3).map(t=>`<div class="kpi"><div class="kpi-val" style="font-size:0.9rem;">${t}</div><div class="kpi-lab">Tool</div></div>`).join('')}
-      ${!tools.length?'<div class="kpi"><div class="kpi-val">New</div><div class="kpi-lab">Project</div></div>':''}
-    </div>
-    <div class="project-footer">
-      <button class="gh-btn${github?' linked':''}" id="${ghId}" onclick="handleGitHub('${id}',event)">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-        <span id="${ghLblId}">${github?'View on GitHub':'Add GitHub Link'}</span>
-      </button>
-      <button class="edit-gh-btn edit-only" onclick="openGhModal('${id}')" title="Edit GitHub URL">✎</button>
-      <button class="edit-gh-btn edit-only" onclick="deleteProject('${id}')" title="Delete" style="color:var(--accent3);border-color:rgba(251,113,133,0.3);">✕</button>
-    </div>`;
-  if (github) ghLinks[id]=github;
-  projectNames[id]=name;
-  document.getElementById('projectsGrid').appendChild(card);
-  if (!editMode) card.querySelectorAll('.edit-only').forEach(el=>el.style.display='none');
-  fadeIn(card);
+  if (!name) { err.textContent='⚠ Project name is required.'; return; }
+  if (!desc) { err.textContent='⚠ Please add a short description.'; return; }
+  err.textContent = '';
+  const id = 'proj' + (projCounter++);
+  const tools = selectedTools.slice();
+  const kpis = tools.slice(0,3).map(t=>({ val: t, lab: 'Tool' }));
+  if (!kpis.length) kpis.push({ val:'New', lab:'Project' });
+  STATE.projects.push({ id, emoji, name, desc, tools, kpis, github });
+  saveState();
+  renderProjects();
   closeAddProject();
-  card.scrollIntoView({behavior:'smooth',block:'center'});
+  setTimeout(()=>{ const card=document.getElementById('card-'+id); if(card) card.scrollIntoView({behavior:'smooth',block:'center'}); }, 100);
 }
+
 function deleteProject(id) {
-  const card=document.getElementById('card-'+id);
-  if(card){card.style.opacity='0';card.style.transform='scale(0.95)';card.style.transition='opacity 0.3s,transform 0.3s';setTimeout(()=>card.remove(),300);}
-  delete ghLinks[id]; delete projectNames[id];
+  STATE.projects = STATE.projects.filter(p => p.id !== id);
+  saveState();
+  renderProjects();
 }
 
-// ─────────────────────────────────────────────────
-// GITHUB LINKS (now works for all projects incl. existing ones)
-// ─────────────────────────────────────────────────
-const ghLinks = {};
+// — GitHub links —
 let activeGhProject = null;
-const projectNames = { crowdfunding:'Crowdfunding Analytics', hospitality:'Hospitality Analytics' };
 
-function updateGhButton(project) {
-  const btn=document.getElementById('ghbtn-'+project);
-  const lbl=document.getElementById('ghbtn-'+project+'-label');
-  if (!btn||!lbl) return;
-  if (ghLinks[project]) { btn.classList.add('linked'); lbl.textContent='View on GitHub'; }
-  else { btn.classList.remove('linked'); lbl.textContent='Add GitHub Link'; }
-}
-function handleGitHub(project, e) {
+function handleGitHub(projectId, e) {
   e.stopPropagation();
-  if (ghLinks[project]) window.open(ghLinks[project],'_blank');
-  else if (editMode) openGhModal(project);
-  // if not in edit mode and no link, do nothing (don't open empty modal for visitors)
+  const proj = STATE.projects.find(p => p.id === projectId);
+  if (!proj) return;
+  if (proj.github) window.open(proj.github, '_blank');
+  else if (editMode) openGhModal(projectId);
 }
-function openGhModal(project) {
-  activeGhProject = project;
-  const name = projectNames[project] || document.querySelector('#card-'+project+' .project-name')?.textContent || project;
-  document.getElementById('gh-modal-project-name').textContent = name;
-  document.getElementById('gh-modal-url').value = ghLinks[project]||'';
+function openGhModal(projectId) {
+  activeGhProject = projectId;
+  const proj = STATE.projects.find(p => p.id === projectId);
+  document.getElementById('gh-modal-project-name').textContent = proj ? proj.name : projectId;
+  document.getElementById('gh-modal-url').value = proj ? (proj.github || '') : '';
   document.getElementById('gh-modal-status').textContent = '';
   show('gh-modal-overlay');
-  setTimeout(()=>document.getElementById('gh-modal-url').focus(),50);
+  setTimeout(()=>document.getElementById('gh-modal-url').focus(), 50);
 }
-function closeGhModal() { hide('gh-modal-overlay'); activeGhProject=null; }
+function closeGhModal() { hide('gh-modal-overlay'); activeGhProject = null; }
 function saveGhModal() {
-  const url=document.getElementById('gh-modal-url').value.trim();
-  const status=document.getElementById('gh-modal-status');
-  if (!url) { delete ghLinks[activeGhProject]; updateGhButton(activeGhProject); closeGhModal(); return; }
-  if (!url.startsWith('http://') && !url.startsWith('https://')) { status.textContent='⚠ Please enter a valid URL starting with https://'; status.style.color='var(--accent3)'; return; }
-  ghLinks[activeGhProject]=url; updateGhButton(activeGhProject);
-  status.textContent='✓ Saved!'; status.style.color='var(--accent)';
-  setTimeout(closeGhModal,700);
+  const url = document.getElementById('gh-modal-url').value.trim();
+  const status = document.getElementById('gh-modal-status');
+  if (url && !url.startsWith('http://') && !url.startsWith('https://')) {
+    status.textContent = '⚠ Please enter a valid URL starting with https://';
+    status.style.color = 'var(--accent3)'; return;
+  }
+  const idx = STATE.projects.findIndex(p => p.id === activeGhProject);
+  if (idx !== -1) STATE.projects[idx].github = url;
+  saveState();
+  renderProjects();
+  status.textContent = '✓ Saved!'; status.style.color = 'var(--accent)';
+  setTimeout(closeGhModal, 700);
 }
-document.getElementById('gh-modal-overlay').addEventListener('click',function(e){if(e.target===this)closeGhModal();});
-document.getElementById('gh-modal-url').addEventListener('keydown',e=>{if(e.key==='Enter')saveGhModal();if(e.key==='Escape')closeGhModal();});
+document.getElementById('gh-modal-overlay').addEventListener('click', function(e){ if(e.target===this) closeGhModal(); });
+document.getElementById('gh-modal-url').addEventListener('keydown', e=>{ if(e.key==='Enter') saveGhModal(); if(e.key==='Escape') closeGhModal(); });
+
+// ═══════════════════════════════════════════════════
+// BOOT
+// ═══════════════════════════════════════════════════
+renderAll();
 </script>
 </body>
 </html>
