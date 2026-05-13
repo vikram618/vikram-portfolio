@@ -208,12 +208,18 @@
     <a href="#experience">Experience</a><a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
   </div>
-  <button id="editModeBtn" onclick="toggleEditMode()" title="Owner login">
-    <svg id="editLockIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
-      <rect x="3" y="11" width="18" height="11" rx="2"/><path stroke-linecap="round" d="M7 11V7a5 5 0 0110 0v4"/>
-    </svg>
-    <span id="editModeLabel">Owner</span>
-  </button>
+  <div style="display:flex;gap:0.6rem;align-items:center;">
+    <button id="exportBtn" onclick="exportHTML()" title="Download updated HTML to deploy" style="display:none;background:none;border:1px solid rgba(56,189,248,0.35);border-radius:8px;padding:6px 14px;color:var(--accent);cursor:pointer;font-size:0.75rem;font-family:'Space Grotesk',sans-serif;align-items:center;gap:6px;transition:all 0.2s;" onmouseover="this.style.background='rgba(56,189,248,0.1)'" onmouseout="this.style.background='none'">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
+      <span>Export HTML</span>
+    </button>
+    <button id="editModeBtn" onclick="toggleEditMode()" title="Owner login">
+      <svg id="editLockIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+        <rect x="3" y="11" width="18" height="11" rx="2"/><path stroke-linecap="round" d="M7 11V7a5 5 0 0110 0v4"/>
+      </svg>
+      <span id="editModeLabel">Owner</span>
+    </button>
+  </div>
 </nav>
 
 <!-- Password Modal -->
@@ -613,12 +619,18 @@ document.getElementById('pwd-overlay').addEventListener('click', function(e){ if
 
 function applyEditMode() {
   const btn = document.getElementById('editModeBtn');
+  const expBtn = document.getElementById('exportBtn');
   document.querySelectorAll('.edit-only').forEach(el => { el.style.display = editMode ? '' : 'none'; });
   document.querySelectorAll('.exp-edit-bar').forEach(el => el.classList.toggle('show', editMode));
   document.querySelectorAll('.card-edit-bar').forEach(el => el.classList.toggle('show', editMode));
   document.querySelectorAll('.skill-del-btn').forEach(el => { el.style.display = editMode ? 'block' : 'none'; });
-  if (editMode) { btn.style.borderColor='rgba(56,189,248,0.4)'; btn.style.color='var(--accent)'; document.getElementById('editModeLabel').textContent='Editing'; }
-  else { btn.style.borderColor=''; btn.style.color=''; document.getElementById('editModeLabel').textContent='Owner'; }
+  if (editMode) {
+    btn.style.borderColor='rgba(56,189,248,0.4)'; btn.style.color='var(--accent)'; document.getElementById('editModeLabel').textContent='Editing';
+    expBtn.style.display = 'flex';
+  } else {
+    btn.style.borderColor=''; btn.style.color=''; document.getElementById('editModeLabel').textContent='Owner';
+    expBtn.style.display = 'none';
+  }
   updatePhotoEditState();
 }
 
@@ -1084,6 +1096,30 @@ function saveGhModal() {
 }
 document.getElementById('gh-modal-overlay').addEventListener('click', function(e){ if(e.target===this) closeGhModal(); });
 document.getElementById('gh-modal-url').addEventListener('keydown', e=>{ if(e.key==='Enter') saveGhModal(); if(e.key==='Escape') closeGhModal(); });
+
+// ═══════════════════════════════════════════════════
+// EXPORT — bake current STATE into a new HTML file
+// ═══════════════════════════════════════════════════
+function exportHTML() {
+  // Get the full source of this page
+  const src = document.documentElement.outerHTML;
+  // Serialise current state (strip photo if too large for a comment, keep it)
+  const stateJSON = JSON.stringify(STATE, null, 2);
+  // Replace the DEFAULT_DATA block with the current state
+  const marker = /const DEFAULT_DATA = \{[\s\S]*?\n\};/;
+  const replacement = 'const DEFAULT_DATA = ' + stateJSON + ';';
+  let out = src.replace(marker, replacement);
+  // Also clear the LS_KEY so the exported file ignores any stale localStorage
+  // by bumping the version stamp embedded in the key
+  const stamp = Date.now();
+  out = out.replace(/const LS_KEY = 'vk_portfolio_v1';/, `const LS_KEY = 'vk_portfolio_v1_${stamp}';`);
+  const blob = new Blob([out], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'vikram-portfolio.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
 
 // ═══════════════════════════════════════════════════
 // BOOT
