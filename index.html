@@ -485,95 +485,175 @@
 // DEFAULT DATA — used only if localStorage is empty
 // ═══════════════════════════════════════════════════
 const DEFAULT_DATA = {
-  stats: [
-    { val: '6+', label: 'Months experience' },
-    { val: '2',  label: 'BI certifications' },
-    { val: '5',  label: 'Core skills' },
-    { val: '7.77', label: 'CGPA' }
-  ],
-  skills: [
-    { id:'s0', emoji:'📊', name:'Power BI',       level:'Advanced · KPI Dashboards',    pct:'88%' },
-    { id:'s1', emoji:'📈', name:'Tableau',         level:'Proficient · Visual Analytics', pct:'82%' },
-    { id:'s2', emoji:'🗄️', name:'SQL',             level:'Advanced · Data Extraction',    pct:'85%' },
-    { id:'s3', emoji:'🐍', name:'Python',          level:'Intermediate · Pandas, NumPy',  pct:'75%' },
-    { id:'s4', emoji:'📋', name:'Advanced Excel',  level:'Proficient · Pivot Tables',     pct:'80%' },
-    { id:'s5', emoji:'📐', name:'Statistics',      level:'Intermediate · Analysis',       pct:'70%' }
-  ],
-  experiences: [
+  "stats": [
     {
-      id: 'e0',
-      role: 'Data Analytics Intern',
-      company: 'Aivariant · Bengaluru',
-      date: 'Sep 2025 – Mar 2026',
-      bullets: [
-        'Designed KPI reporting dashboards in Power BI to investigate sales and performance data, uncovering key business trends and insights.',
-        'Worked with real-world datasets using SQL and Python to clean, transform, and extract meaningful information from complex sources.',
-        'Drove data-driven decision-making by crafting reports and presenting actionable conclusions to improve operational efficiency.',
-        'Applied data visualization, cleaning, and analytical techniques to solve practical business problems end-to-end.'
+      "val": "8+",
+      "label": "Months experience"
+    },
+    {
+      "val": "2",
+      "label": "BI certifications"
+    },
+    {
+      "val": "5",
+      "label": "Core skills"
+    },
+    {
+      "val": "7+",
+      "label": "CGPA"
+    }
+  ],
+  "skills": [
+    {
+      "id": "s0",
+      "emoji": "📊",
+      "name": "Power BI",
+      "level": "Advanced · KPI Dashboards",
+      "pct": "88%"
+    },
+    {
+      "id": "s1",
+      "emoji": "📈",
+      "name": "Tableau",
+      "level": "Proficient · Visual Analytics",
+      "pct": "82%"
+    },
+    {
+      "id": "s2",
+      "emoji": "🗄️",
+      "name": "SQL",
+      "level": "Advanced · Data Extraction",
+      "pct": "85%"
+    },
+    {
+      "id": "s3",
+      "emoji": "🐍",
+      "name": "Python",
+      "level": "Intermediate · Pandas, NumPy",
+      "pct": "75%"
+    },
+    {
+      "id": "s4",
+      "emoji": "📋",
+      "name": "Advanced Excel",
+      "level": "Proficient · Pivot Tables",
+      "pct": "80%"
+    },
+    {
+      "id": "s5",
+      "emoji": "📐",
+      "name": "Statistics",
+      "level": "Intermediate · Analysis",
+      "pct": "70%"
+    }
+  ],
+  "experiences": [
+    {
+      "id": "e0",
+      "role": "Data Analytics Intern",
+      "company": "Aivariant · Bengaluru",
+      "date": "Sep 2025 – Mar 2026",
+      "bullets": [
+        "Designed KPI reporting dashboards in Power BI to investigate sales and performance data, uncovering key business trends and insights.",
+        "Worked with real-world datasets using SQL and Python to clean, transform, and extract meaningful information from complex sources.",
+        "Drove data-driven decision-making by crafting reports and presenting actionable conclusions to improve operational efficiency.",
+        "Applied data visualization, cleaning, and analytical techniques to solve practical business problems end-to-end."
       ]
     }
   ],
-  projects: [
+  "projects": [
     {
-      id: 'crowdfunding',
-      emoji: '🚀',
-      name: 'Crowdfunding Analytics',
-      desc: 'Built interactive BI dashboards to visualize KPIs, sales trends, and customer behavior metrics. Delivered business-focused insights through structured reports and visual storytelling.',
-      tools: ['Power BI', 'SQL'],
-      kpis: [{ val:'KPI', lab:'Tracking' }, { val:'Visual', lab:'Storytelling' }, { val:'BI', lab:'Dashboards' }],
-      github: ''
+      "id": "crowdfunding",
+      "emoji": "🚀",
+      "name": "Crowdfunding Analytics",
+      "desc": "Built interactive BI dashboards to visualize KPIs, sales trends, and customer behavior metrics. Delivered business-focused insights through structured reports and visual storytelling.",
+      "tools": [
+        "Power BI",
+        "SQL"
+      ],
+      "kpis": [
+        {
+          "val": "KPI",
+          "lab": "Tracking"
+        },
+        {
+          "val": "Visual",
+          "lab": "Storytelling"
+        },
+        {
+          "val": "BI",
+          "lab": "Dashboards"
+        }
+      ],
+      "github": ""
     },
     {
-      id: 'hospitality',
-      emoji: '🏨',
-      name: 'Hospitality Analytics',
-      desc: 'End-to-end Tableau dashboard tracking Occupancy Rate, ADR, RevPAR, Revenue, and Cancellation Rate. Used SQL to identify seasonal trends and revenue optimization opportunities.',
-      tools: ['Tableau', 'SQL'],
-      kpis: [{ val:'ADR', lab:'Avg Daily Rate' }, { val:'RevPAR', lab:'Revenue Metric' }, { val:'5+', lab:'KPIs Tracked' }],
-      github: ''
+      "id": "hospitality",
+      "emoji": "🏨",
+      "name": "Hospitality Analytics",
+      "desc": "End-to-end Tableau dashboard tracking Occupancy Rate, ADR, RevPAR, Revenue, and Cancellation Rate. Used SQL to identify seasonal trends and revenue optimization opportunities.",
+      "tools": [
+        "Tableau",
+        "SQL"
+      ],
+      "kpis": [
+        {
+          "val": "ADR",
+          "lab": "Avg Daily Rate"
+        },
+        {
+          "val": "RevPAR",
+          "lab": "Revenue Metric"
+        },
+        {
+          "val": "5+",
+          "lab": "KPIs Tracked"
+        }
+      ],
+      "github": "https://github.com/vikram618/Project-Hospitality"
     }
   ],
-  education: [
+  "education": [
     {
-      id: 'edu0',
-      type: 'education',
-      degree: 'Bachelor of Computer Applications',
-      school: 'Govindram Seksaria Science College',
-      date: '2025',
-      meta: 'Belagavi, Karnataka · CGPA: 7.77',
-      skills: '',
-      status: 'completed'
+      "id": "edu0",
+      "type": "education",
+      "degree": "Bachelor of Computer Applications",
+      "school": "Govindram Seksaria Science College",
+      "date": "2025",
+      "meta": "Belagavi, Karnataka · CGPA: 7.77",
+      "skills": "",
+      "status": "completed"
     }
   ],
-  certifications: [
+  "certifications": [
     {
-      id: 'cert0',
-      type: 'certification',
-      degree: 'Data Analytics Certification',
-      school: 'ExcelR · Bangalore',
-      date: 'Jul 2025 – Nov 2025',
-      meta: '',
-      skills: 'Excel · SQL · Power BI · Python for data analysis',
-      status: 'completed'
+      "id": "cert0",
+      "type": "certification",
+      "degree": "Data Analytics Certification",
+      "school": "ExcelR · Bangalore",
+      "date": "Jul 2025 – Nov 2025",
+      "meta": "",
+      "skills": "Excel · SQL · Power BI · Python for data analysis",
+      "status": "completed"
     },
     {
-      id: 'cert1',
-      type: 'certification',
-      degree: 'Data Science Program',
-      school: 'ExcelR · Virtual',
-      date: 'Nov 2025 – Present',
-      meta: '',
-      skills: 'Python · Statistics · Machine Learning · Data Visualization',
-      status: 'inprog'
+      "id": "cert1",
+      "type": "certification",
+      "degree": "Data Science Program",
+      "school": "ExcelR · Virtual",
+      "date": "Nov 2025 – Present",
+      "meta": "",
+      "skills": "Python · Statistics · Machine Learning · Data Visualization",
+      "status": "inprog"
     }
   ],
-  photo: null
+  "photo": null
 };
 
 // ═══════════════════════════════════════════════════
 // STORAGE — load / save entire portfolio state
 // ═══════════════════════════════════════════════════
-const LS_KEY = 'vk_portfolio_v1';
+const LS_KEY = 'vk_portfolio_v1_1778658141503';
 
 function loadState() {
   try {
