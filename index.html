@@ -119,6 +119,18 @@
   .projects-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem; margin-top:3rem; }
   .project-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:2rem; display:flex; flex-direction:column; gap:1.25rem; transition:transform 0.25s, border-color 0.25s, box-shadow 0.25s; cursor:default; position:relative; overflow:hidden; }
   .project-card:hover { transform:translateY(-5px); border-color:rgba(56,189,248,0.2); box-shadow:0 20px 60px rgba(56,189,248,0.08); }
+  .project-thumb-wrap { position:relative; margin:-2rem -2rem 0 -2rem; }
+  .project-thumb { width:100%; height:160px; object-fit:cover; display:block; }
+  .project-thumb-edit-btn { position:absolute; bottom:10px; right:10px; background:rgba(3,7,18,0.75); border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.75rem; padding:5px 10px; cursor:pointer; backdrop-filter:blur(4px); }
+  .project-thumb-edit-btn:hover { border-color:var(--border-accent); color:var(--accent); }
+  .project-image-add-btn { width:100%; padding:0.6rem; background:rgba(255,255,255,0.03); border:1px dashed var(--border); border-radius:10px; color:var(--muted); font-family:'Space Grotesk',sans-serif; font-size:0.78rem; cursor:pointer; transition:all 0.2s; margin:-0.5rem 0 0 0; }
+  .project-image-add-btn:hover { border-color:var(--border-accent); color:var(--accent); background:var(--accent-glow); }
+  .ap-image-preview-wrap { position:relative; width:100%; height:140px; border-radius:10px; overflow:hidden; background:var(--surface); display:flex; align-items:center; justify-content:center; }
+  .ap-image-preview-wrap img { width:100%; height:100%; object-fit:cover; }
+  .ap-image-empty { color:var(--muted); font-size:0.82rem; text-align:center; padding:0 1rem; }
+  .ap-image-remove-btn { position:absolute; top:8px; right:8px; background:rgba(3,7,18,0.8); border:1px solid var(--border); border-radius:6px; color:var(--accent3); font-size:0.75rem; padding:3px 8px; cursor:pointer; }
+  .ap-image-choose-btn { margin-top:0.6rem; padding:0.55rem 1rem; background:transparent; border:1px solid var(--border); border-radius:8px; color:var(--muted); font-size:0.82rem; cursor:pointer; }
+  .ap-image-choose-btn:hover { border-color:var(--border-accent); color:var(--accent); }
   .project-header { display:flex; justify-content:space-between; align-items:flex-start; }
   .project-icon { font-size:2rem; }
   .project-tags { display:flex; gap:6px; flex-wrap:wrap; }
@@ -302,6 +314,11 @@
     <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;">New Project</div>
     <div style="font-size:1.4rem;font-weight:700;margin-bottom:1.75rem;letter-spacing:-0.3px;">Add to Portfolio</div>
     <div class="modal-row"><label class="modal-label">Project Icon</label><div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;" id="emojiPicker"></div><input id="ap-emoji" type="text" value="💡" maxlength="4" placeholder="or type emoji" class="modal-input" style="margin-top:0.6rem;width:80px;text-align:center;"/></div>
+    <div class="modal-row"><label class="modal-label">Project Image <span style="color:var(--muted);font-weight:400;">(optional)</span></label>
+      <div class="ap-image-preview-wrap" id="ap-image-preview-wrap"><div class="ap-image-empty">No image selected — a thumbnail will be added once you choose one</div></div>
+      <input id="ap-image-input" type="file" accept="image/*" style="display:none;" onchange="handleApImage(event)"/>
+      <button type="button" class="ap-image-choose-btn" onclick="document.getElementById('ap-image-input').click()">📷 Choose Image</button>
+    </div>
     <div class="modal-row"><label class="modal-label">Project Name *</label><input id="ap-name" type="text" placeholder="e.g. Sales Analytics Dashboard" class="modal-input"/></div>
     <div class="modal-row"><label class="modal-label">Description *</label><textarea id="ap-desc" rows="3" placeholder="Briefly describe what this project does..." class="modal-input" style="resize:vertical;line-height:1.6;"></textarea></div>
     <div class="modal-row"><label class="modal-label">Tools &amp; Technologies</label><div style="display:flex;gap:0.5rem;margin-top:0.5rem;flex-wrap:wrap;" id="toolPicker"></div><input id="ap-tools-custom" type="text" placeholder="Add custom tag and press Enter" class="modal-input" style="margin-top:0.6rem;"/><div id="selected-tools" style="display:flex;gap:0.5rem;margin-top:0.6rem;flex-wrap:wrap;min-height:1rem;"></div></div>
@@ -321,6 +338,20 @@
     <input id="gh-modal-url" type="url" placeholder="https://github.com/yourusername/repo-name" class="modal-input" style="margin-bottom:1.25rem;"/>
     <div class="modal-actions"><button class="modal-cancel" onclick="closeGhModal()">Cancel</button><button class="modal-save" onclick="saveGhModal()">Save Link</button></div>
     <div id="gh-modal-status" style="font-size:0.78rem;color:var(--accent);margin-top:0.75rem;min-height:1.1rem;"></div>
+  </div>
+</div>
+
+<!-- Project Image Modal -->
+<div id="proj-image-modal-overlay" class="modal-overlay" style="display:none;">
+  <div class="modal-box" style="padding:2rem;width:min(480px,calc(100vw - 2rem));">
+    <button onclick="closeProjImageModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;line-height:1;">✕</button>
+    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;font-weight:600;">Project Image</div>
+    <div id="proj-image-modal-name" style="font-size:1.2rem;font-weight:700;margin-bottom:1.25rem;letter-spacing:-0.2px;"></div>
+    <div class="ap-image-preview-wrap" id="proj-image-modal-preview-wrap"><div class="ap-image-empty">No image yet</div></div>
+    <input id="proj-image-modal-input" type="file" accept="image/*" style="display:none;" onchange="handleProjImageModalFile(event)"/>
+    <button type="button" class="ap-image-choose-btn" onclick="document.getElementById('proj-image-modal-input').click()" style="margin-top:0.75rem;">📷 Choose Image</button>
+    <div id="proj-image-modal-status" style="font-size:0.78rem;color:var(--accent);margin-top:0.75rem;min-height:1.1rem;"></div>
+    <div class="modal-actions" style="margin-top:1rem;"><button class="modal-cancel" onclick="closeProjImageModal()">Close</button></div>
   </div>
 </div>
 
@@ -598,6 +629,7 @@ const DEFAULT_DATA = {
           "lab": "Dashboards"
         }
       ],
+      "image": null,
       "github": ""
     },
     {
@@ -623,6 +655,7 @@ const DEFAULT_DATA = {
           "lab": "KPIs Tracked"
         }
       ],
+      "image": null,
       "github": "https://github.com/vikram618/Project-Hospitality"
     },
     {
@@ -644,10 +677,11 @@ const DEFAULT_DATA = {
           "lab": "Tool"
         }
       ],
-      "github": "https://github.com/vikram618/HR-Analytics-Employee-Attrition-Analysis"
+      "image": null,
+      "github": ""
     },
     {
-      "id": "proj100",
+      "id": "proj101",
       "emoji": "💡",
       "name": "E-Commerce Business Intelligence Analytics",
       "desc": "E-Commerce Business Intelligence Platform | Python · SQL · Power BI · pandasBuilt an end-to-end data analytics pipeline on 1,55,000+ rows of multi-source e-commerce data. Performed data profiling, cleaning (nulls, duplicates, dtype corruption, mixed formats), EDA, and SQL analysis on 6 datasets covering Amazon India sales, international orders, inventory, P&L, and expenses. Delivered a 5-page interactive Power BI dashboard and an 11-slide manager presentation surfacing insights on revenue by geography, cancellation patterns, platform margin analysis, and international customer performance. Completed in 4 days.",
@@ -677,10 +711,11 @@ const DEFAULT_DATA = {
           "lab": "Tool"
         }
       ],
+      "image": null,
       "github": "https://github.com/vikram618/ecommerce-analytics-project"
     },
     {
-      "id": "proj100",
+      "id": "proj102",
       "emoji": "💡",
       "name": "HR Analytics: Employee Attrition Analysis",
       "desc": "End-to-end data analytics project uncovering why employees leave and what it costs the business. Cleaned a messy 1,500-row HR dataset, wrote SQL queries to answer key business questions, and built an interactive Power BI dashboard revealing that overtime triples attrition risk and Sales Representatives have a 39% attrition rate, costing the company an estimated $6.8M annually.",
@@ -708,6 +743,7 @@ const DEFAULT_DATA = {
           "lab": "Tool"
         }
       ],
+      "image": null,
       "github": "https://github.com/vikram618/HR-Analytics-Employee-Attrition-Analysis"
     }
   ],
@@ -825,6 +861,34 @@ function fadeIn(el) {
     el.style.opacity='1'; el.style.transform='translateY(0)';
   }));
 }
+// Collision-proof unique ID generator. Unlike a simple incrementing counter
+// (which resets to its starting value every time the page reloads, and can
+// therefore hand out the SAME id to different items added in different
+// sessions — the cause of the GitHub-link mix-up bug), this combines the
+// current timestamp with a random suffix so ids never collide across reloads.
+function uniqueId(prefix) {
+  return prefix + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+}
+// Safety net: if any array ever ends up with duplicate ids (e.g. from an
+// older corrupted save), give the duplicates fresh unique ids so editing
+// one item can never silently affect another.
+function dedupeIds(arr, prefix) {
+  const seen = new Set();
+  arr.forEach(item => {
+    if (!item.id || seen.has(item.id)) item.id = uniqueId(prefix);
+    seen.add(item.id);
+  });
+}
+function migrateState() {
+  dedupeIds(STATE.skills, 'sc');
+  dedupeIds(STATE.experiences, 'exp');
+  dedupeIds(STATE.projects, 'proj');
+  dedupeIds(STATE.education, 'edu');
+  dedupeIds(STATE.certifications, 'cert');
+  STATE.projects.forEach(p => { if (!('image' in p)) p.image = null; });
+}
+migrateState();
+saveState();
 
 // ═══════════════════════════════════════════════════
 // RENDER — build the entire UI from STATE
@@ -908,7 +972,11 @@ function renderProjects() {
     const ghId = 'ghbtn-' + proj.id;
     const ghLblId = ghId + '-label';
     const hasLink = !!proj.github;
+    const thumbHTML = proj.image
+      ? `<div class="project-thumb-wrap"><img class="project-thumb" src="${proj.image}"/><button class="project-thumb-edit-btn edit-only" onclick="openProjImageModal('${esc(proj.id)}')" style="${editMode?'':'display:none;'}">✎ Edit Image</button></div>`
+      : (editMode ? `<button class="project-image-add-btn edit-only" onclick="openProjImageModal('${esc(proj.id)}')">📷 Add Image</button>` : '');
     card.innerHTML = `
+      ${thumbHTML}
       <div class="project-header"><div class="project-icon">${proj.emoji}</div><div class="project-tags">${tagsHTML}</div></div>
       <div class="project-name">${esc(proj.name)}</div>
       <div class="project-desc">${esc(proj.desc)}</div>
@@ -1044,7 +1112,6 @@ document.getElementById('stat-modal').addEventListener('click', function(e){ if(
 // ═══════════════════════════════════════════════════
 // SKILLS — add / delete
 // ═══════════════════════════════════════════════════
-let skillCounter = 100;
 function openSkillModal() {
   document.getElementById('skill-name').value = '';
   document.getElementById('skill-level').value = '';
@@ -1062,7 +1129,7 @@ function saveSkillModal() {
   const emoji = document.getElementById('skill-emoji').value.trim() || '💡';
   const level = document.getElementById('skill-level').value.trim();
   const pct = document.getElementById('skill-pct').value + '%';
-  const id = 'sc' + (skillCounter++);
+  const id = uniqueId('sc');
   STATE.skills.push({ id, emoji, name, level, pct });
   saveState();
   renderSkills();
@@ -1079,7 +1146,6 @@ document.getElementById('skill-modal').addEventListener('click', function(e){ if
 // ═══════════════════════════════════════════════════
 // EXPERIENCE — add / edit / delete
 // ═══════════════════════════════════════════════════
-let expCounter = 100;
 let editingExpId = null;
 
 function openExpModal(editId) {
@@ -1117,7 +1183,7 @@ function saveExpModal() {
     const idx = STATE.experiences.findIndex(e => e.id === editingExpId);
     if (idx !== -1) STATE.experiences[idx] = { ...STATE.experiences[idx], role, company, date, bullets };
   } else {
-    const id = 'exp' + (expCounter++);
+    const id = uniqueId('exp');
     STATE.experiences.push({ id, role, company, date, bullets });
   }
   saveState();
@@ -1134,7 +1200,6 @@ document.getElementById('exp-modal').addEventListener('click', function(e){ if(e
 // ═══════════════════════════════════════════════════
 // EDUCATION / CERTS — add / delete
 // ═══════════════════════════════════════════════════
-let eduCounter = 100;
 function openEduModal() {
   ['edu-degree','edu-school','edu-date','edu-meta','edu-skills'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('edu-type').value = 'education';
@@ -1157,7 +1222,7 @@ function saveEduModal() {
   const school = document.getElementById('edu-school').value.trim();
   const date = document.getElementById('edu-date').value.trim();
   if (!degree||!school||!date) { document.getElementById('edu-modal-err').textContent = '⚠ Name, Institution and Date are required.'; return; }
-  const id = (type==='education'?'edu':'cert') + (eduCounter++);
+  const id = uniqueId(type==='education'?'edu':'cert');
   if (type === 'education') {
     const meta = document.getElementById('edu-meta').value.trim();
     STATE.education.push({ id, type:'education', degree, school, date, meta, skills:'', status:'completed' });
@@ -1184,13 +1249,16 @@ document.getElementById('edu-modal').addEventListener('click', function(e){ if(e
 const EMOJIS = ['💡','📊','📈','🗄️','🤖','🌐','📱','🎯','🔍','⚡','🛠️','📋','🏗️','🔬','💰','🚗'];
 const TOOLS = ['Python','SQL','Power BI','Tableau','Excel','Machine Learning','Pandas','NumPy','Matplotlib','Seaborn','Scikit-learn','Statistics','R','Jupyter','DAX','Power Query'];
 let selectedTools = [];
-let projCounter = 100;
+let apImageData = null;
 
 function openAddProject() {
   selectedTools = [];
+  apImageData = null;
   ['ap-name','ap-desc','ap-github','ap-tools-custom'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('ap-emoji').value = '💡';
   document.getElementById('ap-error').textContent = '';
+  document.getElementById('ap-image-input').value = '';
+  renderApImagePreview();
   renderEmojiPicker(); renderToolPicker(); renderSelectedTools();
   show('add-project-overlay');
   setTimeout(()=>document.getElementById('ap-name').focus(), 50);
@@ -1212,6 +1280,43 @@ document.getElementById('ap-tools-custom').addEventListener('keydown', function(
 document.getElementById('ap-emoji').addEventListener('input', renderEmojiPicker);
 document.getElementById('add-project-overlay').addEventListener('click', function(e){ if(e.target===this) closeAddProject(); });
 
+// Resize/compress an image file client-side before storing it as a data URL,
+// so project thumbnails don't bloat localStorage or the exported HTML file.
+function resizeImage(file, maxDim, quality) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = reject;
+    reader.onload = () => {
+      const img = new Image();
+      img.onerror = reject;
+      img.onload = () => {
+        let { width, height } = img;
+        if (width > maxDim || height > maxDim) {
+          if (width > height) { height = Math.round(height * maxDim / width); width = maxDim; }
+          else { width = Math.round(width * maxDim / height); height = maxDim; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width; canvas.height = height;
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+function renderApImagePreview() {
+  const wrap = document.getElementById('ap-image-preview-wrap');
+  wrap.innerHTML = apImageData
+    ? `<img src="${apImageData}"/><button type="button" class="ap-image-remove-btn" onclick="removeApImage()">✕ Remove</button>`
+    : `<div class="ap-image-empty">No image selected — a thumbnail will be added once you choose one</div>`;
+}
+function removeApImage() { apImageData = null; renderApImagePreview(); }
+function handleApImage(event) {
+  const file = event.target.files[0]; if (!file) return;
+  resizeImage(file, 900, 0.82).then(dataUrl => { apImageData = dataUrl; renderApImagePreview(); });
+}
+
 function saveProject() {
   const name = document.getElementById('ap-name').value.trim();
   const desc = document.getElementById('ap-desc').value.trim();
@@ -1221,11 +1326,11 @@ function saveProject() {
   if (!name) { err.textContent='⚠ Project name is required.'; return; }
   if (!desc) { err.textContent='⚠ Please add a short description.'; return; }
   err.textContent = '';
-  const id = 'proj' + (projCounter++);
+  const id = uniqueId('proj');
   const tools = selectedTools.slice();
   const kpis = tools.slice(0,3).map(t=>({ val: t, lab: 'Tool' }));
   if (!kpis.length) kpis.push({ val:'New', lab:'Project' });
-  STATE.projects.push({ id, emoji, name, desc, tools, kpis, github });
+  STATE.projects.push({ id, emoji, name, desc, tools, kpis, github, image: apImageData });
   saveState();
   renderProjects();
   closeAddProject();
@@ -1274,6 +1379,47 @@ function saveGhModal() {
 }
 document.getElementById('gh-modal-overlay').addEventListener('click', function(e){ if(e.target===this) closeGhModal(); });
 document.getElementById('gh-modal-url').addEventListener('keydown', e=>{ if(e.key==='Enter') saveGhModal(); if(e.key==='Escape') closeGhModal(); });
+
+// — Project images —
+let activeProjImageId = null;
+function renderProjImageModalPreview(proj) {
+  const wrap = document.getElementById('proj-image-modal-preview-wrap');
+  wrap.innerHTML = (proj && proj.image)
+    ? `<img src="${proj.image}"/><button type="button" class="ap-image-remove-btn" onclick="removeProjImage()">✕ Remove</button>`
+    : `<div class="ap-image-empty">No image yet</div>`;
+}
+function openProjImageModal(projectId) {
+  activeProjImageId = projectId;
+  const proj = STATE.projects.find(p => p.id === projectId);
+  document.getElementById('proj-image-modal-name').textContent = proj ? proj.name : projectId;
+  document.getElementById('proj-image-modal-status').textContent = '';
+  document.getElementById('proj-image-modal-input').value = '';
+  renderProjImageModalPreview(proj);
+  show('proj-image-modal-overlay');
+}
+function closeProjImageModal() { hide('proj-image-modal-overlay'); activeProjImageId = null; }
+function handleProjImageModalFile(event) {
+  const file = event.target.files[0]; if (!file) return;
+  const idx = STATE.projects.findIndex(p => p.id === activeProjImageId);
+  if (idx === -1) return;
+  resizeImage(file, 900, 0.82).then(dataUrl => {
+    STATE.projects[idx].image = dataUrl;
+    saveState();
+    renderProjects();
+    renderProjImageModalPreview(STATE.projects[idx]);
+    const status = document.getElementById('proj-image-modal-status');
+    status.textContent = '✓ Saved!'; status.style.color = 'var(--accent)';
+  });
+}
+function removeProjImage() {
+  const idx = STATE.projects.findIndex(p => p.id === activeProjImageId);
+  if (idx === -1) return;
+  STATE.projects[idx].image = null;
+  saveState();
+  renderProjects();
+  renderProjImageModalPreview(STATE.projects[idx]);
+}
+document.getElementById('proj-image-modal-overlay').addEventListener('click', function(e){ if(e.target===this) closeProjImageModal(); });
 
 // ═══════════════════════════════════════════════════
 // EXPORT — bake current STATE into a new HTML file
